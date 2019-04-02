@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+import WatchlistItem from "./watchlistItem";
 class Watchlist extends Component {
   render() {
     return (
       <div>
         {this.props.watchlist.map(stock => {
-          return <li>{stock.ticker}</li>;
+          return <WatchlistItem stock={stock} />;
         })}
       </div>
     );
