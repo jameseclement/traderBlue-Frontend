@@ -1,8 +1,19 @@
-// const URL = `http://localhost:3000/api/v1/`;
+const URL = `http://localhost:3000/api/v1`;
 //
-// function fetchedPaintings(paintings) {
-//   return { type: "FETCHED_PAINTINGS", paintings };
-// }
+function fetchingWatchlist() {
+  return dispatch => {
+    fetch(`${URL}/watchlist_items`)
+      .then(res => res.json())
+      .then(items => {
+        console.log(items);
+        dispatch(fetchedWatchlist(items));
+      });
+  };
+}
+
+function fetchedWatchlist(items) {
+  return { type: "FETCHED_WATCHLIST", items };
+}
 //
 // function loadingPainting() {
 //   return { type: "LOADING_PAINTINGS" };
@@ -28,19 +39,6 @@
 //   };
 // }
 //
-// function fetchingPaintings() {
-//   return dispatch => {
-//     dispatch(loadingPainting());
-//     fetch(URL)
-//       .then(res => res.json())
-//       .then(paintings => {
-//         // debugger
-//         console.log(paintings);
-//         dispatch(fetchedPaintings(paintings));
-//         //{type: "FETCHED_PAINTINGS", paintings}
-//       });
-//   };
-// }
 // //Problem 1: we HAVE to return {} from action creator
 // //Problem 2: we don't have access to dispatch the funciton object
 // //Want: return a process/function -> dispatch an action
@@ -61,9 +59,10 @@
 //   };
 // }
 //
-// export {
-//   changeSearchText,
-//   votingForPainting,
-//   updatePainting,
-//   fetchingPaintings
-// };
+export {
+  fetchingWatchlist
+  // changeSearchText,
+  // votingForPainting,
+  // updatePainting,
+  // fetchingPaintings
+};

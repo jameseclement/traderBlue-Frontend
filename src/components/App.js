@@ -6,8 +6,14 @@ import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
 import logo from "../logo.svg";
 import "../App.css";
+import { fetchingWatchlist } from "../redux/actions";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchingWatchlist();
+  }
   render() {
     return (
       <div className="App">
@@ -21,5 +27,17 @@ class App extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchingWatchlist: () => {
+      dispatch(fetchingWatchlist());
+    }
+  };
+};
 
-export default App;
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);
