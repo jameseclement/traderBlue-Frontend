@@ -11,6 +11,21 @@ function fetchingWatchlist() {
   };
 }
 
+function fetchingPortfolio() {
+  return dispatch => {
+    fetch(`${URL}/portfolios`)
+      .then(res => res.json())
+      .then(portfolio => {
+        console.log(portfolio);
+        dispatch(fetchedPortfolio(portfolio));
+      });
+  };
+}
+
+function fetchedPortfolio(portfolio) {
+  return { type: "FETCHED_PORTFOLIO", portfolio };
+}
+
 function fetchedWatchlist(items) {
   return { type: "FETCHED_WATCHLIST", items };
 }
@@ -60,7 +75,8 @@ function fetchedWatchlist(items) {
 // }
 //
 export {
-  fetchingWatchlist
+  fetchingWatchlist,
+  fetchingPortfolio
   // changeSearchText,
   // votingForPainting,
   // updatePainting,

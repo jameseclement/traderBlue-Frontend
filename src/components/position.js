@@ -4,7 +4,7 @@ class Position extends Component {
   render() {
     return (
       <tr>
-        <td>Cell</td>
+        <td>this.props.ticker</td>
         <td>Cell</td>
         <td>Cell</td>
         <td>Cell</td>
