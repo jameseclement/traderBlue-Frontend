@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Navbar from "./components/navbar";
-import PortfolioPage from "./containers/portfolioPage";
-import TradePage from "./containers/tradePage";
-import ResearchPage from "./containers/researchPage";
-import logo from "./logo.svg";
-import "./App.css";
+import Navbar from "./navbar";
+import PortfolioPage from "../containers/portfolioPage";
+import TradePage from "../containers/tradePage";
+import ResearchPage from "../containers/researchPage";
+import logo from "../logo.svg";
+import "../App.css";
 
 class App extends Component {
   render() {
