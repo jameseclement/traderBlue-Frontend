@@ -20,7 +20,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/users/1/portfolio" component={PortfolioPage} />
-          <Route exact path="/users/1/trade" component={TradePage} />
+          <Route path="/users/1/trade/:stock_name" component={TradePage} />
           <Route exact path="/users/1/research" component={ResearchPage} />
         </Switch>
       </div>
