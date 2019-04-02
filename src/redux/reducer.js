@@ -8,10 +8,10 @@ const watchlistReducer = (state = [], action) => {
       return state;
   }
 };
-const portfolioReducer = (state = [], action) => {
+const positionsReducer = (state = [], action) => {
   switch (action.type) {
-    case "FETCHED_PORTFOLIO":
-      return action.portfolio;
+    case "FETCHED_POSITIONS":
+      return action.positions;
     default:
       return state;
   }
@@ -24,7 +24,7 @@ const portfolioReducer = (state = [], action) => {
 
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
-  portfolio: portfolioReducer
+  positions: positionsReducer
 });
 
 export default rootReducer;
