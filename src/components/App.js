@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
+import { Route, Switch } from "react-router-dom";
 import PortfolioPage from "../containers/portfolioPage";
 import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
@@ -11,27 +12,11 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <br />
-        <br />
-        <br />
-        PortfolioPage
-        <br />
-        <br />
-        <PortfolioPage />
-        <br />
-        <br />
-        <br />
-        TradePage
-        <br />
-        <br />
-        <TradePage />
-        <br />
-        <br />
-        <br />
-        ResearchPage
-        <br />
-        <br />
-        <ResearchPage />
+        <Switch>
+          <Route exact path="/portfolio" component={PortfolioPage} />
+          <Route exact path="/trade" component={TradePage} />
+          <Route exact path="/research" component={ResearchPage} />
+        </Switch>
       </div>
     );
   }
