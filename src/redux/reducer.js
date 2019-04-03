@@ -11,7 +11,7 @@ const watchlistReducer = (state = [], action) => {
 const portfolioReducer = (state = [], action) => {
   switch (action.type) {
     case "FETCHED_PORTFOLIO":
-      return action.positions;
+      return action.portfolio;
     default:
       return state;
   }

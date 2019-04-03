@@ -4,9 +4,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 class PositionsTable extends Component {
   render() {
-    console.log(this.props);
     return this.props.loading ? (
-      <div>Loading... </div>
+      <div>Loading Positions </div>
     ) : (
       <table>
         <tbody>
@@ -17,13 +16,13 @@ class PositionsTable extends Component {
             <td>Cost Basis</td>
             <td>Total Value</td>
             <td>Total Cost</td>
-            <td>% G/L Day</td>
+            <td>$ G/L Day</td>
             <td>% G/L Day</td>
             <td>$ G/L Total</td>
             <td>% G/L Total</td>
           </tr>
-          {this.props.portfolio.map(position => {
-            return <Position position={position} />;
+          {this.props.portfolio.positions.map(position => {
+            return <Position key={position.id} position={position} />;
           })}
         </tbody>
       </table>

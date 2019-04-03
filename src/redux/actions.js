@@ -18,17 +18,17 @@ function loadingPortfolio() {
 function fetchingPortfolio() {
   return dispatch => {
     dispatch(loadingPortfolio());
-    fetch(`${URL}/users/1/portfolios/1/positions`)
+    fetch(`${URL}/users/1/portfolios/1`)
       .then(res => res.json())
-      .then(positions => {
-        // console.log(positions);
-        dispatch(fetchedPortfolio(positions));
+      .then(portfolio => {
+        console.log(portfolio);
+        dispatch(fetchedPortfolio(portfolio));
       });
   };
 }
 
-function fetchedPortfolio(positions) {
-  return { type: "FETCHED_PORTFOLIO", positions };
+function fetchedPortfolio(portfolio) {
+  return { type: "FETCHED_PORTFOLIO", portfolio };
 }
 
 function fetchedWatchlist(items) {

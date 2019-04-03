@@ -20,8 +20,8 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path="/users/1/portfolio" component={PortfolioPage} />
-          <Route path="/users/1/trade/:stock_name" component={TradePage} />
+          <Route path="/users/1/portfolios/1" component={PortfolioPage} />
+          <Route path="/users/1/trade/:id" component={TradePage} />
           <Route exact path="/users/1/research" component={ResearchPage} />
         </Switch>
       </div>
