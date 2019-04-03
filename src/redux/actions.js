@@ -1,29 +1,34 @@
-const URL = `http://localhost:3000`;
+const URL = `http://localhost:3000/api/v1`;
 //
 function fetchingWatchlist() {
   return dispatch => {
     fetch(`${URL}/watchlist_items`)
       .then(res => res.json())
       .then(items => {
-        console.log(items);
+        // console.log(items);
         dispatch(fetchedWatchlist(items));
       });
   };
 }
 
+function loadingPortfolio() {
+  return { type: "LOADING_PORTFOLIO" };
+}
+
 function fetchingPortfolio() {
   return dispatch => {
-    fetch(`${URL}/portfolios`)
+    dispatch(loadingPortfolio());
+    fetch(`${URL}/users/1/portfolios/1/positions`)
       .then(res => res.json())
-      .then(portfolio => {
-        console.log(portfolio);
-        dispatch(fetchedPortfolio(portfolio));
+      .then(positions => {
+        // console.log(positions);
+        dispatch(fetchedPortfolio(positions));
       });
   };
 }
 
-function fetchedPortfolio(portfolio) {
-  return { type: "FETCHED_PORTFOLIO", portfolio };
+function fetchedPortfolio(positions) {
+  return { type: "FETCHED_PORTFOLIO", positions };
 }
 
 function fetchedWatchlist(items) {

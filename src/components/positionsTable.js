@@ -4,22 +4,27 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 class PositionsTable extends Component {
   render() {
-    return (
+    console.log(this.props);
+    return this.props.loading ? (
+      <div>Loading... </div>
+    ) : (
       <table>
         <tbody>
           <tr>
-            <td>Symbol</td>
-            <td>Name</td>
+            <td>Ticker</td>
             <td>Shares</td>
             <td>Current Price</td>
-            <td>Purchase Price</td>
+            <td>Cost Basis</td>
             <td>Total Value</td>
+            <td>Total Cost</td>
             <td>% G/L Day</td>
             <td>% G/L Day</td>
             <td>$ G/L Total</td>
             <td>% G/L Total</td>
           </tr>
-          <Position />
+          {this.props.portfolio.map(position => {
+            return <Position position={position} />;
+          })}
         </tbody>
       </table>
     );
@@ -27,6 +32,7 @@ class PositionsTable extends Component {
 }
 const mapStateToProps = state => {
   return {
+    loading: state.loading,
     portfolio: state.portfolio
   };
 };

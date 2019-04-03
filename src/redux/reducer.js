@@ -8,23 +8,30 @@ const watchlistReducer = (state = [], action) => {
       return state;
   }
 };
-const positionsReducer = (state = [], action) => {
+const portfolioReducer = (state = [], action) => {
   switch (action.type) {
-    case "FETCHED_POSITIONS":
+    case "FETCHED_PORTFOLIO":
       return action.positions;
     default:
       return state;
   }
 };
 
-// const reducer2 = (oldState, action) => {
-//   switch (action.type) {
-//   }
-// };
+const loadingReducer = (state = false, action) => {
+  switch (action.type) {
+    case "LOADING_PORTFOLIO":
+      return true;
+    case "FETCHED_PORTFOLIO":
+      return false;
+    default:
+      return state;
+  }
+};
 
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
-  positions: positionsReducer
+  portfolio: portfolioReducer,
+  loading: loadingReducer
 });
 
 export default rootReducer;

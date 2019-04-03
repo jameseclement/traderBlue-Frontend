@@ -4,7 +4,6 @@ import { Route, Switch } from "react-router-dom";
 import PortfolioPage from "../containers/portfolioPage";
 import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
-import logo from "../logo.svg";
 import "../App.css";
 import { fetchingWatchlist } from "../redux/actions";
 import { fetchingPortfolio } from "../redux/actions";
