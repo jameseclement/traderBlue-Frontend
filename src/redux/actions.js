@@ -27,16 +27,16 @@ function fetchingPortfolio() {
   };
 }
 
-function postingPosition(quantity, ticker, cost, portfolio) {
+function postingPosition(quantity, ticker, cost, portfolio_id) {
   return dispatch => {
     fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
-        quantity: 10,
-        ticker: "GOOG",
-        cost_basis: 800.0,
-        portfolio_id: 1
+        quantity: quantity,
+        ticker: ticker,
+        cost_basis: cost,
+        portfolio_id: portfolio_id
       })
     })
       .then(res => res.json())
