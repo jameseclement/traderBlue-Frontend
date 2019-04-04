@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 class PositionsTable extends Component {
   render() {
-    return this.props.loading ? (
+    return !this.props.portfolio.positions ? (
       <div>Loading Positions </div>
     ) : (
       <table>
