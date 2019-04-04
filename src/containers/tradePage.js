@@ -11,9 +11,17 @@ class TradePage extends Component {
     return (
       <div>
         <Watchlist />
+        <br />
+        <br />
+        <br />
+        <br />
+        <TradeControls />
+        <br />
+        <br />
+        <br />
+        <br />
         <SecurityChart />
         <NewsContainer />
-        <TradeControls />
         <SearchBar />
         <TradingData />
       </div>

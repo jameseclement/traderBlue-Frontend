@@ -39,8 +39,8 @@ const positionReducer = (state = [], action) => {
 
 const stockReducer = (state = null, action) => {
   switch (action.type) {
-    case "VIEW_STOCK":
-      return action.stock;
+    case "FETCHED_STOCK":
+      return action.stockInfo;
     default:
       return state;
   }
