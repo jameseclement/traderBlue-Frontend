@@ -5,21 +5,17 @@ class Navbar extends Component {
   render() {
     return (
       <div className="ui inverted teal menu">
-        <NavLink to="/users/1/portfolios/1" className="item">
+        <NavLink to="/portfolios/1" className="item">
           <h2 className="ui header">
             <div className="content">Portfolio</div>
           </h2>
         </NavLink>
-        <NavLink
-          to="/users/1/trade"
-          activeClassName="active item"
-          className="item"
-        >
+        <NavLink to="/trade" activeClassName="active item" className="item">
           <h3 className="ui header">Trade</h3>
         </NavLink>
         <NavLink
           exact
-          to="/users/1/research"
+          to="/research"
           activeClassName="active item"
           className="item"
         >
