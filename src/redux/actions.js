@@ -47,6 +47,10 @@ function postingPosition(quantity, ticker, cost, portfolio_id) {
   };
 }
 
+function viewStock(stock) {
+  return { type: "VIEW_STOCK", stock };
+}
+
 function postedPosition(position) {
   return { type: "POSTED POSITION", position };
 }
@@ -106,7 +110,8 @@ function fetchedWatchlist(items) {
 export {
   fetchingWatchlist,
   fetchingPortfolio,
-  postingPosition
+  postingPosition,
+  viewStock
   // changeSearchText,
   // votingForPainting,
   // updatePainting,

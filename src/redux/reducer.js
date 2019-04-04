@@ -37,10 +37,20 @@ const positionReducer = (state = [], action) => {
   }
 };
 
+const stockReducer = (state = null, action) => {
+  switch (action.type) {
+    case "VIEW_STOCK":
+      return action.stock;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
   portfolio: portfolioReducer,
-  loading: loadingReducer
+  loading: loadingReducer,
+  stock: stockReducer
 });
 
 export default rootReducer;

@@ -8,7 +8,7 @@ class TradeControls extends Component {
     return (
       <button
         onClick={() => {
-          this.props.postingPosition();
+          this.props.postingPosition(3, "JNJ", 130.0, 1);
         }}
       >
         Buy 1 Share of Ford
