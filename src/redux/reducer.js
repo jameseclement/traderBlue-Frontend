@@ -28,6 +28,15 @@ const loadingReducer = (state = false, action) => {
   }
 };
 
+const positionReducer = (state = [], action) => {
+  switch (action.type) {
+    case "POSTED_POSITION":
+      return action.position;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
   portfolio: portfolioReducer,

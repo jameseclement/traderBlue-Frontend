@@ -27,14 +27,28 @@ function fetchingPortfolio() {
   };
 }
 
-function postingPosition() {
-  fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
-    method: "POST",
-    headers: { "Content-Type": "application/JSON" },
-    body: JSON.stringify({ quantity: 10, ticker: "GOOG", cost_basis: 800.0 })
-  })
-    .then(res => res.json())
-    .then(console.log);
+function postingPosition(quantity, ticker, cost, portfolio) {
+  return dispatch => {
+    fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
+      method: "POST",
+      headers: { "Content-Type": "application/JSON" },
+      body: JSON.stringify({
+        quantity: 10,
+        ticker: "GOOG",
+        cost_basis: 800.0,
+        portfolio_id: 1
+      })
+    })
+      .then(res => res.json())
+      .then(position => {
+        console.log(position);
+        dispatch(postedPosition(position));
+      });
+  };
+}
+
+function postedPosition(position) {
+  return { type: "POSTED POSITION", position };
 }
 
 function fetchedPortfolio(portfolio) {
@@ -91,7 +105,8 @@ function fetchedWatchlist(items) {
 //
 export {
   fetchingWatchlist,
-  fetchingPortfolio
+  fetchingPortfolio,
+  postingPosition
   // changeSearchText,
   // votingForPainting,
   // updatePainting,
