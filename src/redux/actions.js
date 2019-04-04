@@ -27,6 +27,16 @@ function fetchingPortfolio() {
   };
 }
 
+function postingPosition() {
+  fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
+    method: "POST",
+    headers: { "Content-Type": "application/JSON" },
+    body: JSON.stringify({ quantity: 10, ticker: "GOOG", cost_basis: 800.0 })
+  })
+    .then(res => res.json())
+    .then(console.log);
+}
+
 function fetchedPortfolio(portfolio) {
   return { type: "FETCHED_PORTFOLIO", portfolio };
 }
