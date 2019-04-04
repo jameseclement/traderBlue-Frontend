@@ -18,7 +18,9 @@ class TradeControls extends Component {
 
   render() {
     let symbol = this.props.match.params.id;
-    return (
+    return this.props.loading ? (
+      <div>Loading</div>
+    ) : (
       <form>
         <input
           type="number"
@@ -29,7 +31,12 @@ class TradeControls extends Component {
         <br />
         <button
           onClick={() => {
-            this.props.postingPosition(symbol, this.state.shares, 130.0, 1);
+            this.props.postingPosition(
+              symbol,
+              this.state.shares,
+              this.props.stock.quote.latestPrice,
+              1
+            );
           }}
         >
           Buy
@@ -52,7 +59,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    stock: state.stock
+    stock: state.stock,
+    loading: state.loading
   };
 };
 

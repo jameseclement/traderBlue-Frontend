@@ -49,7 +49,7 @@ function postingPosition(ticker, quantity, price, portfolio_id) {
 
 function fetchingStock(ticker) {
   return dispatch => {
-    // fetch(`${URL}/users/1/portfolios/1`)
+    fetch(`${URL}/stocks/${ticker}`)
       .then(res => res.json())
       .then(stockInfo => {
         console.log(stockInfo);
