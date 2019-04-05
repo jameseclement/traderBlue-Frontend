@@ -36,41 +36,35 @@ class TradeControls extends Component {
         </form>
         <button
           onClick={() => {
-            for (var i = 0; i < this.props.portfolio.positions.length; i++) {
-              if (
-                Object.values(this.props.portfolio.positions[i]).includes(
-                  ticker
-                )
-              ) {
-                let currentShares = this.props.position.quantity;
-                let newTotalShares =
-                  parseInt(currentShares) + parseInt(this.state.shares);
-                let previousPositionCost =
-                  parseInt(this.props.position.quantity) *
-                  this.props.position.cost_basis;
-                let purchaseCost =
-                  parseInt(this.state.shares) *
-                  this.props.stock.quote.latestPrice;
-                let newCostBasis =
-                  (previousPositionCost + purchaseCost) / newTotalShares;
+            if (this.props.position.ticker == ticker) {
+              let currentShares = this.props.position.quantity;
+              let newTotalShares =
+                parseInt(currentShares) + parseInt(this.state.shares);
+              let previousPositionCost =
+                parseInt(this.props.position.quantity) *
+                this.props.position.cost_basis;
+              let purchaseCost =
+                parseInt(this.state.shares) *
+                this.props.stock.quote.latestPrice;
+              let newCostBasis =
+                (previousPositionCost + purchaseCost) / newTotalShares;
 
-                this.props.addingToPosition(
-                  ticker,
-                  newTotalShares,
-                  newCostBasis,
-                  1
-                );
-                return null;
-              } else {
-                console.log("new position");
-                this.props.postingPosition(
-                  ticker,
-                  this.state.shares,
-                  this.props.stock.quote.latestPrice,
-                  1
-                );
-                return null;
-              }
+              this.props.addingToPosition(
+                ticker,
+                newTotalShares,
+                newCostBasis,
+                1
+              );
+              return null;
+            } else {
+              console.log("new position");
+              this.props.postingPosition(
+                ticker,
+                this.state.shares,
+                this.props.stock.quote.latestPrice,
+                1
+              );
+              return null;
             }
           }}
         >
