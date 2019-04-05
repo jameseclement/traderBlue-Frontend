@@ -5,12 +5,19 @@ import { fetchingStock } from "../redux/actions";
 
 class NewsContainer extends Component {
   componentDidMount() {
-    debugger;
     this.props.fetchingStock(this.props.match.params.id);
   }
   render() {
     let ticker = this.props.match.params.id;
-    return <div>News Goes here</div>;
+    return !this.props.stock ? (
+      <div>Loading</div>
+    ) : (
+      <ul>
+        {this.props.stock.news.map(n => {
+          return <li>{n.headline}</li>;
+        })}
+      </ul>
+    );
   }
 }
 
