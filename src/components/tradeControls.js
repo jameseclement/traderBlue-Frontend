@@ -5,6 +5,7 @@ import { postingPosition } from "../redux/actions";
 import { fetchingStock } from "../redux/actions";
 import { fetchingPosition } from "../redux/actions";
 import { addingToPosition } from "../redux/actions";
+import { closingPosition } from "../redux/actions";
 
 class TradeControls extends Component {
   constructor() {
@@ -70,6 +71,13 @@ class TradeControls extends Component {
         >
           Buy
         </button>
+        <button
+          onClick={() => {
+            this.props.closingPosition(ticker);
+          }}
+        >
+          Close Position (Sell all shares)
+        </button>
       </div>
     );
   }
@@ -88,6 +96,9 @@ const mapDispatchToProps = dispatch => {
     },
     addingToPosition: (ticker, newTotal, costBasis, portfolio_id) => {
       dispatch(addingToPosition(ticker, newTotal, costBasis, portfolio_id));
+    },
+    closingPosition: ticker => {
+      dispatch(closingPosition(ticker));
     }
   };
 };

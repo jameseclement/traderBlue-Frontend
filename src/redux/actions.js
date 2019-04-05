@@ -87,6 +87,23 @@ function addingToPosition(ticker, newTotal, costBasis, portfolioId) {
   };
 }
 
+function closingPosition(ticker) {
+  return dispatch => {
+    fetch(
+      `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/JSON",
+          Accept: "application/json"
+        }
+      }
+    )
+      .then(res => res.json())
+      .then(console.log);
+  };
+}
+
 function fetchingStock(ticker) {
   return dispatch => {
     fetch(`${URL}/stocks/${ticker}`)
@@ -168,7 +185,8 @@ export {
   postingPosition,
   fetchingStock,
   fetchingPosition,
-  addingToPosition
+  addingToPosition,
+  closingPosition
   // changeSearchText,
   // votingForPainting,
   // updatePainting,
