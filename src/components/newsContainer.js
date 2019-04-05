@@ -14,7 +14,7 @@ class NewsContainer extends Component {
     ) : (
       <ul>
         {this.props.stock.news.map(n => {
-          return <li>{n.headline}</li>;
+          return <li key={n.headline}>{n.headline}</li>;
         })}
       </ul>
     );

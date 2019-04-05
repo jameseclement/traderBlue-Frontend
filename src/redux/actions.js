@@ -27,7 +27,7 @@ function fetchingPortfolio() {
   };
 }
 
-function postingPosition(ticker, quantity, price, portfolio_id) {
+function postingPosition(ticker, quantity, price, portfolioId) {
   return dispatch => {
     fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
       method: "POST",
@@ -36,7 +36,7 @@ function postingPosition(ticker, quantity, price, portfolio_id) {
         quantity: quantity,
         ticker: ticker,
         cost_basis: price,
-        portfolio_id: portfolio_id
+        portfolio_id: portfolioId
       })
     })
       .then(res => res.json())
@@ -60,25 +60,32 @@ function fetchingPosition(ticker) {
   };
 }
 
-// function addingToPosition(ticker, quantity, price, portfolio_id) {
-//   return dispatch => {
-//     fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/JSON" },
-//       body: JSON.stringify({
-//         quantity: quantity,
-//         ticker: ticker,
-//         cost_basis: price,
-//         portfolio_id: portfolio_id
-//       })
-//     })
-//       .then(res => res.json())
-//       .then(position => {
-//         console.log(position);
-//         dispatch(postedPosition(position));
-//       });
-//   };
-// }
+function addingToPosition(ticker, newTotal, costBasis, portfolioId) {
+  return dispatch => {
+    fetch(
+      `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/JSON",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          position: {
+            quantity: newTotal,
+            ticker: ticker,
+            cost_basis: costBasis,
+            portfolio_id: portfolioId
+          }
+        })
+      }
+    )
+      .then(res => res.json())
+      .then(position => {
+        dispatch(postedPosition(position));
+      });
+  };
+}
 
 function fetchingStock(ticker) {
   return dispatch => {
@@ -160,7 +167,8 @@ export {
   fetchingPortfolio,
   postingPosition,
   fetchingStock,
-  fetchingPosition
+  fetchingPosition,
+  addingToPosition
   // changeSearchText,
   // votingForPainting,
   // updatePainting,
