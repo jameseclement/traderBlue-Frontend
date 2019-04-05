@@ -22,7 +22,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={ResearchPage} />
           <Route path="/portfolios/1" component={PortfolioPage} />
-          <Route path="/trade/:id" component={TradePage} />
+          <Route path="/trade/:id" render={() => <TradePage />} />
           <Route path="/research/:id" component={ResearchPage} />
         </Switch>
       </div>

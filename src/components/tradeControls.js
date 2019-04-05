@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { postingPosition } from "../redux/actions";
 import { fetchingStock } from "../redux/actions";
+import { fetchingPosition } from "../redux/actions";
 
 class TradeControls extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class TradeControls extends Component {
 
   componentDidMount() {
     this.props.fetchingStock(this.props.match.params.id);
+    this.props.fetchingPosition(this.props.match.params.id);
   }
 
   render() {
@@ -33,7 +35,6 @@ class TradeControls extends Component {
         </form>
         <button
           onClick={() => {
-            debugger;
             for (var i = 0; i < this.props.portfolio.positions.length; i++) {
               if (
                 Object.values(this.props.portfolio.positions[i]).includes(
@@ -69,6 +70,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchingStock: ticker => {
       dispatch(fetchingStock(ticker));
+    },
+    fetchingPosition: ticker => {
+      dispatch(fetchingPosition(ticker));
     }
   };
 };
@@ -77,7 +81,8 @@ const mapStateToProps = state => {
   return {
     stock: state.stock,
     loading: state.loading,
-    portfolio: state.portfolio
+    portfolio: state.portfolio,
+    position: state.position
   };
 };
 

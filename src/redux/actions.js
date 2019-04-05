@@ -47,6 +47,39 @@ function postingPosition(ticker, quantity, price, portfolio_id) {
   };
 }
 
+function fetchingPosition(ticker) {
+  return dispatch => {
+    fetch(
+      `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`
+    )
+      .then(res => res.json())
+      .then(position => {
+        console.log(position);
+        dispatch(fetchedPosition(position));
+      });
+  };
+}
+
+// function addingToPosition(ticker, quantity, price, portfolio_id) {
+//   return dispatch => {
+//     fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/JSON" },
+//       body: JSON.stringify({
+//         quantity: quantity,
+//         ticker: ticker,
+//         cost_basis: price,
+//         portfolio_id: portfolio_id
+//       })
+//     })
+//       .then(res => res.json())
+//       .then(position => {
+//         console.log(position);
+//         dispatch(postedPosition(position));
+//       });
+//   };
+// }
+
 function fetchingStock(ticker) {
   return dispatch => {
     fetch(`${URL}/stocks/${ticker}`)
@@ -63,7 +96,11 @@ function fetchedStock(stockInfo) {
 }
 
 function postedPosition(position) {
-  return { type: "POSTED POSITION", position };
+  return { type: "POSTED_POSITION", position };
+}
+
+function fetchedPosition(position) {
+  return { type: "FETCHED_POSITION", position };
 }
 
 function fetchedPortfolio(portfolio) {
@@ -122,7 +159,8 @@ export {
   fetchingWatchlist,
   fetchingPortfolio,
   postingPosition,
-  fetchingStock
+  fetchingStock,
+  fetchingPosition
   // changeSearchText,
   // votingForPainting,
   // updatePainting,

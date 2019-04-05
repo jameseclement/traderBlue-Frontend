@@ -32,6 +32,8 @@ const positionReducer = (state = [], action) => {
   switch (action.type) {
     case "POSTED_POSITION":
       return action.position;
+    case "FETCHED_POSITION":
+      return action.position;
     default:
       return state;
   }
@@ -50,7 +52,8 @@ const rootReducer = combineReducers({
   watchlist: watchlistReducer,
   portfolio: portfolioReducer,
   loading: loadingReducer,
-  stock: stockReducer
+  stock: stockReducer,
+  position: positionReducer
 });
 
 export default rootReducer;
