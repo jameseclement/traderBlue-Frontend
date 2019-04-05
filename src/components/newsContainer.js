@@ -5,18 +5,19 @@ import { fetchingStock } from "../redux/actions";
 
 class NewsContainer extends Component {
   componentDidMount() {
-    // console.log(this.props.match.params.id);
+    debugger;
     this.props.fetchingStock(this.props.match.params.id);
   }
   render() {
+    let ticker = this.props.match.params.id;
     return <div>News Goes here</div>;
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingStock: stock => {
-      dispatch(fetchingStock(stock));
+    fetchingStock: ticker => {
+      dispatch(fetchingStock(ticker));
     }
   };
 };
@@ -29,7 +30,7 @@ const mapStateToProps = state => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(NewsContainer)
 );

@@ -23,7 +23,7 @@ class App extends Component {
           <Route exact path="/" component={ResearchPage} />
           <Route path="/portfolios/1" component={PortfolioPage} />
           <Route path="/trade/:id" component={TradePage} />
-          <Route exact path="/research" component={ResearchPage} />
+          <Route path="/research/:id" component={ResearchPage} />
         </Switch>
       </div>
     );

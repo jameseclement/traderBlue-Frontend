@@ -17,31 +17,47 @@ class TradeControls extends Component {
   }
 
   render() {
-    let symbol = this.props.match.params.id;
+    let ticker = this.props.match.params.id;
     return this.props.loading ? (
       <div>Loading</div>
     ) : (
-      <form>
-        <input
-          type="number"
-          name="shares"
-          value={this.state.shares}
-          onChange={e => this.setState({ shares: e.target.value })}
-        />
-        <br />
+      <div>
+        <form>
+          <input
+            type="number"
+            name="shares"
+            value={this.state.shares}
+            onChange={e => this.setState({ shares: e.target.value })}
+          />
+          <br />
+        </form>
         <button
           onClick={() => {
-            this.props.postingPosition(
-              symbol,
-              this.state.shares,
-              this.props.stock.quote.latestPrice,
-              1
-            );
+            debugger;
+            for (var i = 0; i < this.props.portfolio.positions.length; i++) {
+              if (
+                Object.values(this.props.portfolio.positions[i]).includes(
+                  ticker
+                )
+              ) {
+                alert("you already own this!");
+                return null;
+              } else {
+                console.log("new position");
+                this.props.postingPosition(
+                  ticker,
+                  this.state.shares,
+                  this.props.stock.quote.latestPrice,
+                  1
+                );
+                return null;
+              }
+            }
           }}
         >
           Buy
         </button>
-      </form>
+      </div>
     );
   }
 }
@@ -60,7 +76,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     stock: state.stock,
-    loading: state.loading
+    loading: state.loading,
+    portfolio: state.portfolio
   };
 };
 
