@@ -21,28 +21,36 @@ class TradeControls extends Component {
   }
 
   buyStock = () => {
+    let price = this.props.stock.quote.latestPrice;
+    let shares = parseInt(this.state.shares);
     let ticker = this.props.match.params.id;
-    if (this.props.position.ticker == ticker) {
-      let currentShares = this.props.position.quantity;
-      let newTotalShares =
-        parseInt(currentShares) + parseInt(this.state.shares);
-      let previousPositionCost =
-        parseInt(this.props.position.quantity) * this.props.position.cost_basis;
-      let purchaseCost =
-        parseInt(this.state.shares) * this.props.stock.quote.latestPrice;
-      let newCostBasis = (previousPositionCost + purchaseCost) / newTotalShares;
-
-      this.props.addingToPosition(ticker, newTotalShares, newCostBasis, 1);
-      return null;
+    let purchaseCost = shares * price;
+    let availableCash = this.props.portfolio.cash;
+    if (purchaseCost > availableCash) {
+      alert("Not enough cash to buy this many shares");
     } else {
-      console.log("new position");
-      this.props.postingPosition(
-        ticker,
-        this.state.shares,
-        this.props.stock.quote.latestPrice,
-        1
-      );
-      return null;
+      if (this.props.position.ticker == ticker) {
+        let currentShares = this.props.position.quantity;
+        let newTotalShares =
+          parseInt(currentShares) + parseInt(this.state.shares);
+        let previousPositionCost =
+          parseInt(this.props.position.quantity) *
+          this.props.position.cost_basis;
+        let newCostBasis =
+          (previousPositionCost + purchaseCost) / newTotalShares;
+
+        this.props.addingToPosition(ticker, newTotalShares, newCostBasis, 1);
+        return null;
+      } else {
+        console.log("new position");
+        this.props.postingPosition(
+          ticker,
+          this.state.shares,
+          this.props.stock.quote.latestPrice,
+          1
+        );
+        return null;
+      }
     }
   };
 
