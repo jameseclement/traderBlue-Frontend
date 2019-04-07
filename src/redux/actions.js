@@ -158,7 +158,7 @@ function fetchedWatchlist(items) {
 }
 
 function adjustedCash(cashLeft) {
-  return { type: "REDUCED_CASH", cashLeft };
+  return { type: "ADJUSTED_CASH", cashLeft };
 }
 //
 // function loadingPainting() {

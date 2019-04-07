@@ -88,6 +88,17 @@ class TradeControls extends Component {
     }
   };
 
+  closePosition = () => {
+    let price = this.props.stock.quote.latestPrice;
+    let shares = this.props.position.quantity;
+    let ticker = this.props.match.params.id;
+    let saleValue = shares * price;
+    let availableCash = this.props.portfolio.cash;
+    let newCash = availableCash + saleValue;
+    this.props.adjustingCash(newCash);
+    this.props.closingPosition(ticker);
+  };
+
   render() {
     let ticker = this.props.match.params.id;
 
@@ -120,7 +131,7 @@ class TradeControls extends Component {
         </button>
         <button
           onClick={() => {
-            this.props.closingPosition(ticker);
+            this.closePosition();
           }}
         >
           Close Position (sell all shares)
