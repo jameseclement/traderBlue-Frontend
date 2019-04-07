@@ -6,6 +6,7 @@ import { fetchingStock } from "../redux/actions";
 import { fetchingPosition } from "../redux/actions";
 import { addingToPosition } from "../redux/actions";
 import { closingPosition } from "../redux/actions";
+import { reducingCash } from "../redux/actions";
 
 class TradeControls extends Component {
   constructor() {
@@ -29,6 +30,9 @@ class TradeControls extends Component {
     if (purchaseCost > availableCash) {
       alert("Not enough cash to buy this many shares");
     } else {
+      let cashLeft = availableCash - purchaseCost;
+      this.props.reducingCash(cashLeft);
+
       if (this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
         let newTotalShares =
@@ -105,6 +109,9 @@ const mapDispatchToProps = dispatch => {
     },
     closingPosition: ticker => {
       dispatch(closingPosition(ticker));
+    },
+    reducingCash: cashLeft => {
+      dispatch(reducingCash(cashLeft));
     }
   };
 };

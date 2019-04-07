@@ -87,6 +87,28 @@ function addingToPosition(ticker, newTotal, costBasis, portfolioId) {
   };
 }
 
+function reducingCash(cashLeft) {
+  return dispatch => {
+    fetch(`${URL}/users/1/portfolios/1`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/JSON",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        portfolio: {
+          cash: cashLeft
+        }
+      })
+    })
+      .then(res => res.json())
+      .then(portfolio => {
+        console.log(portfolio);
+        dispatch(reducedCash(portfolio));
+      });
+  };
+}
+
 function closingPosition(ticker) {
   return dispatch => {
     fetch(
@@ -133,6 +155,10 @@ function fetchedPortfolio(portfolio) {
 
 function fetchedWatchlist(items) {
   return { type: "FETCHED_WATCHLIST", items };
+}
+
+function reducedCash(cashLeft) {
+  return { type: "REDUCED_CASH", cashLeft };
 }
 //
 // function loadingPainting() {
@@ -186,7 +212,8 @@ export {
   fetchingStock,
   fetchingPosition,
   addingToPosition,
-  closingPosition
+  closingPosition,
+  reducingCash
   // changeSearchText,
   // votingForPainting,
   // updatePainting,

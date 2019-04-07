@@ -12,6 +12,8 @@ const portfolioReducer = (state = [], action) => {
   switch (action.type) {
     case "FETCHED_PORTFOLIO":
       return action.portfolio;
+    case "REDUCED CASH":
+      return action.portfolio;
     default:
       return state;
   }
