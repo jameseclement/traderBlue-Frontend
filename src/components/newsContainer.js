@@ -8,7 +8,7 @@ class NewsContainer extends Component {
     this.props.fetchingStock(this.props.match.params.id);
   }
   render() {
-    let ticker = this.props.match.params.id;
+    // let ticker = this.props.match.params.id;
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (

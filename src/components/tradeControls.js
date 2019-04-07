@@ -29,7 +29,7 @@ class TradeControls extends Component {
     if (purchaseCost > availableCash) {
       alert("Not enough cash to buy this many shares");
     } else {
-      if (this.props.position.ticker == ticker) {
+      if (this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
         let newTotalShares =
           parseInt(currentShares) + parseInt(this.state.shares);
