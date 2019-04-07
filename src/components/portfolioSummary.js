@@ -15,11 +15,11 @@ class PortfolioSummary extends Component {
       });
       return (
         <div>
-          Cash:{this.props.portfolio.cash}
+          Cash:${this.props.portfolio.cash.toFixed(2)}
           <br />
-          Investments:{invested}
+          Investments:${invested.toFixed(2)}
           <br />
-          Total:{this.props.portfolio.cash + invested}
+          Total:${(this.props.portfolio.cash + invested).toFixed(2)}
         </div>
       );
     }
