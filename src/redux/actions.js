@@ -60,7 +60,7 @@ function fetchingPosition(ticker) {
   };
 }
 
-function addingToPosition(ticker, newTotal, costBasis, portfolioId) {
+function adjustingPosition(ticker, newTotal, costBasis, portfolioId) {
   return dispatch => {
     fetch(
       `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`,
@@ -87,7 +87,7 @@ function addingToPosition(ticker, newTotal, costBasis, portfolioId) {
   };
 }
 
-function reducingCash(cashLeft) {
+function adjustingCash(newCash) {
   return dispatch => {
     fetch(`${URL}/users/1/portfolios/1`, {
       method: "PATCH",
@@ -97,14 +97,14 @@ function reducingCash(cashLeft) {
       },
       body: JSON.stringify({
         portfolio: {
-          cash: cashLeft
+          cash: newCash
         }
       })
     })
       .then(res => res.json())
       .then(portfolio => {
         console.log(portfolio);
-        dispatch(reducedCash(portfolio));
+        dispatch(adjustedCash(portfolio));
       });
   };
 }
@@ -157,7 +157,7 @@ function fetchedWatchlist(items) {
   return { type: "FETCHED_WATCHLIST", items };
 }
 
-function reducedCash(cashLeft) {
+function adjustedCash(cashLeft) {
   return { type: "REDUCED_CASH", cashLeft };
 }
 //
@@ -211,9 +211,10 @@ export {
   postingPosition,
   fetchingStock,
   fetchingPosition,
-  addingToPosition,
+  adjustingPosition,
   closingPosition,
-  reducingCash
+  adjustingCash
+
   // changeSearchText,
   // votingForPainting,
   // updatePainting,

@@ -5,12 +5,15 @@ import SecurityChart from "../components/securityChart";
 import NewsContainer from "../components/newsContainer";
 import TradingData from "../components/tradingData";
 import TradeControls from "../components/tradeControls";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class TradePage extends Component {
   render() {
+    // let ticker = this.props.match.params.id;
     return (
       <div>
-        <h1>Trade MSFT</h1>
+        <h1>Trade</h1>
         <br />
         <br />
         <br />
@@ -30,5 +33,9 @@ class TradePage extends Component {
     );
   }
 }
-
+// const mapStateToProps = state => {
+//   return {
+//     ticker: state.stock.ticker
+//   };
+// };
 export default TradePage;

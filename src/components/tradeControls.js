@@ -4,9 +4,9 @@ import { withRouter } from "react-router-dom";
 import { postingPosition } from "../redux/actions";
 import { fetchingStock } from "../redux/actions";
 import { fetchingPosition } from "../redux/actions";
-import { addingToPosition } from "../redux/actions";
+import { adjustingPosition } from "../redux/actions";
 import { closingPosition } from "../redux/actions";
-import { reducingCash } from "../redux/actions";
+import { adjustingCash } from "../redux/actions";
 
 class TradeControls extends Component {
   constructor() {
@@ -30,8 +30,8 @@ class TradeControls extends Component {
     if (purchaseCost > availableCash) {
       alert("Not enough cash to buy this many shares");
     } else {
-      let cashLeft = availableCash - purchaseCost;
-      this.props.reducingCash(cashLeft);
+      let newCash = availableCash - purchaseCost;
+      this.props.adjustingCash(newCash);
 
       if (this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
@@ -43,7 +43,7 @@ class TradeControls extends Component {
         let newCostBasis =
           (previousPositionCost + purchaseCost) / newTotalShares;
 
-        this.props.addingToPosition(ticker, newTotalShares, newCostBasis, 1);
+        this.props.adjustingPosition(ticker, newTotalShares, newCostBasis, 1);
         return null;
       } else {
         console.log("new position");
@@ -53,6 +53,36 @@ class TradeControls extends Component {
           this.props.stock.quote.latestPrice,
           1
         );
+        return null;
+      }
+    }
+  };
+
+  sellStock = () => {
+    let price = this.props.stock.quote.latestPrice;
+    let shares = parseInt(this.state.shares);
+    let ticker = this.props.match.params.id;
+    let saleValue = shares * price;
+    let availableCash = this.props.portfolio.cash;
+    if (shares > this.props.position.quantity) {
+      alert("You can't sell more shares than you own");
+    } else {
+      let newCash = availableCash + saleValue;
+      this.props.adjustingCash(newCash);
+
+      if (this.props.position.ticker === ticker) {
+        let currentShares = this.props.position.quantity;
+        let newTotalShares =
+          parseInt(currentShares) - parseInt(this.state.shares);
+        let previousPositionCost =
+          parseInt(this.props.position.quantity) *
+          this.props.position.cost_basis;
+        let newCostBasis = (previousPositionCost - saleValue) / newTotalShares;
+
+        this.props.adjustingPosition(ticker, newTotalShares, newCostBasis, 1);
+        return null;
+      } else {
+        alert("You dont own this stock");
         return null;
       }
     }
@@ -79,14 +109,21 @@ class TradeControls extends Component {
             this.buyStock();
           }}
         >
-          Buy
+          Buy (select number of shares)
+        </button>
+        <button
+          onClick={() => {
+            this.sellStock();
+          }}
+        >
+          Sell (select number of shares)
         </button>
         <button
           onClick={() => {
             this.props.closingPosition(ticker);
           }}
         >
-          Close Position (Sell all shares)
+          Close Position (sell all shares)
         </button>
       </div>
     );
@@ -104,14 +141,14 @@ const mapDispatchToProps = dispatch => {
     fetchingPosition: ticker => {
       dispatch(fetchingPosition(ticker));
     },
-    addingToPosition: (ticker, newTotal, costBasis, portfolio_id) => {
-      dispatch(addingToPosition(ticker, newTotal, costBasis, portfolio_id));
+    adjustingPosition: (ticker, newTotal, costBasis, portfolio_id) => {
+      dispatch(adjustingPosition(ticker, newTotal, costBasis, portfolio_id));
     },
     closingPosition: ticker => {
       dispatch(closingPosition(ticker));
     },
-    reducingCash: cashLeft => {
-      dispatch(reducingCash(cashLeft));
+    adjustingCash: newCash => {
+      dispatch(adjustingCash(newCash));
     }
   };
 };
