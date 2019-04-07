@@ -4,21 +4,28 @@ import { withRouter } from "react-router-dom";
 
 class PortfolioSummary extends Component {
   render() {
-    // let investements = this.props.portfolio.positions.map(p => {
-    //   return p.quantity * p.info.quote.latestPrice;
-    // });
-
-    return (
-      <div>
-        Cash:{this.props.portfolio.cash}
-        <br />
-        Investments:
-        <br />
-        Total:
-      </div>
-    );
+    if (!this.props.portfolio.positions) {
+      return <div>Loading Positions </div>;
+    } else {
+      let investments = this.props.portfolio.positions.map(p => {
+        return p.quantity * p.info.quote.latestPrice;
+      });
+      let invested = investments.reduce((x, y) => {
+        return x + y;
+      });
+      return (
+        <div>
+          Cash:{this.props.portfolio.cash}
+          <br />
+          Investments:{invested}
+          <br />
+          Total:{this.props.portfolio.cash + invested}
+        </div>
+      );
+    }
   }
 }
+
 const mapStateToProps = state => {
   return {
     portfolio: state.portfolio
