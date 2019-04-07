@@ -12,7 +12,7 @@ class PortfolioSummary extends Component {
       <div>
         Cash:{this.props.portfolio.cash}
         <br />
-        Investments:{this.props.portfolio}
+        Investments:
         <br />
         Total:
       </div>

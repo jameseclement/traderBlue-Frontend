@@ -10,20 +10,22 @@ class TradePage extends Component {
   render() {
     return (
       <div>
-        <Watchlist />
+        <h1>Trade MSFT</h1>
         <br />
         <br />
         <br />
         <br />
         <TradeControls />
+        <TradingData />
         <br />
         <br />
         <br />
         <br />
+        <h2>My Watchlist</h2>
+        <Watchlist />
         <SecurityChart />
         <NewsContainer />
         <SearchBar />
-        <TradingData />
       </div>
     );
   }
