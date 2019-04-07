@@ -31,15 +31,20 @@ class TradingData extends Component {
         </tr>
         <tr>
           <td>Market Cap </td>
-          <td>${this.props.stock.quote.marketCap}</td>
+          <td>
+            ${`${(this.props.stock.quote.marketCap / 1000000000).toFixed(2)}`}B
+          </td>
         </tr>
         <tr>
-          <td>Day Low</td>
-          <td>${this.props.stock.quote.low}</td>
+          <td>P/E Ratio</td>
+          <td>{this.props.stock.quote.peRatio}</td>
         </tr>
         <tr>
-          <td>Day Low</td>
-          <td>${this.props.stock.quote.low}</td>
+          <td>52 Week Range</td>
+          <td>
+            ${this.props.stock.quote.week52Low.toFixed(2)}-
+            {this.props.stock.quote.week52High.toFixed(2)}
+          </td>
         </tr>
         <tr>
           <td>Day Low</td>
