@@ -25,7 +25,7 @@ class App extends Component {
           <Route path="/portfolios/1" component={PortfolioPage} />
           <Route path="/trade/:id" render={() => <TradePage />} />
           <Route path="/trade" component={TradePage} />
-          <Route path="/research/:id" component={ResearchPage} />
+          <Route path="/research" component={ResearchPage} />
         </Switch>
       </div>
     );

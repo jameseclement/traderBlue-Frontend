@@ -65,7 +65,6 @@ class TradePage extends Component {
         <h2>My Watchlist</h2>
         <Watchlist />
         <SecurityChart />
-        <StockNewsContainer />
         <SearchBar />
       </div>
     );

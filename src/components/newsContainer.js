@@ -1,43 +1,32 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { fetchingStock } from "../redux/actions";
 
-class StockNewsContainer extends Component {
-  componentDidMount() {
-    this.props.fetchingStock(this.props.match.params.id);
-  }
+class NewsContainer extends PureComponent {
   render() {
-    // let ticker = this.props.match.params.id;
-    return !this.props.stock ? (
+    return !this.props.portfolio ? (
       <div>Loading</div>
     ) : (
-      <ul>
-        {this.props.stock.news.map(n => {
-          return <li key={n.headline}>{n.headline}</li>;
+      <div>
+        Watchlist News
+        {this.props.watchlist.map(item => {
+          return item.news.map(news => {
+            return (
+              <li>
+                <a href={`${news.url}`}>{news.headline}</a>
+              </li>
+            );
+          });
         })}
-      </ul>
+      </div>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchingStock: ticker => {
-      dispatch(fetchingStock(ticker));
-    }
-  };
-};
-
 const mapStateToProps = state => {
   return {
-    stock: state.stock
+    portfolio: state.portfolio,
+    watchlist: state.watchlist
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(StockNewsContainer)
-);
+export default withRouter(connect(mapStateToProps)(NewsContainer));
