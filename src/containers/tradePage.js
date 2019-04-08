@@ -8,6 +8,7 @@ import TradeControls from "../components/tradeControls";
 import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class TradePage extends Component {
   render() {
@@ -21,7 +22,12 @@ class TradePage extends Component {
             <div>Loading</div>
           ) : (
             this.props.portfolio.positions.map(p => {
-              return <li>{p.ticker}</li>;
+              return (
+                <li>
+                  {" "}
+                  <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
+                </li>
+              );
             })
           )}
         </div>
@@ -31,7 +37,11 @@ class TradePage extends Component {
             <div>Loading</div>
           ) : (
             this.props.watchlist.map(p => {
-              return <li>{p.ticker}</li>;
+              return (
+                <li>
+                  <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
+                </li>
+              );
             })
           )}
         </div>
