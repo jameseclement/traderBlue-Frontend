@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { handleSearchChange } from "../redux/actions";
+import { searching } from "../redux/actions";
 
 class SearchBar extends Component {
   render() {
     return (
-      <input
-        type="text"
-        onChange={e => this.props.handleSearchChange(e.target.value)}
-        value={this.props.search}
-      />
+      <div>
+        <input
+          type="text"
+          onChange={e => this.props.handleSearchChange(e.target.value)}
+          value={this.props.search}
+        />
+        <button onClick={() => this.props.searching(this.props.search)}>
+          SEARCH
+        </button>
+      </div>
     );
   }
 }
@@ -24,6 +30,9 @@ const mapDispatchToProps = dispatch => {
   return {
     handleSearchChange: text => {
       dispatch(handleSearchChange(text));
+    },
+    searching: searchTerm => {
+      dispatch(searching(searchTerm));
     }
   };
 };

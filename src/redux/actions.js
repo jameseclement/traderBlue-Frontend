@@ -137,8 +137,23 @@ function fetchingStock(ticker) {
   };
 }
 
+function searching(searchTerm) {
+  return dispatch => {
+    fetch(`${URL}/stocks/${searchTerm}`)
+      .then(res => res.json())
+      .then(stockInfo => {
+        console.log(stockInfo);
+        dispatch(searchedStock(stockInfo));
+      });
+  };
+}
+
 function fetchedStock(stockInfo) {
   return { type: "FETCHED_STOCK", stockInfo };
+}
+
+function searchedStock(stockInfo) {
+  return { type: "SEARCHED_STOCK", stockInfo };
 }
 
 function postedPosition(position) {
@@ -218,7 +233,8 @@ export {
   adjustingPosition,
   closingPosition,
   adjustingCash,
-  handleSearchChange
+  handleSearchChange,
+  searching
 
   // changeSearchText,
   // votingForPainting,

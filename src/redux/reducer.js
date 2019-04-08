@@ -45,6 +45,8 @@ const stockReducer = (state = null, action) => {
   switch (action.type) {
     case "FETCHED_STOCK":
       return action.stockInfo;
+    case "SEARCHED_STOCK":
+      return action.stockInfo;
     default:
       return state;
   }
