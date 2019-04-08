@@ -14,7 +14,11 @@ class StockNewsContainer extends Component {
     ) : (
       <ul>
         {this.props.stock.news.map(n => {
-          return <li key={n.headline}>{n.headline}</li>;
+          return (
+            <li key={n.headline}>
+              <a href={n.url}>{n.headline}</a>
+            </li>
+          );
         })}
       </ul>
     );
