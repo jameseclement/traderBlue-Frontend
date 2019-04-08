@@ -64,13 +64,16 @@ class TradeControls extends Component {
     let ticker = this.props.match.params.id;
     let saleValue = shares * price;
     let availableCash = this.props.portfolio.cash;
-    if (shares > this.props.position.quantity) {
+    if (!this.props.position) {
+      alert("You can't sell shares of a stock you don't own");
+    } else if (shares > this.props.position.quantity) {
       alert("You can't sell more shares than you own");
     } else {
       let newCash = availableCash + saleValue;
+
       this.props.adjustingCash(newCash);
 
-      if (this.props.position.ticker === ticker) {
+      if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
         let newTotalShares =
           parseInt(currentShares) - parseInt(this.state.shares);

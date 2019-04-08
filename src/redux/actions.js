@@ -144,6 +144,7 @@ function searching(searchTerm) {
       .then(stockInfo => {
         console.log(stockInfo);
         dispatch(searchedStock(stockInfo));
+        dispatch(fetchingPosition(searchTerm));
       });
   };
 }
