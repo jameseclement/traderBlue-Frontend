@@ -5,6 +5,15 @@ import { handleSearchChange } from "../redux/actions";
 import { searching } from "../redux/actions";
 
 class SearchBar extends Component {
+  constructor() {
+    super();
+  }
+
+  routeChange = () => {
+    let path = `/trade/${this.props.search}`;
+    this.props.history.push(path);
+  };
+
   render() {
     return (
       <div>
@@ -13,7 +22,12 @@ class SearchBar extends Component {
           onChange={e => this.props.handleSearchChange(e.target.value)}
           value={this.props.search}
         />
-        <button onClick={() => this.props.searching(this.props.search)}>
+        <button
+          onClick={() => {
+            this.routeChange();
+            this.props.searching(this.props.search);
+          }}
+        >
           SEARCH
         </button>
       </div>
