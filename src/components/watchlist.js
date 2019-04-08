@@ -6,6 +6,7 @@ class Watchlist extends Component {
   render() {
     return (
       <div>
+        <h3>My Watchlist</h3>
         {this.props.watchlist.map(stock => {
           return <WatchlistItem key={stock.ticker} stock={stock} />;
         })}

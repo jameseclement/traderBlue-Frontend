@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./navbar";
+
 import { Route, Switch } from "react-router-dom";
 import PortfolioPage from "../containers/portfolioPage";
 import TradePage from "../containers/tradePage";
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path="/" component={ResearchPage} />
           <Route path="/portfolios/1" component={PortfolioPage} />
           <Route path="/trade/:id" render={() => <TradePage />} />
+          <Route path="/trade" component={TradePage} />
           <Route path="/research/:id" component={ResearchPage} />
         </Switch>
       </div>

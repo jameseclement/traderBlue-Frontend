@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 class WatchlistItem extends Component {
   render() {
     return (
-      <Link to={`/trade/${this.props.stock.ticker}`}>
-        {this.props.stock.ticker}
-      </Link>
+      <li>
+        <Link to={`/trade/${this.props.stock.ticker}`}>
+          {this.props.stock.ticker}
+        </Link>
+      </li>
     );
   }
 }

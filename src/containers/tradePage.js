@@ -13,7 +13,31 @@ class TradePage extends Component {
   render() {
     // let ticker = this.props.match.params.id;
     return !this.props.match.params.id ? (
-      <div>Loading</div>
+      <div>
+        <h1>Select or Search for a Stock to trade</h1>
+        <h3>My Stocks</h3>
+        <div>
+          {!this.props.portfolio.positions ? (
+            <div>Loading</div>
+          ) : (
+            this.props.portfolio.positions.map(p => {
+              return <li>{p.ticker}</li>;
+            })
+          )}
+        </div>
+        <h3>My Watchlist</h3>
+        <div>
+          {!this.props.watchlist ? (
+            <div>Loading</div>
+          ) : (
+            this.props.watchlist.map(p => {
+              return <li>{p.ticker}</li>;
+            })
+          )}
+        </div>
+        <h3>Search</h3>
+        <input type="text" />
+      </div>
     ) : (
       <div>
         <h1>Trade {this.props.match.params.id}</h1>
@@ -38,9 +62,12 @@ class TradePage extends Component {
     );
   }
 }
-// const mapStateToProps = state => {
-//   return {
-//     ticker: state.stock.ticker
-//   };
-// };
-export default withRouter(TradePage);
+
+const mapStateToProps = state => {
+  return {
+    portfolio: state.portfolio,
+    watchlist: state.watchlist
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(TradePage));
