@@ -157,8 +157,8 @@ function fetchedWatchlist(items) {
   return { type: "FETCHED_WATCHLIST", items };
 }
 
-function adjustedCash(cashLeft) {
-  return { type: "ADJUSTED_CASH", cashLeft };
+function adjustedCash(portfolio) {
+  return { type: "ADJUSTED_CASH", portfolio };
 }
 //
 // function loadingPainting() {
