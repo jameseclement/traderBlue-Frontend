@@ -33,7 +33,7 @@ class TradeControls extends Component {
       let newCash = availableCash - purchaseCost;
       this.props.adjustingCash(newCash);
 
-      if (this.props.position.ticker === ticker) {
+      if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
         let newTotalShares =
           parseInt(currentShares) + parseInt(this.state.shares);
@@ -102,9 +102,7 @@ class TradeControls extends Component {
   render() {
     let ticker = this.props.match.params.id;
 
-    return !this.props.position ? (
-      <div>Loading</div>
-    ) : (
+    return (
       <div>
         <form>
           <input
