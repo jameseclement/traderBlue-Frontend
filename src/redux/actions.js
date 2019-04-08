@@ -160,6 +160,10 @@ function fetchedWatchlist(items) {
 function adjustedCash(portfolio) {
   return { type: "ADJUSTED_CASH", portfolio };
 }
+
+function handleSearchChange(text) {
+  return { type: "HANDLE_SEARCH_CHANGE", text };
+}
 //
 // function loadingPainting() {
 //   return { type: "LOADING_PAINTINGS" };
@@ -213,7 +217,8 @@ export {
   fetchingPosition,
   adjustingPosition,
   closingPosition,
-  adjustingCash
+  adjustingCash,
+  handleSearchChange
 
   // changeSearchText,
   // votingForPainting,

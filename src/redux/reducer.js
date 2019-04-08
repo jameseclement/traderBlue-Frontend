@@ -50,12 +50,22 @@ const stockReducer = (state = null, action) => {
   }
 };
 
+const searchReducer = (state = "", action) => {
+  switch (action.type) {
+    case "HANDLE_SEARCH_CHANGE":
+      return action.text;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
   portfolio: portfolioReducer,
   loading: loadingReducer,
   stock: stockReducer,
-  position: positionReducer
+  position: positionReducer,
+  search: searchReducer
 });
 
 export default rootReducer;

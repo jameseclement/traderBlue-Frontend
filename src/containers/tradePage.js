@@ -45,8 +45,7 @@ class TradePage extends Component {
             })
           )}
         </div>
-        <h3>Search</h3>
-        <input type="text" />
+        <SearchBar />
       </div>
     ) : (
       <div>
