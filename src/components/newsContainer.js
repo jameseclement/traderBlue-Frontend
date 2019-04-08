@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchingStock } from "../redux/actions";
 
-class NewsContainer extends Component {
+class StockNewsContainer extends Component {
   componentDidMount() {
     this.props.fetchingStock(this.props.match.params.id);
   }
@@ -39,5 +39,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(NewsContainer)
+  )(StockNewsContainer)
 );

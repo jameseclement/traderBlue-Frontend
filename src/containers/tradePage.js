@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Watchlist from "../components/watchlist";
 import SearchBar from "../components/searchBar";
 import SecurityChart from "../components/securityChart";
-import NewsContainer from "../components/newsContainer";
+import StockNewsContainer from "../components/newsContainer";
 import TradingData from "../components/tradingData";
 import TradeControls from "../components/tradeControls";
 import MyTradeInfo from "../components/myTradeInfo";
@@ -65,7 +65,7 @@ class TradePage extends Component {
         <h2>My Watchlist</h2>
         <Watchlist />
         <SecurityChart />
-        <NewsContainer />
+        <StockNewsContainer />
         <SearchBar />
       </div>
     );
