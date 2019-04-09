@@ -13,7 +13,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <div className="ui labeled input">
+        <div className="ui labeled icon input">
           <div className="ui label label">TICKER:</div>
           <input
             type="text"
@@ -23,17 +23,15 @@ class SearchBar extends Component {
             value={this.props.search}
             placeholder="MSFT..."
           />
+          <i
+            aria-hidden="hidden"
+            className="search icon circular primary link "
+            onClick={() => {
+              this.routeChange();
+              this.props.searching(this.props.search);
+            }}
+          />
         </div>
-
-        <button
-          className="ui button primary"
-          onClick={() => {
-            this.routeChange();
-            this.props.searching(this.props.search);
-          }}
-        >
-          SEARCH
-        </button>
       </div>
     );
   }

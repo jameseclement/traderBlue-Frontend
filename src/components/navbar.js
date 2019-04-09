@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import SearchBar from "../components/searchBar";
 
 class Navbar extends Component {
   render() {
     return (
-      <div className="ui inverted teal menu">
+      <div className="ui inverted teal pointing menu">
         <NavLink to="/portfolios/1" className="item">
           <h2 className="ui header">
             <div className="content">Portfolio</div>
@@ -21,6 +22,13 @@ class Navbar extends Component {
         >
           <h3 className="ui header">Research</h3>
         </NavLink>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui icon input">
+              <SearchBar />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
