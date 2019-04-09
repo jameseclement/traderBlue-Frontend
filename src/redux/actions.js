@@ -122,7 +122,10 @@ function closingPosition(ticker) {
       }
     )
       .then(res => res.json())
-      .then(console.log);
+      .then(position => {
+        console.log(position);
+        dispatch(closedPosition(position));
+      });
   };
 }
 
@@ -159,6 +162,9 @@ function searchedStock(stockInfo) {
 
 function postedPosition(position) {
   return { type: "POSTED_POSITION", position };
+}
+function closedPosition(position) {
+  return { type: "CLOSED_POSITION", position };
 }
 
 function fetchedPosition(position) {

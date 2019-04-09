@@ -36,6 +36,8 @@ const positionReducer = (state = [], action) => {
       return action.position;
     case "FETCHED_POSITION":
       return action.position;
+    case "CLOSED_POSITION":
+      return null;
     default:
       return state;
   }

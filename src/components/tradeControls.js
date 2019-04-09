@@ -132,7 +132,9 @@ class TradeControls extends Component {
         </button>
         <button
           onClick={() => {
-            this.closePosition();
+            !this.props.position
+              ? alert("You dont have a position in this stock")
+              : this.closePosition();
           }}
         >
           Close Position (sell all shares)
