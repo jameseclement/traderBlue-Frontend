@@ -13,8 +13,8 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <div class="ui labeled input">
-          <div class="ui label label">TICKER:</div>
+        <div className="ui labeled input">
+          <div className="ui label label">TICKER:</div>
           <input
             type="text"
             onChange={e =>

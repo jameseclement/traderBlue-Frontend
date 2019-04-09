@@ -9,16 +9,18 @@ class PositionsTable extends Component {
     ) : (
       <table className="ui table">
         <thead>
-          <th>Ticker</th>
-          <th>Shares</th>
-          <th>Current Price</th>
-          <th>Cost Basis</th>
-          <th>Total Value</th>
-          <th>Total Cost</th>
-          <th>$ G/L Day</th>
-          <th>% G/L Day</th>
-          <th>$ G/L Total</th>
-          <th>% G/L Total</th>
+          <tr>
+            <th>Ticker</th>
+            <th>Shares</th>
+            <th>Current Price</th>
+            <th>Cost Basis</th>
+            <th>Total Value</th>
+            <th>Total Cost</th>
+            <th>$ G/L Day</th>
+            <th>% G/L Day</th>
+            <th>$ G/L Total</th>
+            <th>% G/L Total</th>
+          </tr>
         </thead>
         <tbody>
           {this.props.portfolio.positions.map(position => {

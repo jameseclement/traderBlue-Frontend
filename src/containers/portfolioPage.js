@@ -9,13 +9,13 @@ class PortfolioPage extends Component {
   render() {
     return (
       <div className="ui grid">
-        <div class="ten wide column">
+        <div className="ten wide column">
           <PositionsTable />
         </div>
-        <div class="three wide column">
+        <div className="three wide column">
           <PortfolioSummary />
         </div>
-        <div class="three wide column">
+        <div className="three wide column">
           <Watchlist />
         </div>
         <SearchBar />

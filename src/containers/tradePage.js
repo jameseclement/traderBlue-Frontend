@@ -49,7 +49,7 @@ class TradePage extends Component {
       </div>
     ) : (
       <div>
-        <h1>{this.props.match.params.id}</h1>
+        <h1> {!this.props.stock ? "" : this.props.stock.quote.companyName}</h1>
         <MyTradeInfo />
 
         <TradeControls />
@@ -72,7 +72,8 @@ class TradePage extends Component {
 const mapStateToProps = state => {
   return {
     portfolio: state.portfolio,
-    watchlist: state.watchlist
+    watchlist: state.watchlist,
+    stock: state.stock
   };
 };
 
