@@ -6,7 +6,7 @@ class PortfolioSummary extends Component {
   render() {
     if (!this.props.portfolio.positions) {
       return <div>Loading Positions </div>;
-    } else if (this.props.portfolio.positions.length == 0) {
+    } else if (this.props.portfolio.positions.length === 0) {
       let invested = 0;
       return (
         <div>
