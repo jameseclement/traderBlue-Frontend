@@ -8,6 +8,7 @@ import store from "./redux/store";
 import "semantic-ui-css/semantic.min.css";
 
 import * as serviceWorker from "./serviceWorker";
+var numeral = require("numeral");
 
 ReactDOM.render(
   <BrowserRouter>

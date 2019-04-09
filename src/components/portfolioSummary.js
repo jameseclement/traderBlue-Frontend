@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+var numeral = require("numeral");
 class PortfolioSummary extends Component {
   render() {
     if (!this.props.portfolio.positions) {
@@ -21,16 +21,20 @@ class PortfolioSummary extends Component {
             <tbody>
               <tr className="">
                 <td className="">Cash</td>
-                <td className="">${this.props.portfolio.cash.toFixed(2)}</td>
+                <td className="">
+                  {numeral(this.props.portfolio.cash).format("$0,0.00")}
+                </td>
               </tr>
               <tr className="">
                 <td className="">Invested</td>
-                <td className="">${invested.toFixed(2)}</td>
+                <td className="">{numeral(invested).format("$0,0.00")}</td>
               </tr>
               <tr className="">
                 <td className="">Total</td>
                 <td className="">
-                  ${(this.props.portfolio.cash + invested).toFixed(2)}
+                  {numeral(this.props.portfolio.cash + invested).format(
+                    "$0,0.00"
+                  )}
                 </td>
               </tr>
             </tbody>
@@ -58,16 +62,20 @@ class PortfolioSummary extends Component {
             <tbody>
               <tr className="">
                 <td className="">Cash</td>
-                <td className="">${this.props.portfolio.cash.toFixed(2)}</td>
+                <td className="">
+                  {numeral(this.props.portfolio.cash).format("$0,0.00")}
+                </td>
               </tr>
               <tr className="">
                 <td className="">Invested</td>
-                <td className="">${invested.toFixed(2)}</td>
+                <td className="">{numeral(invested).format("$0,0.00")}</td>
               </tr>
               <tr className="">
                 <td className="">Total</td>
                 <td className="">
-                  ${(this.props.portfolio.cash + invested).toFixed(2)}
+                  {numeral(this.props.portfolio.cash + invested).format(
+                    "$0,0.00"
+                  )}
                 </td>
               </tr>
             </tbody>
