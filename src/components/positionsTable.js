@@ -7,20 +7,20 @@ class PositionsTable extends Component {
     return !this.props.portfolio.positions ? (
       <div>Loading Positions </div>
     ) : (
-      <table>
+      <table className="ui table">
+        <thead>
+          <th>Ticker</th>
+          <th>Shares</th>
+          <th>Current Price</th>
+          <th>Cost Basis</th>
+          <th>Total Value</th>
+          <th>Total Cost</th>
+          <th>$ G/L Day</th>
+          <th>% G/L Day</th>
+          <th>$ G/L Total</th>
+          <th>% G/L Total</th>
+        </thead>
         <tbody>
-          <tr>
-            <td>Ticker</td>
-            <td>Shares</td>
-            <td>Current Price</td>
-            <td>Cost Basis</td>
-            <td>Total Value</td>
-            <td>Total Cost</td>
-            <td>$ G/L Day</td>
-            <td>% G/L Day</td>
-            <td>$ G/L Total</td>
-            <td>% G/L Total</td>
-          </tr>
           {this.props.portfolio.positions.map(position => {
             return <Position key={position.id} position={position} />;
           })}

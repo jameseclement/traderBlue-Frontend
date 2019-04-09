@@ -13,14 +13,20 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <input
-          type="text"
-          onChange={e =>
-            this.props.handleSearchChange(e.target.value.toUpperCase())
-          }
-          value={this.props.search}
-        />
+        <div class="ui labeled input">
+          <div class="ui label label">TICKER:</div>
+          <input
+            type="text"
+            onChange={e =>
+              this.props.handleSearchChange(e.target.value.toUpperCase())
+            }
+            value={this.props.search}
+            placeholder="MSFT..."
+          />
+        </div>
+
         <button
+          className="ui button primary"
           onClick={() => {
             this.routeChange();
             this.props.searching(this.props.search);

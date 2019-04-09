@@ -12,7 +12,7 @@ class StockNewsContainer extends Component {
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (
-      <ul>
+      <div>
         {this.props.stock.news.map(n => {
           return (
             <li key={n.headline}>
@@ -20,7 +20,7 @@ class StockNewsContainer extends Component {
             </li>
           );
         })}
-      </ul>
+      </div>
     );
   }
 }
