@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 var numeral = require("numeral");
 
 class Position extends Component {
@@ -14,6 +15,7 @@ class Position extends Component {
     let totalGainPercent = totalGain / totalCost;
     let dayGain = this.props.position.info.quote.change;
     let dayGainPercent = 100 * this.props.position.info.quote.changePercent;
+
     return (
       <tr>
         <td>
@@ -33,4 +35,4 @@ class Position extends Component {
   }
 }
 
-export default Position;
+export default withRouter(Position);

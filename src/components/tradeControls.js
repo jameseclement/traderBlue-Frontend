@@ -103,8 +103,6 @@ class TradeControls extends Component {
   };
 
   render() {
-    let ticker = this.props.match.params.id;
-
     return (
       <div>
         <div className="ui input column">

@@ -7,7 +7,7 @@ class PositionsTable extends Component {
     return !this.props.portfolio.positions ? (
       <div>Loading Positions </div>
     ) : (
-      <table className="ui table">
+      <table className="ui selectable table">
         <thead>
           <tr>
             <th>Ticker</th>
