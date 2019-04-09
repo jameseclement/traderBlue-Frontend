@@ -117,28 +117,34 @@ class TradeControls extends Component {
           <br />
         </form>
         <button
+          className="ui button positive"
           onClick={() => {
             this.buyStock();
           }}
         >
-          Buy (select number of shares)
+          Buy
         </button>
-        <button
-          onClick={() => {
-            this.sellStock();
-          }}
-        >
-          Sell (select number of shares)
-        </button>
-        <button
-          onClick={() => {
-            !this.props.position
-              ? alert("You dont have a position in this stock")
-              : this.closePosition();
-          }}
-        >
-          Close Position (sell all shares)
-        </button>
+        <div className="ui buttons negative">
+          <button
+            className="ui button"
+            onClick={() => {
+              this.sellStock();
+            }}
+          >
+            Sell
+          </button>
+          <div className="or" />
+          <button
+            className="ui button"
+            onClick={() => {
+              !this.props.position
+                ? alert("You dont have a position in this stock")
+                : this.closePosition();
+            }}
+          >
+            Close Position
+          </button>
+        </div>
       </div>
     );
   }
