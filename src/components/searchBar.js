@@ -24,7 +24,7 @@ class SearchBar extends Component {
             placeholder="MSFT..."
           />
           <i
-            aria-hidden="hidden"
+            aria-hidden="true"
             className="search icon circular primary link "
             onClick={() => {
               this.routeChange();
