@@ -7,11 +7,13 @@ class TradingData extends Component {
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (
-      <table>
-        <tbody>
+      <table className="ui celled table">
+        <thead>
           <tr>
             <th colSpan="2">{`${this.props.stock.quote.companyName} Info`}</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td>Latest Price</td>
             <td>${this.props.stock.quote.latestPrice}</td>

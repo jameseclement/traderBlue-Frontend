@@ -12,7 +12,7 @@ class WatchlistItem extends Component {
       this.props.fetchingStock(ticker);
     };
     return (
-      <li>
+      <a role="listitem" className="item">
         <Link
           onClick={() => {
             this.fetchInfo(this.props.stock.ticker);
@@ -21,7 +21,7 @@ class WatchlistItem extends Component {
         >
           {this.props.stock.ticker}
         </Link>
-      </li>
+      </a>
     );
   }
 }
