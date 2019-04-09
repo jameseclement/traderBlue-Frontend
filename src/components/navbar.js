@@ -5,7 +5,7 @@ import SearchBar from "../components/searchBar";
 class Navbar extends Component {
   render() {
     return (
-      <div className="ui inverted teal pointing menu">
+      <div className="ui inverted blue pointing menu">
         <NavLink to="/portfolios/1" className="item">
           <h2 className="ui header">
             <div className="content">Portfolio</div>
