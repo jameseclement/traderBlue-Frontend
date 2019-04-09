@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+var numeral = require("numeral");
 
 class TradingData extends Component {
   render() {
@@ -16,27 +17,36 @@ class TradingData extends Component {
         <tbody>
           <tr>
             <td>Latest Price</td>
-            <td>${this.props.stock.quote.latestPrice}</td>
+            <td>
+              {numeral(this.props.stock.quote.latestPrice).format("$0,0.00")}
+            </td>
           </tr>
           <tr>
-            <td>Day Change ($)</td>
-            <td>${this.props.stock.quote.change}</td>
+            <td>Change ($)</td>
+            <td>
+              {numeral(this.props.stock.quote.change).format("($0,0.00)")}
+            </td>
           </tr>
           <tr>
-            <td>Day Change (%)</td>
-            <td>{(this.props.stock.quote.changePercent * 100).toFixed(2)}%</td>
+            <td>Change (%)</td>
+            <td>
+              {numeral(this.props.stock.quote.changePercent).format("(0.00%)")}
+            </td>
           </tr>
           <tr>
             <td>Day Range</td>
             <td>
-              $
-              {`${this.props.stock.quote.low} - ${this.props.stock.quote.high}`}
+              {`${numeral(this.props.stock.quote.low).format(
+                "$0,0.00"
+              )} - ${numeral(this.props.stock.quote.high).format("$0,0.00")}`}
             </td>
           </tr>
           <tr>
             <td>Market Cap </td>
             <td>
-              ${`${(this.props.stock.quote.marketCap / 1000000000).toFixed(2)}`}
+              {`${numeral(this.props.stock.quote.marketCap / 1000000000).format(
+                "$0,0.00"
+              )}`}
               B
             </td>
           </tr>
@@ -47,13 +57,13 @@ class TradingData extends Component {
           <tr>
             <td>52 Week Range</td>
             <td>
-              ${this.props.stock.quote.week52Low.toFixed(2)}-
-              {this.props.stock.quote.week52High.toFixed(2)}
+              {numeral(this.props.stock.quote.week52Low).format("$0,0.00")}-
+              {numeral(this.props.stock.quote.week52High).format("$0,0.00")}
             </td>
           </tr>
           <tr>
             <td>Day Low</td>
-            <td>${this.props.stock.quote.low}</td>
+            <td>{numeral(this.props.stock.quote.low).format("$0,0.00")}</td>
           </tr>
         </tbody>
       </table>
