@@ -9,6 +9,7 @@ import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 class TradePage extends Component {
   render() {
@@ -21,31 +22,19 @@ class TradePage extends Component {
           {!this.props.portfolio.positions ? (
             <div>Loading</div>
           ) : (
-            this.props.portfolio.positions.map(p => {
-              return (
-                <li>
-                  {" "}
-                  <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
-                </li>
-              );
-            })
+            <Button.Group vertical>
+              {this.props.portfolio.positions.map(p => {
+                return (
+                  <Button>
+                    {" "}
+                    <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
+                  </Button>
+                );
+              })}
+            </Button.Group>
           )}
         </div>
-        <h3>My Watchlist</h3>
-        <div>
-          {!this.props.watchlist ? (
-            <div>Loading</div>
-          ) : (
-            this.props.watchlist.map(p => {
-              return (
-                <li>
-                  <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
-                </li>
-              );
-            })
-          )}
-        </div>
-        <SearchBar />
+        <Watchlist />
       </div>
     ) : (
       <div>
@@ -63,7 +52,6 @@ class TradePage extends Component {
         <h2>My Watchlist</h2>
         <Watchlist />
         <SecurityChart />
-        <SearchBar />
       </div>
     );
   }

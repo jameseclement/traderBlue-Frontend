@@ -10,7 +10,7 @@ class ResearchPage extends Component {
       <div>
         <NewsContainer />
         <PopularList />
-        <SearchBar />
+
         <Watchlist />
       </div>
     );
