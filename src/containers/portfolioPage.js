@@ -8,11 +8,18 @@ import PortfolioSummary from "../components/portfolioSummary";
 class PortfolioPage extends Component {
   render() {
     return (
-      <div>
-        <Watchlist />
-        <PositionsTable />
-        <PortfolioSummary />
+      <div className="ui grid">
+        <div class="ten wide column">
+          <PositionsTable />
+        </div>
+        <div class="three wide column">
+          <PortfolioSummary />
+        </div>
+        <div class="three wide column">
+          <Watchlist />
+        </div>
         <SearchBar />
+
         <PortfolioChart />
       </div>
     );

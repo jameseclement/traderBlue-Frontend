@@ -12,7 +12,7 @@ class TradeControls extends Component {
   constructor() {
     super();
     this.state = {
-      shares: 0
+      shares: null
     };
   }
 
@@ -107,15 +107,17 @@ class TradeControls extends Component {
 
     return (
       <div>
-        <form>
+        <div className="ui input column">
           <input
             type="number"
             name="shares"
             value={this.state.shares}
             onChange={e => this.setState({ shares: e.target.value })}
+            min="1"
+            placeholder="Shares"
           />
-          <br />
-        </form>
+        </div>
+        <br />
         <button
           className="ui button positive"
           onClick={() => {

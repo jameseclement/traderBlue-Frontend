@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import WatchlistItem from "./watchlistItem";
+import { Button } from "semantic-ui-react";
 class Watchlist extends Component {
   render() {
     return (
       <div>
         <h3>My Watchlist</h3>
-        <div role="list" className="ui list">
+        <Button.Group vertical>
           {this.props.watchlist.map(stock => {
             return <WatchlistItem key={stock.ticker} stock={stock} />;
           })}
-        </div>
+        </Button.Group>
       </div>
     );
   }

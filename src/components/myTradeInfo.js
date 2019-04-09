@@ -8,12 +8,11 @@ class MyTradeInfo extends Component {
       <div>loading</div>
     ) : (
       <div>
-        <h3>
+        <h2>
           Current Position:{" "}
           {this.props.position ? this.props.position.quantity : "0"} Shares
-        </h3>
-
-        <h3>Available Cash: ${this.props.portfolio.cash.toFixed(2)}</h3>
+        </h2>
+        <h2>Available Cash: ${this.props.portfolio.cash.toFixed(2)}</h2>
       </div>
     );
   }

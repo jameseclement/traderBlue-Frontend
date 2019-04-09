@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Button } from "semantic-ui-react";
+
 import { Link } from "react-router-dom";
 import { fetchingPosition } from "../redux/actions";
 import { fetchingStock } from "../redux/actions";
@@ -12,7 +14,7 @@ class WatchlistItem extends Component {
       this.props.fetchingStock(ticker);
     };
     return (
-      <a role="listitem" className="item">
+      <Button>
         <Link
           onClick={() => {
             this.fetchInfo(this.props.stock.ticker);
@@ -21,7 +23,7 @@ class WatchlistItem extends Component {
         >
           {this.props.stock.ticker}
         </Link>
-      </a>
+      </Button>
     );
   }
 }

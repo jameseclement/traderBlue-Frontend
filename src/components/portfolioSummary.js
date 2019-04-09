@@ -15,11 +15,31 @@ class PortfolioSummary extends Component {
       });
       return (
         <div>
-          Cash:${this.props.portfolio.cash.toFixed(2)}
-          <br />
-          Investments:${invested.toFixed(2)}
-          <br />
-          Total:${(this.props.portfolio.cash + invested).toFixed(2)}
+          <table className="ui striped table">
+            <thead>
+              <tr className="">
+                <th colSpan="2" className="">
+                  Portfolio Summary
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="">
+                <td className="">Cash</td>
+                <td className="">${this.props.portfolio.cash.toFixed(2)}</td>
+              </tr>
+              <tr className="">
+                <td className="">Invested</td>
+                <td className="">${invested.toFixed(2)}</td>
+              </tr>
+              <tr className="">
+                <td className="">Total</td>
+                <td className="">
+                  ${(this.props.portfolio.cash + invested).toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       );
     }

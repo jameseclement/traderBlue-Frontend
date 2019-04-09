@@ -49,14 +49,11 @@ class TradePage extends Component {
       </div>
     ) : (
       <div>
-        <h1>Trade {this.props.match.params.id}</h1>
-        <br />
-        <br />
-        <br />
-        <br />
+        <h1>{this.props.match.params.id}</h1>
+        <MyTradeInfo />
+
         <TradeControls />
         <TradingData />
-        <MyTradeInfo />
         <StockNewsContainer />
 
         <br />
