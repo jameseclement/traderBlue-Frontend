@@ -29,6 +29,8 @@ class TradeControls extends Component {
     let availableCash = this.props.portfolio.cash;
     if (purchaseCost > availableCash) {
       alert("Not enough cash to buy this many shares");
+    } else if (shares < 1) {
+      alert("Please enter a number greater than 1");
     } else {
       let newCash = availableCash - purchaseCost;
       this.props.adjustingCash(newCash);
