@@ -22,9 +22,9 @@ class Navbar extends Component {
         >
           <h3 className="ui header">Research</h3>
         </NavLink>
-        <div class="right menu">
-          <div class="item">
-            <div class="ui icon input">
+        <div className="right menu">
+          <div className="item">
+            <div className="ui icon input">
               <SearchBar />
             </div>
           </div>

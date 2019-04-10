@@ -47,7 +47,6 @@ class TradePage extends Component {
 
         <StockNewsContainer />
 
-        <h2>My Watchlist</h2>
         <Watchlist />
       </div>
     );
