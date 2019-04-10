@@ -29,7 +29,7 @@ class TradeControls extends Component {
     let availableCash = this.props.portfolio.cash;
     if (purchaseCost > availableCash) {
       alert("Not enough cash to buy this many shares");
-    } else if (shares < 1) {
+    } else if (shares < 1 || this.state.shares == null) {
       alert("Please enter a number greater than 1");
     } else {
       let newCash = availableCash - purchaseCost;
@@ -70,6 +70,8 @@ class TradeControls extends Component {
       alert("You can't sell shares of a stock you don't own");
     } else if (shares > this.props.position.quantity) {
       alert("You can't sell more shares than you own");
+    } else if (shares < 1 || this.state.shares == null) {
+      alert("Please enter a number greater than 1");
     } else {
       let newCash = availableCash + saleValue;
 
