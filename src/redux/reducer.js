@@ -8,12 +8,14 @@ const watchlistReducer = (state = [], action) => {
       return state;
   }
 };
-const portfolioReducer = (state = [], action) => {
+const portfolioReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCHED_PORTFOLIO":
       return action.portfolio;
     case "ADJUSTED_CASH":
       return action.portfolio;
+    case "POSTED_POSITION":
+      return { ...state, positions: [...state.positions, action.position] };
     default:
       return state;
   }
