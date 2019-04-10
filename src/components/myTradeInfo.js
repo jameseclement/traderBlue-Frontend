@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 var numeral = require("numeral");
 class MyTradeInfo extends Component {
   render() {
-    return !this.props.portfolio.cash ? (
+    return !this.props.portfolio ? (
       <div>loading</div>
     ) : (
       <div>
