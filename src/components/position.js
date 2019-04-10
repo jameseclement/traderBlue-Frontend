@@ -29,7 +29,7 @@ class Position extends Component {
         <td>{numeral(dayGain * shares).format("($0,0.00)")}</td>
         <td>{numeral(dayGainPercent / 100).format("(0.00 %)")}</td>
         <td>{numeral(totalGain).format("($0,0.00)")}</td>
-        <td>{numeral(totalGainPercent / 100).format("(0.00 %)")}</td>
+        <td>{numeral(totalGainPercent).format("(0.00 %)")}</td>
       </tr>
     );
   }
