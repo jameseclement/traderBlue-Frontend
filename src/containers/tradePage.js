@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
+import TradingViewWidget from "react-tradingview-widget";
 
 class TradePage extends Component {
   render() {
@@ -39,18 +40,15 @@ class TradePage extends Component {
       <div>
         <h1> {!this.props.stock ? "" : this.props.stock.quote.companyName}</h1>
         <MyTradeInfo />
-
         <TradeControls />
+
+        <TradingViewWidget symbol={`${this.props.match.params.id}`} />
         <TradingData />
+
         <StockNewsContainer />
 
-        <br />
-        <br />
-        <br />
-        <br />
         <h2>My Watchlist</h2>
         <Watchlist />
-        <SecurityChart />
       </div>
     );
   }
