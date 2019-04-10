@@ -9,11 +9,11 @@ class MyTradeInfo extends Component {
     ) : (
       <div>
         <h2>
-          Current Position:{" "}
           {this.props.position
-            ? numeral(this.props.position.quantity).format("0,0")
-            : "0"}{" "}
-          Shares
+            ? `Current Position: ${numeral(this.props.position.quantity).format(
+                "0,0"
+              )} Shares`
+            : "Open a position by buying this stock!"}
         </h2>
         <h2>
           Available Cash: {numeral(this.props.portfolio.cash).format("$0,0.00")}
