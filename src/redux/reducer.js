@@ -4,6 +4,8 @@ const watchlistReducer = (state = [], action) => {
   switch (action.type) {
     case "FETCHED_WATCHLIST":
       return action.items;
+    case "POSTED_TO_WATCHLIST":
+      return [...state, action.item];
     default:
       return state;
   }
@@ -16,6 +18,7 @@ const portfolioReducer = (state = {}, action) => {
       return action.portfolio;
     case "POSTED_POSITION":
       return { ...state, positions: [...state.positions, action.position] };
+
     default:
       return state;
   }

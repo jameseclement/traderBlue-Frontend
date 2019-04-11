@@ -11,6 +11,24 @@ function fetchingWatchlist() {
   };
 }
 
+function postingToWatchlist(ticker, portfolioId) {
+  return dispatch => {
+    fetch("http://localhost:3000/api/v1/watchlist_items", {
+      method: "POST",
+      headers: { "Content-Type": "application/JSON" },
+      body: JSON.stringify({
+        ticker: ticker,
+        portfolio_id: portfolioId
+      })
+    })
+      .then(res => res.json())
+      .then(item => {
+        console.log(item);
+        dispatch(postedToWatchlist(item));
+      });
+  };
+}
+
 function loadingPortfolio() {
   return { type: "LOADING_PORTFOLIO" };
 }
@@ -186,6 +204,10 @@ function adjustedCash(portfolio) {
 function handleSearchChange(text) {
   return { type: "HANDLE_SEARCH_CHANGE", text };
 }
+
+function postedToWatchlist(item) {
+  return { type: "POSTED_TO_WATCHLIST", item };
+}
 //
 // function loadingPainting() {
 //   return { type: "LOADING_PAINTINGS" };
@@ -241,7 +263,8 @@ export {
   closingPosition,
   adjustingCash,
   handleSearchChange,
-  searching
+  searching,
+  postingToWatchlist
 
   // changeSearchText,
   // votingForPainting,
