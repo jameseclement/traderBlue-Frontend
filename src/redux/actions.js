@@ -47,16 +47,19 @@ function fetchingPortfolio(portfolioId) {
 
 function postingPosition(ticker, quantity, price, portfolioId) {
   return dispatch => {
-    fetch("http://localhost:3000/api/v1/users/1/portfolios/1/positions", {
-      method: "POST",
-      headers: { "Content-Type": "application/JSON" },
-      body: JSON.stringify({
-        quantity: quantity,
-        ticker: ticker,
-        cost_basis: price,
-        portfolio_id: portfolioId
-      })
-    })
+    fetch(
+      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/JSON" },
+        body: JSON.stringify({
+          quantity: quantity,
+          ticker: ticker,
+          cost_basis: price,
+          portfolio_id: portfolioId
+        })
+      }
+    )
       .then(res => res.json())
       .then(position => {
         console.log(position);

@@ -35,7 +35,7 @@ class PositionsTable extends Component {
       this.state.ticker,
       this.state.shares,
       this.state.costBasis,
-      1
+      this.props.portfolio.id
     );
   };
 
@@ -143,8 +143,8 @@ class PositionsTable extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    postingPosition: (ticker, quantity, price, portfolio_id) => {
-      dispatch(postingPosition(ticker, quantity, price, portfolio_id));
+    postingPosition: (ticker, quantity, price, portfolioId) => {
+      dispatch(postingPosition(ticker, quantity, price, portfolioId));
     },
     adjustingCash: (newCash, portfolioId) => {
       dispatch(adjustingCash(newCash, portfolioId));
