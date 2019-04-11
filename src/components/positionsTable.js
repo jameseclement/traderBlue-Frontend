@@ -4,31 +4,44 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
 import { postingPosition } from "../redux/actions";
+import { adjustingCash } from "../redux/actions";
 
 class PositionsTable extends Component {
   state = {
-    modalOpen: false,
+    modalOpen1: false,
+    modalOpen2: false,
     ticker: "",
     shares: "",
-    costBasis: ""
+    costBasis: "",
+    newCash: 0
   };
 
-  handleOpen = () => this.setState({ modalOpen: true });
+  handleOpen1 = () => this.setState({ modalOpen1: true });
 
-  handleClose = () => this.setState({ modalOpen: false });
+  handleClose1 = () => this.setState({ modalOpen1: false });
+
+  handleOpen2 = () => this.setState({ modalOpen2: true });
+
+  handleClose2 = () => this.setState({ modalOpen2: false });
 
   handleTickerChange = ticker => this.setState({ ticker });
   handleSharesChange = shares => this.setState({ shares });
   handleCostBasisChange = costBasis => this.setState({ costBasis });
+  handleCashChange = newCash => this.setState({ newCash });
 
-  handleSave = () => {
-    this.handleClose();
+  handleSave1 = () => {
+    this.handleClose1();
     this.props.postingPosition(
       this.state.ticker,
       this.state.shares,
       this.state.costBasis,
       1
     );
+  };
+
+  handleSave2 = () => {
+    this.handleClose2();
+    this.props.adjustingCash(this.state.newCash, 1);
   };
 
   render() {
@@ -59,12 +72,12 @@ class PositionsTable extends Component {
         </table>
         <Modal
           trigger={
-            <Button onClick={this.handleOpen}>
+            <Button onClick={this.handleOpen1}>
               Manually Add Position to Portfolio
             </Button>
           }
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
+          open={this.state.modalOpen1}
+          onClose={this.handleClose1}
           size="small"
         >
           <Header icon="browser" content="Add New Position" />
@@ -91,10 +104,35 @@ class PositionsTable extends Component {
             />
           </Modal.Content>
           <Modal.Actions>
-            <Button color="green" onClick={this.handleSave} inverted>
+            <Button color="green" onClick={this.handleSave1} inverted>
               <Icon name="checkmark" /> Save
             </Button>
-            <Button color="red" onClick={this.handleClose} inverted>
+            <Button color="red" onClick={this.handleClose1} inverted>
+              <Icon name="x" /> Cancel
+            </Button>
+          </Modal.Actions>
+        </Modal>
+        ????
+        <Modal
+          trigger={<Button onClick={this.handleOpen2}>Edit Cash</Button>}
+          open={this.state.modalOpen2}
+          onClose={this.handleClose2}
+          size="small"
+        >
+          <Header icon="browser" content="Edit Cash" />
+          <Modal.Content>
+            Cash:
+            <input
+              onChange={e => this.handleCashChange(e.target.value)}
+              type="number"
+              value={this.state.newCash}
+            />
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="green" onClick={this.handleSave2} inverted>
+              <Icon name="checkmark" /> Save
+            </Button>
+            <Button color="red" onClick={this.handleClose2} inverted>
               <Icon name="x" /> Cancel
             </Button>
           </Modal.Actions>
@@ -107,6 +145,9 @@ const mapDispatchToProps = dispatch => {
   return {
     postingPosition: (ticker, quantity, price, portfolio_id) => {
       dispatch(postingPosition(ticker, quantity, price, portfolio_id));
+    },
+    adjustingCash: newCash => {
+      dispatch(adjustingCash(newCash));
     }
   };
 };
