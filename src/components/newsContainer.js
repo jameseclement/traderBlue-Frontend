@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { uniqBy } from "lodash";
 
 class NewsContainer extends PureComponent {
   render() {
@@ -9,7 +10,7 @@ class NewsContainer extends PureComponent {
     ) : (
       <div>
         Watchlist News
-        {this.props.watchlist.map(item => {
+        {uniqBy(this.props.watchlist, "ticker").map(item => {
           return item.news.map(news => {
             return (
               <li>
