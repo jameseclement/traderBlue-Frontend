@@ -7,12 +7,15 @@ import { fetchingPosition } from "../redux/actions";
 import { adjustingPosition } from "../redux/actions";
 import { closingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
+import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import MyTradeInfo from "../components/myTradeInfo";
 
 class TradeControls extends Component {
   constructor() {
     super();
     this.state = {
-      shares: null
+      shares: null,
+      modalOpen: false
     };
   }
 
@@ -20,6 +23,9 @@ class TradeControls extends Component {
     this.props.fetchingStock(this.props.match.params.id);
     this.props.fetchingPosition(this.props.match.params.id);
   }
+  handleOpen = () => this.setState({ modalOpen: true });
+
+  handleClose = () => this.setState({ modalOpen: false });
 
   buyStock = () => {
     let price = this.props.stock.quote.latestPrice;
@@ -108,48 +114,61 @@ class TradeControls extends Component {
 
   render() {
     return (
-      <div>
-        <div className="ui input column">
-          <input
-            type="number"
-            name="shares"
-            value={this.state.shares}
-            onChange={e => this.setState({ shares: e.target.value })}
-            min="1"
-            placeholder="Shares"
-          />
-        </div>
-        <br />
-        <button
-          className="ui button positive"
-          onClick={() => {
-            this.buyStock();
-          }}
-        >
-          Buy
-        </button>
-        <div className="ui buttons negative">
+      <Modal
+        trigger={<Button onClick={this.handleOpen}>Place an Order!</Button>}
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+        size="small"
+      >
+        <Header icon="browser" content="Select Order Type" />
+        <Modal.Content>
+          <MyTradeInfo />
+          <div className="ui input column">
+            <input
+              type="number"
+              name="shares"
+              value={this.state.shares}
+              onChange={e => this.setState({ shares: e.target.value })}
+              min="1"
+              placeholder="Shares"
+            />
+          </div>
           <button
-            className="ui button"
+            className="ui button positive"
             onClick={() => {
-              this.sellStock();
+              this.buyStock();
             }}
           >
-            Sell
+            Buy
           </button>
-          <div className="or" />
-          <button
-            className="ui button"
-            onClick={() => {
-              !this.props.position
-                ? alert("You dont have a position in this stock")
-                : this.closePosition();
-            }}
-          >
-            Close Position
-          </button>
-        </div>
-      </div>
+          <div className="ui buttons negative">
+            <button
+              className="ui button"
+              onClick={() => {
+                this.sellStock();
+              }}
+            >
+              Sell
+            </button>
+            <div className="or" />
+            <button
+              className="ui button"
+              onClick={() => {
+                !this.props.position
+                  ? alert("You dont have a position in this stock")
+                  : this.closePosition();
+              }}
+            >
+              Close Position
+            </button>
+          </div>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color="green" onClick={this.handleClose} inverted>
+            <Icon name="checkmark" /> I'm Done!
+          </Button>
+        </Modal.Actions>
+      </Modal>
     );
   }
 }
