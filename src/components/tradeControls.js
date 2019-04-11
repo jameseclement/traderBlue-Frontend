@@ -35,7 +35,6 @@ class TradeControls extends Component {
   };
 
   buyStock = () => {
-    debugger;
     let price = this.props.stock.quote.latestPrice;
     let shares = parseInt(this.state.shares);
     let ticker = this.props.match.params.id;
@@ -59,7 +58,12 @@ class TradeControls extends Component {
         let newCostBasis =
           (previousPositionCost + purchaseCost) / newTotalShares;
 
-        this.props.adjustingPosition(ticker, newTotalShares, newCostBasis, 1);
+        this.props.adjustingPosition(
+          ticker,
+          newTotalShares,
+          newCostBasis,
+          this.props.portfolio.id
+        );
         return null;
       } else {
         console.log("new position");
@@ -100,7 +104,12 @@ class TradeControls extends Component {
           this.props.position.cost_basis;
         let newCostBasis = (previousPositionCost - saleValue) / newTotalShares;
 
-        this.props.adjustingPosition(ticker, newTotalShares, newCostBasis, 1);
+        this.props.adjustingPosition(
+          ticker,
+          newTotalShares,
+          newCostBasis,
+          this.props.portfolio.id
+        );
         return null;
       } else {
         alert("You dont own this stock");

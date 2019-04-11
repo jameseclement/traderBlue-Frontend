@@ -84,7 +84,7 @@ function fetchingPosition(ticker, portfolioId) {
 function adjustingPosition(ticker, newTotal, costBasis, portfolioId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`,
+      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions/${ticker}`,
       {
         method: "PATCH",
         headers: {
@@ -109,7 +109,6 @@ function adjustingPosition(ticker, newTotal, costBasis, portfolioId) {
 }
 
 function adjustingCash(newCash, portfolioId) {
-  debugger;
   return dispatch => {
     fetch(`${URL}/users/1/portfolios/${portfolioId}`, {
       method: "PATCH",
