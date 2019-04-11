@@ -33,10 +33,11 @@ function loadingPortfolio() {
   return { type: "LOADING_PORTFOLIO" };
 }
 
-function fetchingPortfolio() {
+function fetchingPortfolio(portfolioId) {
+  debugger;
   return dispatch => {
     dispatch(loadingPortfolio());
-    fetch(`${URL}/users/1/portfolios/1`)
+    fetch(`${URL}/users/1/portfolios/${portfolioId}`)
       .then(res => res.json())
       .then(portfolio => {
         console.log(portfolio);

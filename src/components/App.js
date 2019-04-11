@@ -14,7 +14,7 @@ import { withRouter } from "react-router-dom";
 class App extends Component {
   componentDidMount() {
     this.props.fetchingWatchlist();
-    this.props.fetchingPortfolio();
+    this.props.fetchingPortfolio(2);
   }
   render() {
     return (
@@ -22,7 +22,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={ResearchPage} />
-          <Route path="/portfolios/1" component={PortfolioPage} />
+          <Route path="/portfolios/:id" component={PortfolioPage} />
           <Route path="/trade/:id" render={() => <TradePage />} />
           <Route path="/trade" component={TradePage} />
           <Route path="/research" component={ResearchPage} />
@@ -36,8 +36,8 @@ const mapDispatchToProps = dispatch => {
     fetchingWatchlist: () => {
       dispatch(fetchingWatchlist());
     },
-    fetchingPortfolio: () => {
-      dispatch(fetchingPortfolio());
+    fetchingPortfolio: portfolioId => {
+      dispatch(fetchingPortfolio(portfolioId));
     }
   };
 };
