@@ -34,7 +34,6 @@ function loadingPortfolio() {
 }
 
 function fetchingPortfolio(portfolioId) {
-  debugger;
   return dispatch => {
     dispatch(loadingPortfolio());
     fetch(`${URL}/users/1/portfolios/${portfolioId}`)
@@ -106,9 +105,10 @@ function adjustingPosition(ticker, newTotal, costBasis, portfolioId) {
   };
 }
 
-function adjustingCash(newCash) {
+function adjustingCash(newCash, portfolioId) {
+  debugger;
   return dispatch => {
-    fetch(`${URL}/users/1/portfolios/1`, {
+    fetch(`${URL}/users/1/portfolios/${portfolioId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/JSON",

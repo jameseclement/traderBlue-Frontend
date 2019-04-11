@@ -6,16 +6,11 @@ import PortfolioPage from "../containers/portfolioPage";
 import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
 import "../App.css";
-import { fetchingWatchlist } from "../redux/actions";
-import { fetchingPortfolio } from "../redux/actions";
+
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchingWatchlist();
-    this.props.fetchingPortfolio(2);
-  }
   render() {
     return (
       <div className="App">
@@ -31,20 +26,10 @@ class App extends Component {
     );
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchingWatchlist: () => {
-      dispatch(fetchingWatchlist());
-    },
-    fetchingPortfolio: portfolioId => {
-      dispatch(fetchingPortfolio(portfolioId));
-    }
-  };
-};
 
 export default withRouter(
   connect(
     null,
-    mapDispatchToProps
+    null
   )(App)
 );

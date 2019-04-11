@@ -32,6 +32,7 @@ class TradeControls extends Component {
   };
 
   buyStock = () => {
+    debugger;
     let price = this.props.stock.quote.latestPrice;
     let shares = parseInt(this.state.shares);
     let ticker = this.props.match.params.id;
@@ -43,7 +44,7 @@ class TradeControls extends Component {
       alert("Please enter a number greater than 1");
     } else {
       let newCash = availableCash - purchaseCost;
-      this.props.adjustingCash(newCash);
+      this.props.adjustingCash(newCash, this.props.portfolio.id);
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
@@ -85,7 +86,7 @@ class TradeControls extends Component {
     } else {
       let newCash = availableCash + saleValue;
 
-      this.props.adjustingCash(newCash);
+      this.props.adjustingCash(newCash, this.props.portfolio.id);
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
@@ -112,7 +113,7 @@ class TradeControls extends Component {
     let saleValue = shares * price;
     let availableCash = this.props.portfolio.cash;
     let newCash = availableCash + saleValue;
-    this.props.adjustingCash(newCash);
+    this.props.adjustingCash(newCash, this.props.portfolio.id);
     this.props.closingPosition(ticker);
   };
 
@@ -200,8 +201,8 @@ const mapDispatchToProps = dispatch => {
     closingPosition: ticker => {
       dispatch(closingPosition(ticker));
     },
-    adjustingCash: newCash => {
-      dispatch(adjustingCash(newCash));
+    adjustingCash: (newCash, portfolioId) => {
+      dispatch(adjustingCash(newCash, portfolioId));
     },
     postingToWatchlist: (ticker, portfolioId) => {
       dispatch(postingToWatchlist(ticker, portfolioId));
