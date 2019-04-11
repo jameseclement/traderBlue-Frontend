@@ -65,10 +65,10 @@ function postingPosition(ticker, quantity, price, portfolioId) {
   };
 }
 
-function fetchingPosition(ticker) {
+function fetchingPosition(ticker, portfolioId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/1/positions/${ticker}`
+      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions/${ticker}`
     )
       .then(res => res.json())
       .then(position => {
@@ -159,14 +159,14 @@ function fetchingStock(ticker) {
   };
 }
 
-function searching(searchTerm) {
+function searching(searchTerm, portfolioId) {
   return dispatch => {
     fetch(`${URL}/stocks/${searchTerm}`)
       .then(res => res.json())
       .then(stockInfo => {
         console.log(stockInfo);
         dispatch(searchedStock(stockInfo));
-        dispatch(fetchingPosition(searchTerm));
+        dispatch(fetchingPosition(searchTerm, portfolioId));
       });
   };
 }

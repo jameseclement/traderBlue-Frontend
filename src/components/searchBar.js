@@ -28,7 +28,7 @@ class SearchBar extends Component {
             className="search icon circular primary link "
             onClick={() => {
               this.routeChange();
-              this.props.searching(this.props.search);
+              this.props.searching(this.props.search, this.props.portfolio.id);
             }}
           />
         </div>
@@ -38,7 +38,8 @@ class SearchBar extends Component {
 }
 const mapStateToProps = state => {
   return {
-    search: state.search
+    search: state.search,
+    portfolio: state.portfolio
   };
 };
 
@@ -47,8 +48,8 @@ const mapDispatchToProps = dispatch => {
     handleSearchChange: text => {
       dispatch(handleSearchChange(text));
     },
-    searching: searchTerm => {
-      dispatch(searching(searchTerm));
+    searching: (searchTerm, portfolioId) => {
+      dispatch(searching(searchTerm, portfolioId));
     }
   };
 };

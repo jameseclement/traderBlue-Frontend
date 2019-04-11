@@ -22,7 +22,10 @@ class TradeControls extends Component {
 
   componentDidMount() {
     this.props.fetchingStock(this.props.match.params.id);
-    this.props.fetchingPosition(this.props.match.params.id);
+    this.props.fetchingPosition(
+      this.props.match.params.id,
+      this.props.portfolio.id
+    );
   }
   handleOpen = () => this.setState({ modalOpen: true });
 
@@ -192,8 +195,8 @@ const mapDispatchToProps = dispatch => {
     fetchingStock: ticker => {
       dispatch(fetchingStock(ticker));
     },
-    fetchingPosition: ticker => {
-      dispatch(fetchingPosition(ticker));
+    fetchingPosition: (ticker, portfolioId) => {
+      dispatch(fetchingPosition(ticker, portfolioId));
     },
     adjustingPosition: (ticker, newTotal, costBasis, portfolio_id) => {
       dispatch(adjustingPosition(ticker, newTotal, costBasis, portfolio_id));
