@@ -45,10 +45,10 @@ function fetchingPortfolio(portfolioId, userId) {
   };
 }
 
-function postingPosition(ticker, quantity, price, portfolioId) {
+function postingPosition(ticker, quantity, price, portfolioId, userId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions`,
+      `http://localhost:3000/api/v1/users/${userId}/portfolios/${portfolioId}/positions`,
       {
         method: "POST",
         headers: { "Content-Type": "application/JSON" },

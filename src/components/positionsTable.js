@@ -35,7 +35,8 @@ class PositionsTable extends Component {
       this.state.ticker,
       this.state.shares,
       this.state.costBasis,
-      this.props.portfolio.id
+      this.props.portfolio.id,
+      this.props.user
     );
   };
 
@@ -143,8 +144,8 @@ class PositionsTable extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    postingPosition: (ticker, quantity, price, portfolioId) => {
-      dispatch(postingPosition(ticker, quantity, price, portfolioId));
+    postingPosition: (ticker, quantity, price, portfolioId, userId) => {
+      dispatch(postingPosition(ticker, quantity, price, portfolioId, userId));
     },
     adjustingCash: (newCash, portfolioId) => {
       dispatch(adjustingCash(newCash, portfolioId));
@@ -155,7 +156,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     loading: state.loading,
-    portfolio: state.portfolio
+    portfolio: state.portfolio,
+    user: state.user
   };
 };
 export default withRouter(

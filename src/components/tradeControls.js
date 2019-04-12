@@ -71,7 +71,8 @@ class TradeControls extends Component {
           ticker,
           this.state.shares,
           this.props.stock.quote.latestPrice,
-          this.props.portfolio.id
+          this.props.portfolio.id,
+          this.props.user
         );
         return null;
       }
@@ -198,8 +199,8 @@ class TradeControls extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postingPosition: (ticker, quantity, price, portfolioId) => {
-      dispatch(postingPosition(ticker, quantity, price, portfolioId));
+    postingPosition: (ticker, quantity, price, portfolioId, userId) => {
+      dispatch(postingPosition(ticker, quantity, price, portfolioId, userId));
     },
     fetchingStock: ticker => {
       dispatch(fetchingStock(ticker));
@@ -227,7 +228,8 @@ const mapStateToProps = state => {
     stock: state.stock,
     loading: state.loading,
     portfolio: state.portfolio,
-    position: state.position
+    position: state.position,
+    user: state.user
   };
 };
 
