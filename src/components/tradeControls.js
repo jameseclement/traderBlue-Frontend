@@ -126,7 +126,7 @@ class TradeControls extends Component {
     let availableCash = this.props.portfolio.cash;
     let newCash = availableCash + saleValue;
     this.props.adjustingCash(newCash, this.props.portfolio.id);
-    this.props.closingPosition(ticker);
+    this.props.closingPosition(ticker, this.props.portfolio.id);
   };
 
   render() {
@@ -210,8 +210,8 @@ const mapDispatchToProps = dispatch => {
     adjustingPosition: (ticker, newTotal, costBasis, portfolio_id) => {
       dispatch(adjustingPosition(ticker, newTotal, costBasis, portfolio_id));
     },
-    closingPosition: ticker => {
-      dispatch(closingPosition(ticker));
+    closingPosition: (ticker, portfolioId) => {
+      dispatch(closingPosition(ticker, portfolioId));
     },
     adjustingCash: (newCash, portfolioId) => {
       dispatch(adjustingCash(newCash, portfolioId));
