@@ -25,7 +25,7 @@ class TradeControls extends Component {
     this.props.fetchingPosition(
       this.props.match.params.id,
       this.props.portfolio.id,
-      this.props.user
+      this.props.user.id
     );
   }
   handleOpen = () => this.setState({ modalOpen: true });
@@ -50,7 +50,7 @@ class TradeControls extends Component {
       this.props.adjustingCash(
         newCash,
         this.props.portfolio.id,
-        this.props.user
+        this.props.user.id
       );
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
@@ -68,7 +68,7 @@ class TradeControls extends Component {
           newTotalShares,
           newCostBasis,
           this.props.portfolio.id,
-          this.props.user
+          this.props.user.id
         );
         return null;
       } else {
@@ -78,7 +78,7 @@ class TradeControls extends Component {
           this.state.shares,
           this.props.stock.quote.latestPrice,
           this.props.portfolio.id,
-          this.props.user
+          this.props.user.id
         );
         return null;
       }
@@ -103,7 +103,7 @@ class TradeControls extends Component {
       this.props.adjustingCash(
         newCash,
         this.props.portfolio.id,
-        this.props.user
+        this.props.user.id
       );
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
@@ -120,7 +120,7 @@ class TradeControls extends Component {
           newTotalShares,
           newCostBasis,
           this.props.portfolio.id,
-          this.props.user
+          this.props.user.id
         );
         return null;
       } else {
@@ -137,11 +137,11 @@ class TradeControls extends Component {
     let saleValue = shares * price;
     let availableCash = this.props.portfolio.cash;
     let newCash = availableCash + saleValue;
-    this.props.adjustingCash(newCash, this.props.portfolio.id, this.props.user);
+    this.props.adjustingCash(newCash, this.props.portfolio.id, this.props.user.id);
     this.props.closingPosition(
       ticker,
       this.props.portfolio.id,
-      this.props.user
+      this.props.user.id
     );
   };
 

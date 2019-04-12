@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
 import { postingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
+import { fetchingUser } from "../redux/actions";
 
 class PositionsTable extends Component {
   state = {
@@ -36,7 +37,7 @@ class PositionsTable extends Component {
       this.state.shares,
       this.state.costBasis,
       this.props.portfolio.id,
-      this.props.user
+      this.props.user.id
     );
   };
 
@@ -45,7 +46,7 @@ class PositionsTable extends Component {
     this.props.adjustingCash(
       this.state.newCash,
       this.props.match.params.id,
-      this.props.user
+      this.props.user.id
     );
   };
 
@@ -141,6 +142,20 @@ class PositionsTable extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
+        <button
+          onClick={() => {
+            this.props.fetchingUser(1);
+          }}
+        >
+          Fetch User 1
+        </button>
+        <button
+          onClick={() => {
+            this.props.fetchingUser(2);
+          }}
+        >
+          Fetch User 2
+        </button>
       </div>
     );
   }
@@ -152,6 +167,9 @@ const mapDispatchToProps = dispatch => {
     },
     adjustingCash: (newCash, portfolioId, userId) => {
       dispatch(adjustingCash(newCash, portfolioId, userId));
+    },
+    fetchingUser: userId => {
+      dispatch(fetchingUser(userId));
     }
   };
 };

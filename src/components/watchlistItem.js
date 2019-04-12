@@ -12,7 +12,7 @@ class WatchlistItem extends Component {
     this.props.fetchingPosition(
       ticker,
       this.props.portfolio.id,
-      this.props.user
+      this.props.user.id
     );
     this.props.fetchingStock(ticker);
   };

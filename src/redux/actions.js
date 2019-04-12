@@ -173,6 +173,17 @@ function searching(searchTerm, portfolioId) {
   };
 }
 
+function fetchingUser(userId) {
+  return dispatch => {
+    fetch(`${URL}/users/${userId}`)
+      .then(res => res.json())
+      .then(user => {
+        console.log(user);
+        dispatch(fetchedUser(user));
+      });
+  };
+}
+
 function fetchedStock(stockInfo) {
   return { type: "FETCHED_STOCK", stockInfo };
 }
@@ -212,8 +223,8 @@ function postedToWatchlist(item) {
   return { type: "POSTED_TO_WATCHLIST", item };
 }
 
-function selectUser(userId) {
-  return { type: "SELECT_USER", userId };
+function fetchedUser(user) {
+  return { type: "FETCHED_USER", user };
 }
 
 export {
@@ -228,5 +239,5 @@ export {
   handleSearchChange,
   searching,
   postingToWatchlist,
-  selectUser
+  fetchingUser
 };
