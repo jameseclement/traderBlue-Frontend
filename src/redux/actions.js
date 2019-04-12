@@ -68,10 +68,10 @@ function postingPosition(ticker, quantity, price, portfolioId, userId) {
   };
 }
 
-function fetchingPosition(ticker, portfolioId) {
+function fetchingPosition(ticker, portfolioId, userId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions/${ticker}`
+      `http://localhost:3000/api/v1/users/${userId}/portfolios/${portfolioId}/positions/${ticker}`
     )
       .then(res => res.json())
       .then(position => {
@@ -81,10 +81,10 @@ function fetchingPosition(ticker, portfolioId) {
   };
 }
 
-function adjustingPosition(ticker, newTotal, costBasis, portfolioId) {
+function adjustingPosition(ticker, newTotal, costBasis, portfolioId, userId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions/${ticker}`,
+      `http://localhost:3000/api/v1/users/${userId}/portfolios/${portfolioId}/positions/${ticker}`,
       {
         method: "PATCH",
         headers: {

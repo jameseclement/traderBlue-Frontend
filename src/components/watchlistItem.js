@@ -10,7 +10,11 @@ import { withRouter } from "react-router-dom";
 class WatchlistItem extends Component {
   render() {
     const fetchInfo = ticker => {
-      this.props.fetchingPosition(ticker, this.props.portfolio.id);
+      this.props.fetchingPosition(
+        ticker,
+        this.props.portfolio.id,
+        this.props.user
+      );
       this.props.fetchingStock(ticker);
     };
     return (
@@ -29,8 +33,8 @@ class WatchlistItem extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingPosition: (ticker, portfolioId) => {
-      dispatch(fetchingPosition(ticker, portfolioId));
+    fetchingPosition: (ticker, portfolioId, userId) => {
+      dispatch(fetchingPosition(ticker, portfolioId, userId));
     },
     fetchingStock: () => {
       dispatch(fetchingStock());
@@ -41,7 +45,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     portfolio: state.portfolio,
-    watchlist: state.watchlist
+    watchlist: state.watchlist,
+    user: state.user
   };
 };
 

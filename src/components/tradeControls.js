@@ -24,7 +24,8 @@ class TradeControls extends Component {
     this.props.fetchingStock(this.props.match.params.id);
     this.props.fetchingPosition(
       this.props.match.params.id,
-      this.props.portfolio.id
+      this.props.portfolio.id,
+      this.props.user
     );
   }
   handleOpen = () => this.setState({ modalOpen: true });
@@ -62,7 +63,8 @@ class TradeControls extends Component {
           ticker,
           newTotalShares,
           newCostBasis,
-          this.props.portfolio.id
+          this.props.portfolio.id,
+          this.props.user
         );
         return null;
       } else {
@@ -109,7 +111,8 @@ class TradeControls extends Component {
           ticker,
           newTotalShares,
           newCostBasis,
-          this.props.portfolio.id
+          this.props.portfolio.id,
+          this.props.user
         );
         return null;
       } else {
@@ -205,11 +208,13 @@ const mapDispatchToProps = dispatch => {
     fetchingStock: ticker => {
       dispatch(fetchingStock(ticker));
     },
-    fetchingPosition: (ticker, portfolioId) => {
-      dispatch(fetchingPosition(ticker, portfolioId));
+    fetchingPosition: (ticker, portfolioId, userId) => {
+      dispatch(fetchingPosition(ticker, portfolioId, userId));
     },
-    adjustingPosition: (ticker, newTotal, costBasis, portfolio_id) => {
-      dispatch(adjustingPosition(ticker, newTotal, costBasis, portfolio_id));
+    adjustingPosition: (ticker, newTotal, costBasis, portfolio_id, userId) => {
+      dispatch(
+        adjustingPosition(ticker, newTotal, costBasis, portfolio_id, userId)
+      );
     },
     closingPosition: (ticker, portfolioId) => {
       dispatch(closingPosition(ticker, portfolioId));
