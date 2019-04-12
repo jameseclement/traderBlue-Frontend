@@ -68,13 +68,23 @@ const searchReducer = (state = "", action) => {
   }
 };
 
+const userReducer = (state = 1, action) => {
+  switch (action.type) {
+    case "SELECT_USER":
+      return action.userId;
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   watchlist: watchlistReducer,
   portfolio: portfolioReducer,
   loading: loadingReducer,
   stock: stockReducer,
   position: positionReducer,
-  search: searchReducer
+  search: searchReducer,
+  user: userReducer
 });
 
 export default rootReducer;

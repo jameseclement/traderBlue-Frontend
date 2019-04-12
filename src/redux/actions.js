@@ -33,10 +33,10 @@ function loadingPortfolio() {
   return { type: "LOADING_PORTFOLIO" };
 }
 
-function fetchingPortfolio(portfolioId) {
+function fetchingPortfolio(portfolioId, userId) {
   return dispatch => {
     dispatch(loadingPortfolio());
-    fetch(`${URL}/users/1/portfolios/${portfolioId}`)
+    fetch(`${URL}/users/${userId}/portfolios/${portfolioId}`)
       .then(res => res.json())
       .then(portfolio => {
         console.log(portfolio);
@@ -211,51 +211,11 @@ function handleSearchChange(text) {
 function postedToWatchlist(item) {
   return { type: "POSTED_TO_WATCHLIST", item };
 }
-//
-// function loadingPainting() {
-//   return { type: "LOADING_PAINTINGS" };
-// }
-//
-// function votingForPainting(painting) {
-//   return (dispatch, getState) => {
-//     // let oldVotes = getState().paintings.find(p => p.id === paintingId).votes
-//     fetch(`${URL}/${painting.id}`, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Accept: "application/json"
-//       },
-//       body: JSON.stringify({
-//         votes: painting.votes + 1
-//       })
-//     })
-//       .then(res => res.json())
-//       .then(painting => {
-//         dispatch(increaseVotes(painting.id));
-//       });
-//   };
-// }
-//
-// //Problem 1: we HAVE to return {} from action creator
-// //Problem 2: we don't have access to dispatch the funciton object
-// //Want: return a process/function -> dispatch an action
-//
-// function changeSearchText(value) {
-//   return { type: "CHANGE_SEARCH_TEXT", value: value };
-// }
-//
-// function increaseVotes(paintingId) {
-//   return { type: "INCREASE_VOTES", paintingId };
-// }
-//
-// function updatePainting({ title, name, birthday, deathday, paintingId }) {
-//   return {
-//     type: "UPDATE_PAINTING",
-//     payload: { title, name, birthday, deathday },
-//     paintingId
-//   };
-// }
-//
+
+function selectUser(userId) {
+  return { type: "SELECT_USER", userId };
+}
+
 export {
   fetchingWatchlist,
   fetchingPortfolio,
@@ -267,10 +227,6 @@ export {
   adjustingCash,
   handleSearchChange,
   searching,
-  postingToWatchlist
-
-  // changeSearchText,
-  // votingForPainting,
-  // updatePainting,
-  // fetchingPaintings
+  postingToWatchlist,
+  selectUser
 };
