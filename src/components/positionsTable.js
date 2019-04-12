@@ -117,7 +117,6 @@ class PositionsTable extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        ????
         <Modal
           trigger={<Button onClick={this.handleOpen2}>Edit Cash</Button>}
           open={this.state.modalOpen2}
