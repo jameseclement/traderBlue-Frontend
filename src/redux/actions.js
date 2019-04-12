@@ -108,9 +108,9 @@ function adjustingPosition(ticker, newTotal, costBasis, portfolioId, userId) {
   };
 }
 
-function adjustingCash(newCash, portfolioId) {
+function adjustingCash(newCash, portfolioId, userId) {
   return dispatch => {
-    fetch(`${URL}/users/1/portfolios/${portfolioId}`, {
+    fetch(`${URL}/users/${userId}/portfolios/${portfolioId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/JSON",
@@ -130,10 +130,10 @@ function adjustingCash(newCash, portfolioId) {
   };
 }
 
-function closingPosition(ticker, portfolioId) {
+function closingPosition(ticker, portfolioId, userId) {
   return dispatch => {
     fetch(
-      `http://localhost:3000/api/v1/users/1/portfolios/${portfolioId}/positions/${ticker}`,
+      `http://localhost:3000/api/v1/users/${userId}/portfolios/${portfolioId}/positions/${ticker}`,
       {
         method: "DELETE",
         headers: {

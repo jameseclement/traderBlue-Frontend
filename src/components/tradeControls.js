@@ -47,7 +47,11 @@ class TradeControls extends Component {
       alert("Please enter a number greater than 1");
     } else {
       let newCash = availableCash - purchaseCost;
-      this.props.adjustingCash(newCash, this.props.portfolio.id);
+      this.props.adjustingCash(
+        newCash,
+        this.props.portfolio.id,
+        this.props.user
+      );
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
@@ -96,7 +100,11 @@ class TradeControls extends Component {
     } else {
       let newCash = availableCash + saleValue;
 
-      this.props.adjustingCash(newCash, this.props.portfolio.id);
+      this.props.adjustingCash(
+        newCash,
+        this.props.portfolio.id,
+        this.props.user
+      );
 
       if (!!this.props.position && this.props.position.ticker === ticker) {
         let currentShares = this.props.position.quantity;
@@ -129,8 +137,12 @@ class TradeControls extends Component {
     let saleValue = shares * price;
     let availableCash = this.props.portfolio.cash;
     let newCash = availableCash + saleValue;
-    this.props.adjustingCash(newCash, this.props.portfolio.id);
-    this.props.closingPosition(ticker, this.props.portfolio.id);
+    this.props.adjustingCash(newCash, this.props.portfolio.id, this.props.user);
+    this.props.closingPosition(
+      ticker,
+      this.props.portfolio.id,
+      this.props.user
+    );
   };
 
   render() {
@@ -216,11 +228,11 @@ const mapDispatchToProps = dispatch => {
         adjustingPosition(ticker, newTotal, costBasis, portfolio_id, userId)
       );
     },
-    closingPosition: (ticker, portfolioId) => {
-      dispatch(closingPosition(ticker, portfolioId));
+    closingPosition: (ticker, portfolioId, userId) => {
+      dispatch(closingPosition(ticker, portfolioId, userId));
     },
-    adjustingCash: (newCash, portfolioId) => {
-      dispatch(adjustingCash(newCash, portfolioId));
+    adjustingCash: (newCash, portfolioId, userId) => {
+      dispatch(adjustingCash(newCash, portfolioId, userId));
     },
     postingToWatchlist: (ticker, portfolioId) => {
       dispatch(postingToWatchlist(ticker, portfolioId));

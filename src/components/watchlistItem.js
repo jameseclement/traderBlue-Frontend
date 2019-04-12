@@ -8,15 +8,16 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 class WatchlistItem extends Component {
+  fetchInfo = ticker => {
+    this.props.fetchingPosition(
+      ticker,
+      this.props.portfolio.id,
+      this.props.user
+    );
+    this.props.fetchingStock(ticker);
+  };
+
   render() {
-    const fetchInfo = ticker => {
-      this.props.fetchingPosition(
-        ticker,
-        this.props.portfolio.id,
-        this.props.user
-      );
-      this.props.fetchingStock(ticker);
-    };
     return (
       <Button>
         <Link
@@ -36,8 +37,8 @@ const mapDispatchToProps = dispatch => {
     fetchingPosition: (ticker, portfolioId, userId) => {
       dispatch(fetchingPosition(ticker, portfolioId, userId));
     },
-    fetchingStock: () => {
-      dispatch(fetchingStock());
+    fetchingStock: ticker => {
+      dispatch(fetchingStock(ticker));
     }
   };
 };

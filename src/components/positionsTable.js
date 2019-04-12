@@ -42,7 +42,11 @@ class PositionsTable extends Component {
 
   handleSave2 = () => {
     this.handleClose2();
-    this.props.adjustingCash(this.state.newCash, this.props.match.params.id);
+    this.props.adjustingCash(
+      this.state.newCash,
+      this.props.match.params.id,
+      this.props.user
+    );
   };
 
   render() {
@@ -147,8 +151,8 @@ const mapDispatchToProps = dispatch => {
     postingPosition: (ticker, quantity, price, portfolioId, userId) => {
       dispatch(postingPosition(ticker, quantity, price, portfolioId, userId));
     },
-    adjustingCash: (newCash, portfolioId) => {
-      dispatch(adjustingCash(newCash, portfolioId));
+    adjustingCash: (newCash, portfolioId, userId) => {
+      dispatch(adjustingCash(newCash, portfolioId, userId));
     }
   };
 };

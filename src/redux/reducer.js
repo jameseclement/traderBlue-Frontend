@@ -68,7 +68,7 @@ const searchReducer = (state = "", action) => {
   }
 };
 
-const userReducer = (state = 2, action) => {
+const userReducer = (state = 1, action) => {
   switch (action.type) {
     case "SELECT_USER":
       return action.userId;
