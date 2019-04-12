@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import PortfolioPage from "../containers/portfolioPage";
 import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
+import LoginPage from "../containers/loginPage";
 import "../App.css";
 
 import { connect } from "react-redux";
@@ -16,6 +17,8 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
+          <Route exact path="/login" component={LoginPage} />
+
           <Route exact path="/" component={ResearchPage} />
           <Route path="/portfolios/:id" render={() => <PortfolioPage />} />
           <Route path="/trade/:id" render={() => <TradePage />} />
