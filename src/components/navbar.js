@@ -62,6 +62,7 @@ class Navbar extends Component {
         </NavLink>
 
         <div className="right menu">
+          <div className="item">{this.props.user.username}</div>
           <div className="item">
             <div className="ui icon input">
               <SearchBar />
