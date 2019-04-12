@@ -13,6 +13,14 @@ class PortfolioPage extends Component {
     this.props.fetchingWatchlist();
     this.props.fetchingPortfolio(this.props.match.params.id, this.props.user);
   }
+  componentDidUpdate(prevProps) {
+    const params = this.props.match.params;
+    const prevParams = prevProps.match.params;
+    if (prevParams.id !== params.id) {
+      this.props.fetchingWatchlist();
+      this.props.fetchingPortfolio(this.props.match.params.id, this.props.user);
+    }
+  }
 
   render() {
     return (

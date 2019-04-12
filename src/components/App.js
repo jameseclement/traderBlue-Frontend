@@ -17,7 +17,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={ResearchPage} />
-          <Route path="/portfolios/:id" component={PortfolioPage} />
+          <Route path="/portfolios/:id" render={() => <PortfolioPage />} />
           <Route path="/trade/:id" render={() => <TradePage />} />
           <Route path="/trade" component={TradePage} />
           <Route path="/research" component={ResearchPage} />
