@@ -175,13 +175,50 @@ function searching(searchTerm, portfolioId) {
 
 function fetchingUser(userId) {
   return dispatch => {
-    fetch(`${URL}/users/${userId}`)
+    fetch(`${URL}/users/${userId}`, {
+      method: "GET",
+      headers: {
+        Authentication: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
       .then(res => res.json())
       .then(user => {
         console.log(user);
         dispatch(fetchedUser(user));
       });
   };
+}
+
+function loggingInUser(username, password) {
+  return dispatch => {
+    fetch("http://localhost:3000/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.authenticated) {
+          //we should be logged in
+          localStorage.setItem("token", data.token);
+          dispatch(fetchingUser(data.user.id));
+          //store the token in localStorage
+        } else {
+          alert("Incorrect username or password");
+        }
+      })
+      .catch(error => console.log("Failed to Fetch:", error));
+  };
+}
+
+function loggedInUser(user) {
+  return { type: "LOGGED_IN_USER", user };
 }
 
 function fetchedStock(stockInfo) {
@@ -239,5 +276,6 @@ export {
   handleSearchChange,
   searching,
   postingToWatchlist,
-  fetchingUser
+  fetchingUser,
+  loggingInUser
 };

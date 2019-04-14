@@ -68,9 +68,11 @@ const searchReducer = (state = "", action) => {
   }
 };
 
-const userReducer = (state = { id: 1 }, action) => {
+const userReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCHED_USER":
+      return action.user;
+    case "LOGGED_IN_USER":
       return action.user;
     default:
       return state;
