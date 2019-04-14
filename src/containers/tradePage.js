@@ -12,6 +12,9 @@ import { Button } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 
 class TradePage extends Component {
+  // componentDidMount() {
+  //   this.props.fetchingPortfolio();
+  // }
   render() {
     // let ticker = this.props.match.params.id;
     return !this.props.match.params.id ? (

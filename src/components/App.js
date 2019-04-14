@@ -7,6 +7,7 @@ import TradePage from "../containers/tradePage";
 import ResearchPage from "../containers/researchPage";
 import LoginPage from "../containers/loginPage";
 import NotFound from "../components/notFound";
+import LandingPage from "../containers/landingPage";
 import "../App.css";
 import { isEmpty } from "lodash";
 import { loggingInUser, fetchingUser } from "../redux/actions";
@@ -15,6 +16,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
+  constructor() {
+    super();
+  }
   componentDidMount() {
     let token = localStorage.getItem("token");
     if (token) {
@@ -36,32 +40,79 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/portfolios/" />} />
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <LandingPage />
+              );
+            }}
+          />{" "}
+          />
+          <Route
+            path="/login"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <LoginPage />
+              ) : (
+                <Redirect to="/portfolios" />
+              );
+            }}
+          />
+          <Route
+            exact
+            path="/portfolios"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <LandingPage />
+              );
+            }}
+          />
           <Route
             path="/portfolios/:id"
             render={() => {
               return isEmpty(this.props.user) ? (
                 <Redirect to="/login" />
               ) : (
-                <PortfolioPage user={this.props.user} />
+                <PortfolioPage />
               );
             }}
           />
           <Route
-            exact
-            path="/login"
+            path="/trade/:id"
             render={() => {
               return isEmpty(this.props.user) ? (
-                <LoginPage loggingInUser={this.props.loggingInUser} />
+                <Redirect to="/login" />
               ) : (
-                <Redirect to="/portfolios/3" />
+                <TradePage />
               );
             }}
           />
-
-          <Route path="/trade/:id" render={() => <TradePage />} />
-          <Route path="/trade" component={TradePage} />
-          <Route path="/research" component={ResearchPage} />
+          <Route
+            path="/trade"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <TradePage />
+              );
+            }}
+          />
+          <Route
+            path="/research"
+            render={() => {
+              return isEmpty(this.props.user) ? (
+                <Redirect to="/login" />
+              ) : (
+                <ResearchPage />
+              );
+            }}
+          />
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -71,9 +122,6 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loggingInUser: userId => {
-      dispatch(loggingInUser(userId));
-    },
     fetchingUser: userId => {
       dispatch(fetchingUser(userId));
     }
