@@ -9,11 +9,14 @@ import { fetchingPortfolio } from "../redux/actions";
 class PortfolioPage extends Component {
   render() {
     return (
-      <Card.Group>
-        {this.props.user.portfolios.map(portfolio => {
-          return <PortfolioCard key={portfolio.id} portfolio={portfolio} />;
-        })}
-      </Card.Group>
+      <Fragment>
+        <h1>Select which portfolio we're working with</h1>
+        <Card.Group>
+          {this.props.user.portfolios.map(portfolio => {
+            return <PortfolioCard key={portfolio.id} portfolio={portfolio} />;
+          })}
+        </Card.Group>
+      </Fragment>
     );
   }
 }
