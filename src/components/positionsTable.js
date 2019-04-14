@@ -142,20 +142,6 @@ class PositionsTable extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        <button
-          onClick={() => {
-            this.props.fetchingUser(1);
-          }}
-        >
-          Fetch User 1
-        </button>
-        <button
-          onClick={() => {
-            this.props.fetchingUser(2);
-          }}
-        >
-          Fetch User 2
-        </button>
       </div>
     );
   }
