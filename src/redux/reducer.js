@@ -6,6 +6,12 @@ const watchlistReducer = (state = [], action) => {
       return action.items;
     case "POSTED_TO_WATCHLIST":
       return [...state, action.item];
+    case "REMOVED_FROM_WATCHLIST":
+      return [
+        ...state.filter(item => {
+          return item.ticker != action.item.ticker;
+        })
+      ];
     default:
       return state;
   }

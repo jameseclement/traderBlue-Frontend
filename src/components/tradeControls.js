@@ -8,6 +8,7 @@ import { adjustingPosition } from "../redux/actions";
 import { closingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
 import { postingToWatchlist } from "../redux/actions";
+import { removingFromWatchlist } from "../redux/actions";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
 import MyTradeInfo from "../components/myTradeInfo";
 
@@ -31,8 +32,16 @@ class TradeControls extends Component {
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleClose = () => this.setState({ modalOpen: false });
-  handleWatchlistButton = () => {
+
+  handleAddToWatchlist = () => {
     this.props.postingToWatchlist(
+      this.props.match.params.id,
+      this.props.user.id
+    );
+  };
+
+  handleRemoveFromWatchlist = () => {
+    this.props.removingFromWatchlist(
       this.props.match.params.id,
       this.props.user.id
     );
@@ -210,10 +219,25 @@ class TradeControls extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
-        <Button onClick={this.handleWatchlistButton} icon labelPosition="left">
-          Add to Watchlist
-          <Icon name="plus" />
-        </Button>
+        {!this.props.watchlist
+          .map(wi => {
+            return wi.ticker;
+          })
+          .includes(this.props.match.params.id) ? (
+          <Button onClick={this.handleAddToWatchlist} icon labelPosition="left">
+            Add to Watchlist
+            <Icon name="plus" />
+          </Button>
+        ) : (
+          <Button
+            onClick={this.handleRemoveFromWatchlist}
+            icon
+            labelPosition="left"
+          >
+            Remove from Watchlist
+            <Icon name="minus" />
+          </Button>
+        )}
       </Fragment>
     );
   }
@@ -243,6 +267,9 @@ const mapDispatchToProps = dispatch => {
     },
     postingToWatchlist: (ticker, userId) => {
       dispatch(postingToWatchlist(ticker, userId));
+    },
+    removingFromWatchlist: (ticker, userId) => {
+      dispatch(removingFromWatchlist(ticker, userId));
     }
   };
 };
@@ -253,7 +280,8 @@ const mapStateToProps = state => {
     loading: state.loading,
     portfolio: state.portfolio,
     position: state.position,
-    user: state.user
+    user: state.user,
+    watchlist: state.watchlist
   };
 };
 

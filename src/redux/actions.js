@@ -29,6 +29,20 @@ function postingToWatchlist(ticker, userId) {
   };
 }
 
+function removingFromWatchlist(ticker, userId) {
+  return dispatch => {
+    fetch(`${URL}/users/${userId}/watchlist_items/${ticker}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/JSON" }
+    })
+      .then(res => res.json())
+      .then(item => {
+        console.log(item);
+        dispatch(removedFromWatchlist(item));
+      });
+  };
+}
+
 function loadingPortfolio() {
   return { type: "LOADING_PORTFOLIO" };
 }
@@ -260,6 +274,10 @@ function postedToWatchlist(item) {
   return { type: "POSTED_TO_WATCHLIST", item };
 }
 
+function removedFromWatchlist(item) {
+  return { type: "REMOVED_FROM_WATCHLIST", item };
+}
+
 function fetchedUser(user) {
   return { type: "FETCHED_USER", user };
 }
@@ -276,6 +294,7 @@ export {
   handleSearchChange,
   searching,
   postingToWatchlist,
+  removingFromWatchlist,
   fetchingUser,
   loggingInUser,
   loggedInUser
