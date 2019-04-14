@@ -13,7 +13,13 @@ class PortfolioPage extends Component {
         <h1>Select which portfolio we're working with</h1>
         <Card.Group>
           {this.props.user.portfolios.map(portfolio => {
-            return <PortfolioCard key={portfolio.id} portfolio={portfolio} />;
+            return (
+              <PortfolioCard
+                key={portfolio.id}
+                portfolio={portfolio}
+                user={this.props.user}
+              />
+            );
           })}
         </Card.Group>
       </Fragment>

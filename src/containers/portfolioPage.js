@@ -11,14 +11,20 @@ import { fetchingPortfolio } from "../redux/actions";
 class PortfolioPage extends Component {
   componentDidMount() {
     this.props.fetchingWatchlist();
-    this.props.fetchingPortfolio(this.props.match.params.id, this.props.user.id);
+    this.props.fetchingPortfolio(
+      this.props.match.params.id,
+      this.props.user.id
+    );
   }
   componentDidUpdate(prevProps) {
     const params = this.props.match.params;
     const prevParams = prevProps.match.params;
     if (prevParams.id !== params.id) {
       this.props.fetchingWatchlist();
-      this.props.fetchingPortfolio(this.props.match.params.id, this.props.user.id);
+      this.props.fetchingPortfolio(
+        this.props.match.params.id,
+        this.props.user.id
+      );
     }
   }
 
@@ -34,8 +40,6 @@ class PortfolioPage extends Component {
         <div className="three wide column">
           <Watchlist />
         </div>
-
-        <PortfolioChart />
       </div>
     );
   }

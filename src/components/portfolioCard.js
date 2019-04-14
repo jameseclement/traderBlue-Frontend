@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 import { NavLink, Link } from "react-router-dom";
+var numeral = require("numeral");
 
 class PortfolioCard extends Component {
   render() {
@@ -9,7 +10,10 @@ class PortfolioCard extends Component {
         <Card.Content>
           <Card.Header>{this.props.portfolio.name}</Card.Header>
           <Card.Meta>Paper Trading</Card.Meta>
-          <Card.Description>Info about this portfolio</Card.Description>
+          <Card.Description>
+            {numeral(this.props.portfolio.cash).format("$0,0.00")} Available to
+            trade
+          </Card.Description>
         </Card.Content>
       </Card>
     );
