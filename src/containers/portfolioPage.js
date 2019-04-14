@@ -38,6 +38,7 @@ class PortfolioPage extends Component {
           <PortfolioSummary />
         </div>
         <div className="three wide column">
+          <PortfolioChart />
           <Watchlist />
         </div>
       </div>
