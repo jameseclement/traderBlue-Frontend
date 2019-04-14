@@ -53,6 +53,7 @@ class App extends Component {
           />{" "}
           />
           <Route
+            exact
             path="/login"
             render={() => {
               return isEmpty(this.props.user) ? (

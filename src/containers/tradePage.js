@@ -10,11 +10,12 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
+import { fetchingWatchlist } from "../redux/actions";
 
 class TradePage extends Component {
-  // componentDidMount() {
-  //   this.props.fetchingPortfolio();
-  // }
+  componentDidMount() {
+    this.props.fetchingWatchlist();
+  }
   render() {
     // let ticker = this.props.match.params.id;
     return !this.props.match.params.id ? (
@@ -23,7 +24,7 @@ class TradePage extends Component {
         <h3>My Stocks</h3>
         <div>
           {!this.props.portfolio.positions ? (
-            <div>Loading</div>
+            <div>Select a portfolio to view your stocks</div>
           ) : (
             <Button.Group vertical>
               {this.props.portfolio.positions.map(p => {
@@ -64,4 +65,17 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(TradePage));
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchingWatchlist: () => {
+      dispatch(fetchingWatchlist());
+    }
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(TradePage)
+);
