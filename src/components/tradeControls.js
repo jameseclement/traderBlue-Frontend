@@ -32,7 +32,10 @@ class TradeControls extends Component {
 
   handleClose = () => this.setState({ modalOpen: false });
   handleWatchlistButton = () => {
-    this.props.postingToWatchlist(this.props.match.params.id, 1);
+    this.props.postingToWatchlist(
+      this.props.match.params.id,
+      this.props.user.id
+    );
   };
 
   buyStock = () => {
@@ -137,7 +140,11 @@ class TradeControls extends Component {
     let saleValue = shares * price;
     let availableCash = this.props.portfolio.cash;
     let newCash = availableCash + saleValue;
-    this.props.adjustingCash(newCash, this.props.portfolio.id, this.props.user.id);
+    this.props.adjustingCash(
+      newCash,
+      this.props.portfolio.id,
+      this.props.user.id
+    );
     this.props.closingPosition(
       ticker,
       this.props.portfolio.id,
@@ -234,8 +241,8 @@ const mapDispatchToProps = dispatch => {
     adjustingCash: (newCash, portfolioId, userId) => {
       dispatch(adjustingCash(newCash, portfolioId, userId));
     },
-    postingToWatchlist: (ticker, portfolioId) => {
-      dispatch(postingToWatchlist(ticker, portfolioId));
+    postingToWatchlist: (ticker, userId) => {
+      dispatch(postingToWatchlist(ticker, userId));
     }
   };
 };

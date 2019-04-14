@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 class ResearchPage extends Component {
   componentDidMount() {
-    this.props.fetchingWatchlist();
+    this.props.fetchingWatchlist(this.props.user.id);
   }
 
   render() {
@@ -21,18 +21,23 @@ class ResearchPage extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingWatchlist: () => {
-      dispatch(fetchingWatchlist());
+    fetchingWatchlist: userId => {
+      dispatch(fetchingWatchlist(userId));
     }
   };
 };
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(ResearchPage)
 );

@@ -1,8 +1,8 @@
 const URL = `http://localhost:3000/api/v1`;
 //
-function fetchingWatchlist() {
+function fetchingWatchlist(userId) {
   return dispatch => {
-    fetch(`${URL}/watchlist_items`)
+    fetch(`${URL}/users/${userId}/watchlist_items`)
       .then(res => res.json())
       .then(items => {
         // console.log(items);
@@ -11,14 +11,14 @@ function fetchingWatchlist() {
   };
 }
 
-function postingToWatchlist(ticker, portfolioId) {
+function postingToWatchlist(ticker, userId) {
   return dispatch => {
-    fetch("http://localhost:3000/api/v1/watchlist_items", {
+    fetch(`${URL}/users/${userId}/watchlist_items`, {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         ticker: ticker,
-        portfolio_id: portfolioId
+        user_id: userId
       })
     })
       .then(res => res.json())

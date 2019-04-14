@@ -10,7 +10,7 @@ import { fetchingPortfolio } from "../redux/actions";
 
 class PortfolioPage extends Component {
   componentDidMount() {
-    this.props.fetchingWatchlist();
+    this.props.fetchingWatchlist(this.props.user.id);
     this.props.fetchingPortfolio(
       this.props.match.params.id,
       this.props.user.id
@@ -20,7 +20,7 @@ class PortfolioPage extends Component {
     const params = this.props.match.params;
     const prevParams = prevProps.match.params;
     if (prevParams.id !== params.id) {
-      this.props.fetchingWatchlist();
+      this.props.fetchingWatchlist(this.props.user.id);
       this.props.fetchingPortfolio(
         this.props.match.params.id,
         this.props.user.id
@@ -47,8 +47,8 @@ class PortfolioPage extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingWatchlist: () => {
-      dispatch(fetchingWatchlist());
+    fetchingWatchlist: userId => {
+      dispatch(fetchingWatchlist(userId));
     },
     fetchingPortfolio: (portfolioId, userId) => {
       dispatch(fetchingPortfolio(portfolioId, userId));

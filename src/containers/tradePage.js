@@ -14,7 +14,7 @@ import { fetchingWatchlist } from "../redux/actions";
 
 class TradePage extends Component {
   componentDidMount() {
-    this.props.fetchingWatchlist();
+    this.props.fetchingWatchlist(this.props.user.id);
   }
   render() {
     // let ticker = this.props.match.params.id;
@@ -61,14 +61,15 @@ const mapStateToProps = state => {
   return {
     portfolio: state.portfolio,
     watchlist: state.watchlist,
-    stock: state.stock
+    stock: state.stock,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingWatchlist: () => {
-      dispatch(fetchingWatchlist());
+    fetchingWatchlist: userId => {
+      dispatch(fetchingWatchlist(userId));
     }
   };
 };
