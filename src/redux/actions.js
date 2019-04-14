@@ -277,5 +277,6 @@ export {
   searching,
   postingToWatchlist,
   fetchingUser,
-  loggingInUser
+  loggingInUser,
+  loggedInUser
 };
