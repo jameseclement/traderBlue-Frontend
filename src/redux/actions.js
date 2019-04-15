@@ -11,13 +11,15 @@ function fetchingWatchlist(userId) {
   };
 }
 
-function postingToWatchlist(ticker, userId) {
+function postingToWatchlist(ticker, name, userId) {
+  debugger;
   return dispatch => {
     fetch(`${URL}/users/${userId}/watchlist_items`, {
       method: "POST",
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify({
         ticker: ticker,
+        name: name,
         user_id: userId
       })
     })

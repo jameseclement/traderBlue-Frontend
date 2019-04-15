@@ -36,6 +36,7 @@ class TradeControls extends Component {
   handleAddToWatchlist = () => {
     this.props.postingToWatchlist(
       this.props.match.params.id,
+      this.props.stock.quote.companyName,
       this.props.user.id
     );
   };
@@ -265,8 +266,8 @@ const mapDispatchToProps = dispatch => {
     adjustingCash: (newCash, portfolioId, userId) => {
       dispatch(adjustingCash(newCash, portfolioId, userId));
     },
-    postingToWatchlist: (ticker, userId) => {
-      dispatch(postingToWatchlist(ticker, userId));
+    postingToWatchlist: (ticker, name, userId) => {
+      dispatch(postingToWatchlist(ticker, name, userId));
     },
     removingFromWatchlist: (ticker, userId) => {
       dispatch(removingFromWatchlist(ticker, userId));
