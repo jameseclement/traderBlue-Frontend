@@ -25,6 +25,7 @@ class WatchlistItem extends Component {
         onClick={() => {
           this.fetchInfo(this.props.stock.ticker);
         }}
+        color="blue"
       >
         <Card.Content>
           <Card.Header as="h3" textAlign="center" color="blue">

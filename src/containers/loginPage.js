@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoginForm from "../components/loginForm";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid, Image, Card } from "semantic-ui-react";
 
 class LoginPage extends Component {
   render() {
@@ -15,10 +15,12 @@ class LoginPage extends Component {
         </Grid.Column>
       </Grid>
     ) : (
-      <Grid centered columns={3}>
+      <Grid centered columns={5}>
         <Grid.Column>
           <Grid.Row>
-            <LoginForm loggingInUser={this.props.loggingInUser} />
+            <Card fluid color="blue">
+              <LoginForm loggingInUser={this.props.loggingInUser} />
+            </Card>
           </Grid.Row>
         </Grid.Column>
       </Grid>

@@ -11,6 +11,8 @@ import { Link, NavLink } from "react-router-dom";
 import { Button, Card } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 import { fetchingWatchlist } from "../redux/actions";
+import WatchlistItem from "../components/watchlistItem";
+import { uniqBy } from "lodash";
 
 class TradePage extends Component {
   componentDidMount() {
@@ -26,10 +28,10 @@ class TradePage extends Component {
           {!this.props.portfolio.positions ? (
             <div>Select a portfolio to view your stocks</div>
           ) : (
-            <Card.Group vertical>
+            <Card.Group itemsPerRow={3} vertical>
               {this.props.portfolio.positions.map(p => {
                 return (
-                  <Card as={NavLink} to={`/trade/${p.ticker}`}>
+                  <Card color="blue" as={NavLink} to={`/trade/${p.ticker}`}>
                     <Card.Content>
                       <Card.Header as="h3" textAlign="center" color="blue">
                         {p.info.quote.companyName}
@@ -41,7 +43,12 @@ class TradePage extends Component {
             </Card.Group>
           )}
         </div>
-        <Watchlist />
+        <h3>My Watchlist</h3>
+        <Card.Group itemsPerRow={3} vertical>
+          {uniqBy(this.props.watchlist, "ticker").map(stock => {
+            return <WatchlistItem key={stock.ticker} stock={stock} />;
+          })}
+        </Card.Group>
       </div>
     ) : (
       <div>

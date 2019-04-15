@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import WatchlistItem from "./watchlistItem";
-import { Button, Card } from "semantic-ui-react";
 import { uniqBy } from "lodash";
+import { Button, Card } from "semantic-ui-react";
 class Watchlist extends Component {
   render() {
     return (
