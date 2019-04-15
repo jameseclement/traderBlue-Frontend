@@ -2,26 +2,30 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PortfolioCard from "../components/portfolioCard";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
+import { isEmpty } from "lodash";
 
 import { fetchingPortfolio } from "../redux/actions";
 
-class PortfolioPage extends Component {
+class LandingPage extends Component {
   render() {
     return (
       <Fragment>
         <h1>Select which portfolio we're working with</h1>
-        <Card.Group>
-          {this.props.user.portfolios.map(portfolio => {
-            return (
-              <PortfolioCard
-                key={portfolio.id}
-                portfolio={portfolio}
-                user={this.props.user}
-              />
-            );
-          })}
-        </Card.Group>
+        <Grid centered columns={3}>
+          <Grid.Column>
+            {this.props.user.portfolios.map(portfolio => {
+              return (
+                <PortfolioCard
+                  key={portfolio.id}
+                  portfolio={portfolio}
+                  user={this.props.user}
+                />
+              );
+            })}
+          </Grid.Column>
+          <Card.Group />
+        </Grid>
       </Fragment>
     );
   }
@@ -46,5 +50,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PortfolioPage)
+  )(LandingPage)
 );

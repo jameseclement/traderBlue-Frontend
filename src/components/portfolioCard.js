@@ -6,9 +6,16 @@ var numeral = require("numeral");
 class PortfolioCard extends Component {
   render() {
     return (
-      <Card as={NavLink} to={`/portfolios/${this.props.portfolio.id}`}>
+      <Card
+        fluid
+        color="blue"
+        as={NavLink}
+        to={`/portfolios/${this.props.portfolio.id}`}
+      >
         <Card.Content>
-          <Card.Header>{this.props.portfolio.name}</Card.Header>
+          <Card.Header center aligned>
+            {this.props.portfolio.name}
+          </Card.Header>
           <Card.Meta>Paper Trading</Card.Meta>
           <Card.Description>
             {numeral(this.props.portfolio.cash).format("$0,0.00")} Available to

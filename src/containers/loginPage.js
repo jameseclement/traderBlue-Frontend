@@ -9,7 +9,9 @@ class LoginPage extends Component {
     return this.props.loading ? (
       <Grid centered columns={3}>
         <Grid.Column>
-          <div class="ui active centered inline loader" />
+          <div class="ui active text centered inline loader">
+            Loading Portfolios
+          </div>
         </Grid.Column>
       </Grid>
     ) : (
