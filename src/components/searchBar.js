@@ -10,6 +10,13 @@ class SearchBar extends Component {
     this.props.history.push(path);
   };
 
+  onKeyPress = e => {
+    if (e.key === "Enter") {
+      this.routeChange();
+      this.props.searching(this.props.search, this.props.portfolio.id);
+    }
+  };
+
   render() {
     return (
       <div>
@@ -22,6 +29,7 @@ class SearchBar extends Component {
             }
             value={this.props.search}
             placeholder="Enter Symbol..."
+            onKeyPress={this.onKeyPress}
           />
           <i
             aria-hidden="true"
