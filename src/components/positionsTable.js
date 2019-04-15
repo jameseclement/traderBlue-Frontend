@@ -8,48 +8,6 @@ import { adjustingCash } from "../redux/actions";
 import { fetchingUser } from "../redux/actions";
 
 class PositionsTable extends Component {
-  state = {
-    modalOpen1: false,
-    modalOpen2: false,
-    ticker: "",
-    shares: "",
-    costBasis: "",
-    newCash: 0
-  };
-
-  handleOpen1 = () => this.setState({ modalOpen1: true });
-
-  handleClose1 = () => this.setState({ modalOpen1: false });
-
-  handleOpen2 = () => this.setState({ modalOpen2: true });
-
-  handleClose2 = () => this.setState({ modalOpen2: false });
-
-  handleTickerChange = ticker => this.setState({ ticker });
-  handleSharesChange = shares => this.setState({ shares });
-  handleCostBasisChange = costBasis => this.setState({ costBasis });
-  handleCashChange = newCash => this.setState({ newCash });
-
-  handleSave1 = () => {
-    this.handleClose1();
-    this.props.postingPosition(
-      this.state.ticker,
-      this.state.shares,
-      this.state.costBasis,
-      this.props.portfolio.id,
-      this.props.user.id
-    );
-  };
-
-  handleSave2 = () => {
-    this.handleClose2();
-    this.props.adjustingCash(
-      this.state.newCash,
-      this.props.match.params.id,
-      this.props.user.id
-    );
-  };
-
   render() {
     return !this.props.portfolio.positions ? (
       <div class="ui active text centered inline loader">Loading Positions</div>
@@ -76,72 +34,6 @@ class PositionsTable extends Component {
             })}
           </tbody>
         </table>
-        <Modal
-          trigger={
-            <Button onClick={this.handleOpen1}>
-              Manually Add Position to Portfolio
-            </Button>
-          }
-          open={this.state.modalOpen1}
-          onClose={this.handleClose1}
-          size="small"
-        >
-          <Header icon="browser" content="Add New Position" />
-          <Modal.Content>
-            Ticker
-            <input
-              onChange={e =>
-                this.handleTickerChange(e.target.value.toUpperCase())
-              }
-              type="text"
-              value={this.state.ticker}
-            />
-            Shares
-            <input
-              onChange={e => this.handleSharesChange(e.target.value)}
-              type="number"
-              value={this.state.shares}
-            />
-            Cost Basis $
-            <input
-              onChange={e => this.handleCostBasisChange(e.target.value)}
-              type="number"
-              value={this.state.costBasis}
-            />
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color="green" onClick={this.handleSave1} inverted>
-              <Icon name="checkmark" /> Save
-            </Button>
-            <Button color="red" onClick={this.handleClose1} inverted>
-              <Icon name="x" /> Cancel
-            </Button>
-          </Modal.Actions>
-        </Modal>
-        <Modal
-          trigger={<Button onClick={this.handleOpen2}>Edit Cash</Button>}
-          open={this.state.modalOpen2}
-          onClose={this.handleClose2}
-          size="small"
-        >
-          <Header icon="browser" content="Edit Cash" />
-          <Modal.Content>
-            Cash:
-            <input
-              onChange={e => this.handleCashChange(e.target.value)}
-              type="number"
-              value={this.state.newCash}
-            />
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color="green" onClick={this.handleSave2} inverted>
-              <Icon name="checkmark" /> Save
-            </Button>
-            <Button color="red" onClick={this.handleClose2} inverted>
-              <Icon name="x" /> Cancel
-            </Button>
-          </Modal.Actions>
-        </Modal>
       </div>
     );
   }

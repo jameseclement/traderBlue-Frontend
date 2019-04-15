@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Watchlist from "../components/watchlist";
 import PositionsTable from "../components/positionsTable";
-import PortfolioChart from "../components/portfolioChart";
 import PortfolioSummary from "../components/portfolioSummary";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -34,8 +33,6 @@ class PortfolioPage extends Component {
         <div className="four wide column">
           <h1 className="ui blue header">{this.props.portfolio.name}</h1>
           <PortfolioSummary />
-          <br />
-          <PortfolioChart />
         </div>
         <div className="ten wide column">
           <h1 className="ui blue header align left">My Investments</h1>
