@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import WatchlistItem from "./watchlistItem";
-import { Button } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
 import { uniqBy } from "lodash";
 class Watchlist extends Component {
   render() {
     return (
       <div>
         <h3>My Watchlist</h3>
-        <Button.Group vertical>
+        <Card.Group vertical>
           {uniqBy(this.props.watchlist, "ticker").map(stock => {
             return <WatchlistItem key={stock.ticker} stock={stock} />;
           })}
-        </Button.Group>
+        </Card.Group>
       </div>
     );
   }

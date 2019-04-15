@@ -11,8 +11,8 @@ class LandingPage extends Component {
   render() {
     return (
       <Fragment>
-        <h1>Select which portfolio we're working with</h1>
-        <Grid centered columns={3}>
+        <h1 className="ui blue header">Select Portfolio</h1>
+        <Grid centered columns={5}>
           <Grid.Column>
             {this.props.user.portfolios.map(portfolio => {
               return (

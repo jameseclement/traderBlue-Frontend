@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Card } from "semantic-ui-react";
 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { fetchingPosition } from "../redux/actions";
 import { fetchingStock } from "../redux/actions";
 import { connect } from "react-redux";
@@ -19,16 +19,19 @@ class WatchlistItem extends Component {
 
   render() {
     return (
-      <Button>
-        <Link
-          onClick={() => {
-            this.fetchInfo(this.props.stock.ticker);
-          }}
-          to={`/trade/${this.props.stock.ticker}`}
-        >
-          {this.props.stock.ticker}
-        </Link>
-      </Button>
+      <Card
+        as={NavLink}
+        to={`/trade/${this.props.stock.ticker}`}
+        onClick={() => {
+          this.fetchInfo(this.props.stock.ticker);
+        }}
+      >
+        <Card.Content>
+          <Card.Header as="h3" textAlign="center" color="blue">
+            {this.props.stock.name}
+          </Card.Header>
+        </Card.Content>
+      </Card>
     );
   }
 }

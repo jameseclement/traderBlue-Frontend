@@ -9,40 +9,37 @@ class PortfolioChart extends Component {
       let values = this.props.portfolio.positions.map(p => {
         return p.info.quote.latestPrice * p.quantity;
       });
+      let invested = values.reduce((x, y) => {
+        return x + y;
+      });
 
       let data = [
         {
-          value: values[0],
-          color: "#F7464A",
-          highlight: "#FF5A5E",
-          label: "Red"
+          value: invested,
+          color: "#2185D0",
+          highlight: "#99d6ff",
+          label: "Invested"
         },
         {
-          value: values[1],
-          color: "#46BFBD",
-          highlight: "#5AD3D1",
-          label: "Green"
-        },
-        {
-          value: values[2],
-          color: "#FDB45C",
-          highlight: "#FFC870",
-          label: "Yellow"
-        },
-        {
-          value: values[3],
-          color: "Green",
-          highlight: "#FFC870",
-          label: "Green"
+          value: this.props.portfolio.cash,
+          color: "#33cc33",
+          highlight: "#adebad",
+          label: "Cash"
         }
       ];
+
+      const options = {
+        legend: {
+          display: true
+        }
+      };
       return !!this.props.portfolio ? (
-        <PieChart data={data} />
+        <PieChart data={data} options={options} />
       ) : (
-        <div>Loading</div>
+        <div>Loading Data</div>
       );
     } else {
-      return <div>Loading</div>;
+      return <div>Loading Data</div>;
     }
   }
 }
@@ -59,3 +56,5 @@ export default withRouter(
     null
   )(PortfolioChart)
 );
+
+// if

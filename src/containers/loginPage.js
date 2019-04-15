@@ -9,7 +9,7 @@ class LoginPage extends Component {
     return this.props.loading ? (
       <Grid centered columns={3}>
         <Grid.Column>
-          <div class="ui active text centered inline loader">
+          <div class="ui massive active text centered inline loader">
             Loading Portfolios
           </div>
         </Grid.Column>
@@ -17,7 +17,9 @@ class LoginPage extends Component {
     ) : (
       <Grid centered columns={3}>
         <Grid.Column>
-          <LoginForm loggingInUser={this.props.loggingInUser} />
+          <Grid.Row>
+            <LoginForm loggingInUser={this.props.loggingInUser} />
+          </Grid.Row>
         </Grid.Column>
       </Grid>
     );

@@ -7,8 +7,8 @@ import TradeControls from "../components/tradeControls";
 import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Link, NavLink } from "react-router-dom";
+import { Button, Card } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 import { fetchingWatchlist } from "../redux/actions";
 
@@ -26,16 +26,19 @@ class TradePage extends Component {
           {!this.props.portfolio.positions ? (
             <div>Select a portfolio to view your stocks</div>
           ) : (
-            <Button.Group vertical>
+            <Card.Group vertical>
               {this.props.portfolio.positions.map(p => {
                 return (
-                  <Button>
-                    {" "}
-                    <Link to={`/trade/${p.ticker}`}>{p.ticker}</Link>
-                  </Button>
+                  <Card as={NavLink} to={`/trade/${p.ticker}`}>
+                    <Card.Content>
+                      <Card.Header as="h3" textAlign="center" color="blue">
+                        {p.info.quote.companyName}
+                      </Card.Header>
+                    </Card.Content>
+                  </Card>
                 );
               })}
-            </Button.Group>
+            </Card.Group>
           )}
         </div>
         <Watchlist />
