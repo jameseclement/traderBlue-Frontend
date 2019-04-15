@@ -19,7 +19,7 @@ class App extends Component {
   constructor() {
     super();
   }
-  componentDidMount() {
+  componentDidMount = () => {
     let token = localStorage.getItem("token");
     if (token) {
       fetch(`http://localhost:3000/api/v1/profile`, {
@@ -29,11 +29,12 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(data => {
+          debugger;
           console.log("Token exists, user is: ", data);
           this.props.fetchingUser(data.id);
         });
     }
-  }
+  };
 
   render() {
     return (
@@ -44,13 +45,19 @@ class App extends Component {
             exact
             path="/"
             render={() => {
-              return isEmpty(this.props.user) ? (
+              return <Redirect to="/portfolios" />;
+            }}
+          />
+          <Route
+            exact
+            path="/portfolios"
+            render={() => {
+              return !localStorage.getItem("token") ? (
                 <Redirect to="/login" />
               ) : (
                 <LandingPage />
               );
             }}
-          />
           />
           <Route
             exact
@@ -60,17 +67,6 @@ class App extends Component {
                 <LoginPage />
               ) : (
                 <Redirect to="/portfolios" />
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/portfolios"
-            render={() => {
-              return isEmpty(this.props.user) ? (
-                <Redirect to="/login" />
-              ) : (
-                <LandingPage />
               );
             }}
           />
@@ -131,7 +127,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    loading: state.loading
   };
 };
 

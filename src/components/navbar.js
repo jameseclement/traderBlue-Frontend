@@ -67,7 +67,7 @@ class Navbar extends Component {
             </NavLink>
 
             <div className="right menu">
-              <div className="item">{this.props.user.username}</div>
+              <div className="item">{this.props.user.first_name}</div>
               <Menu.Menu position="right">
                 <Menu.Item
                   to="/logout"

@@ -21,7 +21,7 @@ class SearchBar extends Component {
               this.props.handleSearchChange(e.target.value.toUpperCase())
             }
             value={this.props.search}
-            placeholder="MSFT..."
+            placeholder="Enter Symbol..."
           />
           <i
             aria-hidden="true"

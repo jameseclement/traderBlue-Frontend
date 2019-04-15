@@ -36,6 +36,11 @@ const loadingReducer = (state = false, action) => {
       return true;
     case "FETCHED_PORTFOLIO":
       return false;
+    case "LOADING_USER":
+      return true;
+    case "FETCHED_USER":
+      return false;
+
     default:
       return state;
   }

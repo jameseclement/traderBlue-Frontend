@@ -187,8 +187,14 @@ function searching(searchTerm, portfolioId) {
   };
 }
 
+function loadingUser() {
+  return { type: "LOADING_USER" };
+}
+
 function fetchingUser(userId) {
+  debugger;
   return dispatch => {
+    dispatch(loadingUser());
     fetch(`${URL}/users/${userId}`, {
       method: "GET",
       headers: {
@@ -282,6 +288,10 @@ function fetchedUser(user) {
   return { type: "FETCHED_USER", user };
 }
 
+function clearUserLoading() {
+  return { type: "CLEAR_USER_LOADING" };
+}
+
 export {
   fetchingWatchlist,
   fetchingPortfolio,
@@ -297,5 +307,7 @@ export {
   removingFromWatchlist,
   fetchingUser,
   loggingInUser,
-  loggedInUser
+  loggedInUser,
+  fetchedUser,
+  clearUserLoading
 };
