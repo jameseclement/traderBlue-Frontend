@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Segment, Button } from "semantic-ui-react";
+import { Form, Segment, Button, Icon, Header } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { loggingInUser } from "../redux/actions";
@@ -27,6 +27,10 @@ class LoginForm extends Component {
     return (
       <Form size="small" onSubmit={this.handleLoginSubmit}>
         <Segment>
+          <h2 className="ui center aligned blue header">
+            <Icon name="line graph" />
+            Welcome to TraderBlue!
+          </h2>
           <Form.Input
             icon="user"
             iconPosition="left"

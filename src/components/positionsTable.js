@@ -52,7 +52,7 @@ class PositionsTable extends Component {
 
   render() {
     return !this.props.portfolio.positions ? (
-      <div>Loading Positions </div>
+      <div class="ui active text centered inline loader">Loading Positions</div>
     ) : (
       <div>
         <table className="ui selectable table">

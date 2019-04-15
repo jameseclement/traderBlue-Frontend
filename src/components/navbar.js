@@ -18,28 +18,11 @@ class Navbar extends Component {
     return (
       <Menu className="ui inverted blue pointing menu">
         {isEmpty(this.props.user) ? (
-          <Fragment>
-            <Dropdown item text="Portfolios">
-              <Dropdown.Menu>
-                <Dropdown.Item>Login to View Portfolios</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown item text="Trade">
-              <Dropdown.Menu>
-                <Dropdown.Item>Login to Trade Stocks</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Dropdown item text="Research">
-              <Dropdown.Menu>
-                <Dropdown.Item>Login to Research Stocks</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <div className="left menu">
-              <Menu.Menu position="left">
-                <Menu.Item as={NavLink} to="/login" name="Login" />
-              </Menu.Menu>
-            </div>
-          </Fragment>
+          <div className="left menu">
+            <Menu.Menu position="left">
+              <Menu.Item as={NavLink} to="/login" name="Login" />
+            </Menu.Menu>
+          </div>
         ) : (
           <Fragment>
             <Dropdown item text="Portfolios">

@@ -5,7 +5,11 @@ var numeral = require("numeral");
 class PortfolioSummary extends Component {
   render() {
     if (!this.props.portfolio.positions) {
-      return <div>Loading Positions </div>;
+      return (
+        <div class="ui active text centered inline loader">
+          Loading Portfolio Summary
+        </div>
+      );
     } else if (this.props.portfolio.positions.length === 0) {
       let invested = 0;
       return (
