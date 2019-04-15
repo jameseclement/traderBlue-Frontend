@@ -48,7 +48,7 @@ class App extends Component {
             exact
             path="/portfolios"
             render={() => {
-              return !localStorage.getItem("token") ? (
+              return isEmpty(this.props.user) ? (
                 <Redirect to="/login" />
               ) : (
                 <LandingPage />
