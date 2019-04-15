@@ -16,7 +16,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <Menu className="ui inverted blue pointing menu">
+      <Menu size="massive" className="ui inverted blue pointing menu">
         {isEmpty(this.props.user) ? (
           <div className="left menu">
             <Menu.Menu position="left">
@@ -25,7 +25,7 @@ class Navbar extends Component {
           </div>
         ) : (
           <Fragment>
-            <Dropdown item text="Portfolios">
+            <Dropdown item text="Portfolios" size="large">
               <Dropdown.Menu>
                 {this.props.user.portfolios.map(p => {
                   return (
@@ -34,24 +34,30 @@ class Navbar extends Component {
                       to={`/portfolios/${p.id}`}
                       key={p.id}
                     >
-                      {`Portfolio ${p.id}`}
+                      {`${p.name}`}
                     </Dropdown.Item>
                   );
                 })}
               </Dropdown.Menu>
             </Dropdown>
 
-            <NavLink to="/trade" activeClassName="active item" className="item">
-              <h3 className="ui header">Trade</h3>
-            </NavLink>
-            <NavLink
-              exact
+            <Menu.Item
+              as={NavLink}
+              to="/trade"
+              activeClassName="active item"
+              className="item"
+            >
+              Trade
+            </Menu.Item>
+
+            <Menu.Item
+              as={NavLink}
               to="/research"
               activeClassName="active item"
               className="item"
             >
-              <h3 className="ui header">Research</h3>
-            </NavLink>
+              Research
+            </Menu.Item>
 
             <div className="right menu">
               <div className="item">{this.props.user.first_name}</div>
