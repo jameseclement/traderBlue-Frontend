@@ -9,7 +9,7 @@ const watchlistReducer = (state = [], action) => {
     case "REMOVED_FROM_WATCHLIST":
       return [
         ...state.filter(item => {
-          return item.ticker != action.item.ticker;
+          return item.ticker !== action.item.ticker;
         })
       ];
     default:

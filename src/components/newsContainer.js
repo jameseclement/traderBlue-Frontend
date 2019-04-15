@@ -14,7 +14,11 @@ class NewsContainer extends PureComponent {
           return item.news.map(news => {
             return (
               <li>
-                <a href={`${news.url}`} target="_blank">
+                <a
+                  href={`${news.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {news.headline}
                 </a>
               </li>

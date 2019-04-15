@@ -10,15 +10,12 @@ import NotFound from "../components/notFound";
 import LandingPage from "../containers/landingPage";
 import "../App.css";
 import { isEmpty } from "lodash";
-import { loggingInUser, fetchingUser } from "../redux/actions";
+import { fetchingUser } from "../redux/actions";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 class App extends Component {
-  constructor() {
-    super();
-  }
   componentDidMount = () => {
     let token = localStorage.getItem("token");
     if (token) {
@@ -29,7 +26,6 @@ class App extends Component {
       })
         .then(res => res.json())
         .then(data => {
-          debugger;
           console.log("Token exists, user is: ", data);
           this.props.fetchingUser(data.id);
         });

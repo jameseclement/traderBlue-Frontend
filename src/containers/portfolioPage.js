@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Watchlist from "../components/watchlist";
 import PositionsTable from "../components/positionsTable";
-import PortfolioChart from "../components/portfolioChart";
+// import PortfolioChart from "../components/portfolioChart";
 import PortfolioSummary from "../components/portfolioSummary";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -38,7 +38,6 @@ class PortfolioPage extends Component {
           <PortfolioSummary />
         </div>
         <div className="three wide column">
-          // <PortfolioChart />
           <Watchlist />
         </div>
       </div>

@@ -46,7 +46,11 @@ class Navbar extends Component {
               <Dropdown.Menu>
                 {this.props.user.portfolios.map(p => {
                   return (
-                    <Dropdown.Item as={Link} to={`/portfolios/${p.id}`}>
+                    <Dropdown.Item
+                      as={Link}
+                      to={`/portfolios/${p.id}`}
+                      key={p.id}
+                    >
                       {`Portfolio ${p.id}`}
                     </Dropdown.Item>
                   );

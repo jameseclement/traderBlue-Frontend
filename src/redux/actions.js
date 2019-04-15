@@ -192,7 +192,6 @@ function loadingUser() {
 }
 
 function fetchingUser(userId) {
-  debugger;
   return dispatch => {
     dispatch(loadingUser());
     fetch(`${URL}/users/${userId}`, {

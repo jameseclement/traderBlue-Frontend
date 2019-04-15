@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Watchlist from "../components/watchlist";
-import SecurityChart from "../components/securityChart";
+// import SecurityChart from "../components/securityChart";
 import StockNewsContainer from "../components/stockNewsContainer";
 import TradingData from "../components/tradingData";
 import TradeControls from "../components/tradeControls";

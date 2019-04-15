@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 var numeral = require("numeral");
 
 class PortfolioCard extends Component {
