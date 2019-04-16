@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Table, Modal, Header, Button, Icon } from "semantic-ui-react";
+import { Table, Modal, Header, Button, Icon, Input } from "semantic-ui-react";
 import { postingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
 import PortfolioChart from "../components/portfolioChart";
@@ -214,29 +214,32 @@ class PortfolioSummary extends Component {
             }
             open={this.state.modalOpen1}
             onClose={this.handleClose1}
-            size="small"
+            size="mini"
           >
             <Header icon="browser" content="Add New Position" />
             <Modal.Content>
-              Ticker
-              <input
+              <Input
                 onChange={e =>
                   this.handleTickerChange(e.target.value.toUpperCase())
                 }
                 type="text"
                 value={this.state.ticker}
+                label="Ticker"
+                placeholder="e.g. AMZN"
               />
-              Shares
-              <input
+              <Input
                 onChange={e => this.handleSharesChange(e.target.value)}
                 type="number"
                 value={this.state.shares}
+                label="Shares"
+                placeholder="e.g. 100"
               />
-              Cost Basis $
-              <input
+              <Input
                 onChange={e => this.handleCostBasisChange(e.target.value)}
                 type="number"
                 value={this.state.costBasis}
+                label="Price $"
+                placeholder="e.g. 30.00"
               />
             </Modal.Content>
             <Modal.Actions>
@@ -256,15 +259,18 @@ class PortfolioSummary extends Component {
             }
             open={this.state.modalOpen2}
             onClose={this.handleClose2}
-            size="small"
+            size="mini"
           >
             <Header icon="browser" content="Edit Cash" />
             <Modal.Content>
-              Cash:
-              <input
+              <Header as="h2" color="blue">
+                Total Cash
+              </Header>
+              <Input
                 onChange={e => this.handleCashChange(e.target.value)}
                 type="number"
                 value={this.state.newCash}
+                size="big"
               />
             </Modal.Content>
             <Modal.Actions>
