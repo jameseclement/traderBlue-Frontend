@@ -8,13 +8,26 @@ import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Card, Grid, Divider } from "semantic-ui-react";
+import { Card, Grid, Divider, Input } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 import { fetchingWatchlist } from "../redux/actions";
 import WatchlistItem from "../components/watchlistItem";
 import { uniqBy } from "lodash";
 
 class TradePage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      filter: ""
+    };
+  }
+
+  handleFilterChange = e => {
+    this.setState({
+      filter: e.target.value.toUpperCase()
+    });
+  };
+
   componentDidMount() {
     this.props.fetchingWatchlist(this.props.user.id);
   }
@@ -22,32 +35,45 @@ class TradePage extends Component {
     // let ticker = this.props.match.params.id;
     return !this.props.match.params.id ? (
       <div>
-        <h1>Select or Search for a Stock to trade</h1>
-        <h3>My Stocks</h3>
+        <h1>Select a Stock to Trade</h1>
+        <Input
+          label="FILTER"
+          value={this.state.filter}
+          onChange={this.handleFilterChange}
+        />
+        <h2>My Stocks</h2>
         <div>
           {!this.props.portfolio.positions ? (
             <div>Select a portfolio to view your stocks</div>
           ) : (
             <Card.Group itemsPerRow={3} vertical>
-              {this.props.portfolio.positions.map(p => {
-                return (
-                  <Card color="blue" as={NavLink} to={`/trade/${p.ticker}`}>
-                    <Card.Content>
-                      <Card.Header as="h3" textAlign="center" color="blue">
-                        {p.info.quote.companyName}
-                      </Card.Header>
-                    </Card.Content>
-                  </Card>
-                );
-              })}
+              {this.props.portfolio.positions
+                .filter(p =>
+                  p.info.quote.companyName
+                    .toUpperCase()
+                    .includes(this.state.filter)
+                )
+                .map(p => {
+                  return (
+                    <Card color="blue" as={NavLink} to={`/trade/${p.ticker}`}>
+                      <Card.Content>
+                        <Card.Header as="h3" textAlign="center" color="blue">
+                          {p.info.quote.companyName}
+                        </Card.Header>
+                      </Card.Content>
+                    </Card>
+                  );
+                })}
             </Card.Group>
           )}
         </div>
-        <h3>My Watchlist</h3>
+        <h2>My Watchlist</h2>
         <Card.Group itemsPerRow={3} vertical>
-          {uniqBy(this.props.watchlist, "ticker").map(stock => {
-            return <WatchlistItem key={stock.ticker} stock={stock} />;
-          })}
+          {uniqBy(this.props.watchlist, "ticker")
+            .filter(wi => wi.name.toUpperCase().includes(this.state.filter))
+            .map(stock => {
+              return <WatchlistItem key={stock.ticker} stock={stock} />;
+            })}
         </Card.Group>
       </div>
     ) : (
