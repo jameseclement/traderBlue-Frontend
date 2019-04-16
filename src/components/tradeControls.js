@@ -185,34 +185,33 @@ class TradeControls extends Component {
               />
             </div>
             <button
-              className="ui button positive"
+              className="ui button blue"
               onClick={() => {
                 this.buyStock();
               }}
             >
               Buy
             </button>
-            <div className="ui buttons negative">
-              <button
-                className="ui button"
-                onClick={() => {
-                  this.sellStock();
-                }}
-              >
-                Sell
-              </button>
-              <div className="or" />
-              <button
-                className="ui button"
-                onClick={() => {
-                  !this.props.position
-                    ? alert("You dont have a position in this stock")
-                    : this.closePosition();
-                }}
-              >
-                Close Position
-              </button>
-            </div>
+
+            <button
+              className="ui button blue"
+              onClick={() => {
+                this.sellStock();
+              }}
+            >
+              Sell
+            </button>
+
+            <button
+              className="ui button blue"
+              onClick={() => {
+                !this.props.position
+                  ? alert("You dont have a position in this stock")
+                  : this.closePosition();
+              }}
+            >
+              Close Position
+            </button>
           </Modal.Content>
           <Modal.Actions>
             <Button color="green" onClick={this.handleClose} inverted>
@@ -220,6 +219,7 @@ class TradeControls extends Component {
             </Button>
           </Modal.Actions>
         </Modal>
+        <br />
         {!this.props.watchlist
           .map(wi => {
             return wi.ticker;
@@ -227,7 +227,7 @@ class TradeControls extends Component {
           .includes(this.props.match.params.id) ? (
           <Button onClick={this.handleAddToWatchlist} icon labelPosition="left">
             Add to Watchlist
-            <Icon name="plus" />
+            <Icon name="plus" color="green" />
           </Button>
         ) : (
           <Button
@@ -236,7 +236,7 @@ class TradeControls extends Component {
             labelPosition="left"
           >
             Remove from Watchlist
-            <Icon name="minus" />
+            <Icon name="minus" color="red" />
           </Button>
         )}
       </Fragment>
