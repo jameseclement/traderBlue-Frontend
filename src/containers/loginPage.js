@@ -15,7 +15,7 @@ class LoginPage extends Component {
         </Grid.Column>
       </Grid>
     ) : (
-      <Grid centered columns={5}>
+      <Grid centered columns={3}>
         <Grid.Column>
           <Grid.Row>
             <Card fluid color="blue">
