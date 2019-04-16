@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchingWatchlist } from "../redux/actions";
 import { fetchingPortfolio } from "../redux/actions";
+import { Card, Grid, Divider } from "semantic-ui-react";
 
 class PortfolioPage extends Component {
   componentDidMount() {
@@ -29,20 +30,23 @@ class PortfolioPage extends Component {
 
   render() {
     return (
-      <div className="ui grid">
-        <div className="four wide column">
+      <Grid>
+        <Grid.Column width="1" />
+
+        <Grid.Column width="4">
           <h1 className="ui blue header">{this.props.portfolio.name}</h1>
           <PortfolioSummary />
-        </div>
-        <div className="ten wide column">
+        </Grid.Column>
+        <Grid.Column width="8">
           <h1 className="ui blue header align left">My Investments</h1>
 
           <PositionsTable />
-        </div>
-        <div className="two wide column">
+        </Grid.Column>
+        <Grid.Column width="2">
           <Watchlist />
-        </div>
-      </div>
+        </Grid.Column>
+        <Grid.Column width="1" />
+      </Grid>
     );
   }
 }
