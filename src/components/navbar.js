@@ -19,9 +19,7 @@ class Navbar extends Component {
       <Menu size="massive" className="ui inverted blue pointing menu">
         {isEmpty(this.props.user) ? (
           <div className="left menu">
-            <Menu.Menu position="left">
-              <Menu.Item as={NavLink} to="/login" name="Login" />
-            </Menu.Menu>
+            <Menu.Menu position="left" />
           </div>
         ) : (
           <Fragment>
