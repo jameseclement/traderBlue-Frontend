@@ -64,8 +64,8 @@ class TradePage extends Component {
           </Grid.Column>
           <Grid.Column width={3}>
             <MyTradeInfo />
-            <TradingData />
             <TradeControls />
+            <TradingData />
           </Grid.Column>
           <Grid.Column width={3}>
             <Watchlist />
