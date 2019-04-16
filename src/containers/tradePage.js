@@ -8,7 +8,7 @@ import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 import { fetchingWatchlist } from "../redux/actions";
 import WatchlistItem from "../components/watchlistItem";
@@ -51,18 +51,28 @@ class TradePage extends Component {
         </Card.Group>
       </div>
     ) : (
-      <div>
-        <h1> {!this.props.stock ? "" : this.props.stock.quote.companyName}</h1>
-        <MyTradeInfo />
-        <TradeControls />
-
-        <TradingViewWidget symbol={`${this.props.match.params.id}`} />
-        <TradingData />
-
-        <StockNewsContainer />
-
-        <Watchlist />
-      </div>
+      <Grid columns={5}>
+        <Grid.Row stretched>
+          <Grid.Column width={7}>
+            <h1 className="ui blue header align center">
+              {!this.props.stock ? "" : this.props.stock.quote.companyName}
+            </h1>
+            <TradingViewWidget
+              symbol={`${this.props.match.params.id}`}
+              autosize
+            />
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <MyTradeInfo />
+            <TradingData />
+            <TradeControls />
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <Watchlist />
+            <StockNewsContainer />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

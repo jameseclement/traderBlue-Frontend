@@ -8,10 +8,12 @@ class TradingData extends Component {
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (
-      <table className="ui celled table">
+      <table className="ui compact celled table">
         <thead>
           <tr>
-            <th colSpan="2">{`${this.props.stock.quote.companyName} Info`}</th>
+            <th className="two wide" colSpan="2">{`${
+              this.props.stock.quote.companyName
+            } Info`}</th>
           </tr>
         </thead>
         <tbody>
