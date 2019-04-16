@@ -10,7 +10,9 @@ class NewsContainer extends PureComponent {
       <div>Loading</div>
     ) : (
       <List>
-        <List.Header>Watchlist News</List.Header>
+        <List.Header as={"h1"} className="ui header blue">
+          Watchlist News
+        </List.Header>
         <List.Content floated="left">
           {uniqBy(this.props.watchlist, "ticker").map(item => {
             return item.news.map(news => {

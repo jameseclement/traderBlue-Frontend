@@ -5,6 +5,8 @@ import PopularList from "../components/popularList";
 import { fetchingWatchlist } from "../redux/actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { Grid } from "semantic-ui-react";
+
 class ResearchPage extends Component {
   componentDidMount() {
     this.props.fetchingWatchlist(this.props.user.id);
@@ -12,12 +14,16 @@ class ResearchPage extends Component {
 
   render() {
     return (
-      <div>
-        <NewsContainer />
-        <PopularList />
-
-        <Watchlist />
-      </div>
+      <Grid>
+        <Grid.Column width="5" />
+        <Grid.Column width="3">
+          <Watchlist />
+        </Grid.Column>
+        <Grid.Column width="3">
+          <NewsContainer />
+        </Grid.Column>
+        <Grid.Column width="5" />
+      </Grid>
     );
   }
 }
