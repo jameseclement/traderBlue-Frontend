@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 
 import { NavLink } from "react-router-dom";
 import { fetchingPosition } from "../redux/actions";

@@ -26,16 +26,16 @@ class Position extends Component {
         <td>{numeral(cost_basis).format("$0,0.00")}</td>
         <td>{numeral(totalValue).format("$0,0.00")}</td>
         <td>{numeral(totalCost).format("$0,0.00")}</td>
-        <td class={dayGain * shares < 0 ? "negative" : "positive"}>
+        <td className={dayGain * shares < 0 ? "negative" : "positive"}>
           {numeral(dayGain * shares).format("($0,0.00)")}
         </td>
-        <td class={dayGainPercent < 0 ? "negative" : "positive"}>
+        <td className={dayGainPercent < 0 ? "negative" : "positive"}>
           {numeral(dayGainPercent / 100).format("(0.00 %)")}
         </td>
-        <td class={totalGain < 0 ? "negative" : "positive"}>
+        <td className={totalGain < 0 ? "negative" : "positive"}>
           {numeral(totalGain).format("($0,0.00)")}
         </td>
-        <td class={totalGainPercent < 0 ? "negative" : "positive"}>
+        <td className={totalGainPercent < 0 ? "negative" : "positive"}>
           {numeral(totalGainPercent).format("(0.00 %)")}
         </td>
       </tr>

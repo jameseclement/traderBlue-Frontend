@@ -13,7 +13,7 @@ class NewsContainer extends PureComponent {
         {uniqBy(this.props.watchlist, "ticker").map(item => {
           return item.news.map(news => {
             return (
-              <li>
+              <li key={news.url}>
                 <a
                   href={`${news.url}`}
                   target="_blank"

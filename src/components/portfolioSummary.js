@@ -53,7 +53,7 @@ class PortfolioSummary extends Component {
   render() {
     if (!this.props.portfolio.positions) {
       return (
-        <div class="ui active text centered inline loader">
+        <div className="ui active text centered inline loader">
           Loading Portfolio Summary
         </div>
       );

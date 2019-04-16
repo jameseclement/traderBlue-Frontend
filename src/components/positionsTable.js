@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Position from "./position";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { Table } from "semantic-ui-react";
 import { postingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
 import { fetchingUser } from "../redux/actions";
@@ -10,7 +10,9 @@ import { fetchingUser } from "../redux/actions";
 class PositionsTable extends Component {
   render() {
     return !this.props.portfolio.positions ? (
-      <div class="ui active text centered inline loader">Loading Positions</div>
+      <div className="ui active text centered inline loader">
+        Loading Positions
+      </div>
     ) : (
       <div>
         <table className="ui selectable table">

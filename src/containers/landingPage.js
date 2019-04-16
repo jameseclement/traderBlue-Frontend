@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PortfolioCard from "../components/portfolioCard";
 import { Card, Grid } from "semantic-ui-react";
-import { isEmpty } from "lodash";
+// import { isEmpty } from "lodash";
 
 import { fetchingPortfolio } from "../redux/actions";
 

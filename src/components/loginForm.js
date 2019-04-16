@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Segment, Button, Icon, Header } from "semantic-ui-react";
+import { Form, Segment, Button, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { loggingInUser } from "../redux/actions";

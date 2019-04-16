@@ -13,11 +13,11 @@ class PortfolioCard extends Component {
         to={`/portfolios/${this.props.portfolio.id}`}
       >
         <Card.Content>
-          <Card.Header center aligned>
+          <Card.Header textAlign="center">
             {this.props.portfolio.name}
           </Card.Header>
-          <Card.Meta>Paper Trading</Card.Meta>
-          <Card.Description>
+          <Card.Meta textAlign="center">Paper Trading</Card.Meta>
+          <Card.Description textAlign="center">
             {numeral(this.props.portfolio.cash).format("$0,0.00")} Available to
             trade
           </Card.Description>
