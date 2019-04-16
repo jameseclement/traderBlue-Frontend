@@ -15,14 +15,14 @@ class ResearchPage extends Component {
   render() {
     return (
       <Grid>
-        <Grid.Column width="5" />
+        <Grid.Column width="3" />
         <Grid.Column width="3">
           <Watchlist />
         </Grid.Column>
-        <Grid.Column width="3">
+        <Grid.Column width="7">
           <NewsContainer />
         </Grid.Column>
-        <Grid.Column width="5" />
+        <Grid.Column width="3" />
       </Grid>
     );
   }
