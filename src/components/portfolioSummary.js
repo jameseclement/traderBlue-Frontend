@@ -81,7 +81,6 @@ class PortfolioSummary extends Component {
                 <Table.Cell className="">
                   {numeral(invested).format("$0,0.00")}
                 </Table.Cell>
-                <Table.Cell />
               </Table.Row>
               <Table.Row className="">
                 <Table.Cell className="">Total</Table.Cell>
@@ -94,10 +93,9 @@ class PortfolioSummary extends Component {
             </Table.Body>
           </Table>
           <Modal
-            color="blue"
             trigger={
-              <Button onClick={this.handleOpen1}>
-                Manually Add Position to Portfolio
+              <Button color="blue" onClick={this.handleOpen1} inverted>
+                Add Position
               </Button>
             }
             open={this.state.modalOpen1}
@@ -136,6 +134,34 @@ class PortfolioSummary extends Component {
               </Button>
             </Modal.Actions>
           </Modal>
+          <Modal
+            trigger={
+              <Button color="green" onClick={this.handleOpen2} inverted>
+                Edit Cash
+              </Button>
+            }
+            open={this.state.modalOpen2}
+            onClose={this.handleClose2}
+            size="small"
+          >
+            <Header icon="browser" content="Edit Cash" />
+            <Modal.Content>
+              Cash:
+              <input
+                onChange={e => this.handleCashChange(e.target.value)}
+                type="number"
+                value={this.state.newCash}
+              />
+            </Modal.Content>
+            <Modal.Actions>
+              <Button color="green" onClick={this.handleSave2} inverted>
+                <Icon name="checkmark" /> Save
+              </Button>
+              <Button color="red" onClick={this.handleClose2} inverted>
+                <Icon name="x" /> Cancel
+              </Button>
+            </Modal.Actions>
+          </Modal>
         </Fragment>
       );
     } else {
@@ -168,7 +194,6 @@ class PortfolioSummary extends Component {
                 <Table.Cell className="">
                   {numeral(invested).format("$0,0.00")}
                 </Table.Cell>
-                <Table.Cell />
               </Table.Row>
               <Table.Row className="">
                 <Table.Cell className="">Total</Table.Cell>
@@ -182,7 +207,11 @@ class PortfolioSummary extends Component {
           </Table>
           <PortfolioChart />
           <Modal
-            trigger={<Button onClick={this.handleOpen1}>Add Position</Button>}
+            trigger={
+              <Button color="blue" onClick={this.handleOpen1} inverted>
+                Add Position
+              </Button>
+            }
             open={this.state.modalOpen1}
             onClose={this.handleClose1}
             size="small"
@@ -220,7 +249,11 @@ class PortfolioSummary extends Component {
             </Modal.Actions>
           </Modal>
           <Modal
-            trigger={<Button onClick={this.handleOpen2}>Edit Cash</Button>}
+            trigger={
+              <Button color="green" onClick={this.handleOpen2} inverted>
+                Edit Cash
+              </Button>
+            }
             open={this.state.modalOpen2}
             onClose={this.handleClose2}
             size="small"
