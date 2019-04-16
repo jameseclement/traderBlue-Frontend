@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { fetchingStock } from "../redux/actions";
+import { Table, List } from "semantic-ui-react";
 
 class StockNewsContainer extends Component {
   componentDidMount() {
@@ -12,17 +13,20 @@ class StockNewsContainer extends Component {
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (
-      <div>
+      <List floated="left">
+        <List.Header className="ui header blue" as={"h2"}>{`${
+          this.props.stock.quote.companyName
+        } News`}</List.Header>
         {this.props.stock.news.map(n => {
           return (
-            <li key={n.headline}>
+            <List.Item key={n.headline}>
               <a href={n.url} target="_blank" rel="noopener noreferrer">
                 {n.headline}
               </a>
-            </li>
+            </List.Item>
           );
         })}
-      </div>
+      </List>
     );
   }
 }

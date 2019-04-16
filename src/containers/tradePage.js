@@ -8,7 +8,7 @@ import MyTradeInfo from "../components/myTradeInfo";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Card, Grid } from "semantic-ui-react";
+import { Card, Grid, Divider } from "semantic-ui-react";
 import TradingViewWidget from "react-tradingview-widget";
 import { fetchingWatchlist } from "../redux/actions";
 import WatchlistItem from "../components/watchlistItem";
@@ -53,6 +53,8 @@ class TradePage extends Component {
     ) : (
       <Grid columns={5}>
         <Grid.Row stretched>
+          <Grid.Column width={1} />
+
           <Grid.Column width={7}>
             <h1 className="ui blue header align center">
               {!this.props.stock ? "" : this.props.stock.quote.companyName}
@@ -67,10 +69,12 @@ class TradePage extends Component {
             <TradeControls />
             <TradingData />
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={4}>
             <Watchlist />
+            <Divider />
             <StockNewsContainer />
           </Grid.Column>
+          <Grid.Column width={1} />
         </Grid.Row>
       </Grid>
     );
