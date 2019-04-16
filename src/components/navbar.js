@@ -58,6 +58,11 @@ class Navbar extends Component {
             >
               Research
             </Menu.Item>
+            <Menu.Item className="item">
+              <div className="ui icon input">
+                <SearchBar />
+              </div>
+            </Menu.Item>
 
             <div className="right menu">
               <div className="item">{this.props.user.first_name}</div>
@@ -68,11 +73,6 @@ class Navbar extends Component {
                   onClick={() => this.logout()}
                 />
               </Menu.Menu>
-              <div className="item">
-                <div className="ui icon input">
-                  <SearchBar />
-                </div>
-              </div>
             </div>
           </Fragment>
         )}
