@@ -54,7 +54,6 @@ function fetchingPortfolio(portfolioId, userId) {
     fetch(`${URL}/users/${userId}/portfolios/${portfolioId}`)
       .then(res => res.json())
       .then(portfolio => {
-        console.log(portfolio);
         dispatch(fetchedPortfolio(portfolio));
       });
   };
@@ -139,7 +138,6 @@ function adjustingCash(newCash, portfolioId, userId) {
     })
       .then(res => res.json())
       .then(portfolio => {
-        console.log(portfolio);
         dispatch(adjustedCash(portfolio));
       });
   };
@@ -159,7 +157,6 @@ function closingPosition(ticker, portfolioId, userId) {
     )
       .then(res => res.json())
       .then(position => {
-        console.log(position);
         dispatch(closedPosition(position));
       });
   };
@@ -170,7 +167,6 @@ function fetchingStock(ticker) {
     fetch(`${URL}/stocks/${ticker}`)
       .then(res => res.json())
       .then(stockInfo => {
-        console.log(stockInfo);
         dispatch(fetchedStock(stockInfo));
       });
   };
@@ -181,7 +177,6 @@ function searching(searchTerm, portfolioId) {
     fetch(`${URL}/stocks/${searchTerm}`)
       .then(res => res.json())
       .then(stockInfo => {
-        console.log(stockInfo);
         dispatch(searchedStock(stockInfo));
         dispatch(fetchingPosition(searchTerm, portfolioId));
       });

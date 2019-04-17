@@ -38,8 +38,6 @@ class PortfolioPage extends Component {
           <PortfolioSummary />
         </Grid.Column>
         <Grid.Column width="8">
-          <h1 className="ui blue header align left">My Investments</h1>
-
           <PositionsTable />
         </Grid.Column>
         <Grid.Column width="2">

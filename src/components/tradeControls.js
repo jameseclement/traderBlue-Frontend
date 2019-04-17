@@ -16,7 +16,7 @@ class TradeControls extends Component {
   constructor() {
     super();
     this.state = {
-      shares: null,
+      shares: "",
       modalOpen: false
     };
   }
@@ -166,6 +166,7 @@ class TradeControls extends Component {
     return (
       <Fragment>
         <Modal
+          centered={false}
           trigger={<Button onClick={this.handleOpen}>Place an Order!</Button>}
           open={this.state.modalOpen}
           onClose={this.handleClose}

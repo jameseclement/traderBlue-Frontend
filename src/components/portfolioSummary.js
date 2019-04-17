@@ -207,6 +207,7 @@ class PortfolioSummary extends Component {
           </Table>
           <PortfolioChart />
           <Modal
+            centered={false}
             trigger={
               <Button color="blue" onClick={this.handleOpen1} inverted>
                 Add Position
@@ -252,6 +253,7 @@ class PortfolioSummary extends Component {
             </Modal.Actions>
           </Modal>
           <Modal
+            centered={false}
             trigger={
               <Button color="green" onClick={this.handleOpen2} inverted>
                 Edit Cash
