@@ -4,13 +4,13 @@ import SearchBar from "../components/searchBar";
 import { Dropdown, Menu } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { loggedInUser } from "../redux/actions";
+import { loggedOut } from "../redux/actions";
 import { isEmpty } from "lodash";
 class Navbar extends Component {
   logout = () => {
     //clear LocalStorage
     //update this.state.user = {}
-    this.props.loggedInUser({});
+    this.props.loggedOut();
     localStorage.removeItem("token");
   };
 
@@ -86,8 +86,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loggedInUser: user => {
-      dispatch(loggedInUser(user));
+    loggedOut: () => {
+      dispatch(loggedOut());
     }
   };
 };

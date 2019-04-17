@@ -12,6 +12,8 @@ const watchlistReducer = (state = [], action) => {
           return item.ticker !== action.item.ticker;
         })
       ];
+    case "LOGGED_OUT":
+      return [];
     default:
       return state;
   }
@@ -24,7 +26,8 @@ const portfolioReducer = (state = {}, action) => {
       return action.portfolio;
     case "POSTED_POSITION":
       return { ...state, positions: [...state.positions, action.position] };
-
+    case "LOGGED_OUT":
+      return {};
     default:
       return state;
   }
@@ -54,6 +57,8 @@ const positionReducer = (state = [], action) => {
       return action.position;
     case "CLOSED_POSITION":
       return null;
+    case "LOGGED_OUT":
+      return [];
     default:
       return state;
   }
@@ -65,6 +70,8 @@ const stockReducer = (state = null, action) => {
       return action.stockInfo;
     case "SEARCHED_STOCK":
       return action.stockInfo;
+    case "LOGGED_OUT":
+      return null;
     default:
       return state;
   }
@@ -85,6 +92,8 @@ const userReducer = (state = {}, action) => {
       return action.user;
     case "LOGGED_IN_USER":
       return action.user;
+    case "LOGGED_OUT":
+      return {};
     default:
       return state;
   }

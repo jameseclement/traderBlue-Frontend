@@ -292,6 +292,10 @@ function clearUserLoading() {
   return { type: "CLEAR_USER_LOADING" };
 }
 
+function loggedOut() {
+  return { type: "LOGGED_OUT" };
+}
+
 export {
   fetchingWatchlist,
   fetchingPortfolio,
@@ -309,5 +313,6 @@ export {
   loggingInUser,
   loggedInUser,
   fetchedUser,
-  clearUserLoading
+  clearUserLoading,
+  loggedOut
 };
