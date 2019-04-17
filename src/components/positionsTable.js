@@ -90,18 +90,8 @@ class PositionsTable extends Component {
             >
               % G/L Day
             </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "cost" ? direction : null}
-              onClick={this.handleSort("cost")}
-            >
-              $ G/L Total
-            </Table.HeaderCell>
-            <Table.HeaderCell
-              sorted={column === "cost" ? direction : null}
-              onClick={this.handleSort("cost")}
-            >
-              % G/L Total
-            </Table.HeaderCell>
+            <Table.HeaderCell>$ G/L Total</Table.HeaderCell>
+            <Table.HeaderCell>% G/L Total</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         {!this.state.data ? (

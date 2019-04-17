@@ -12,7 +12,6 @@ function fetchingWatchlist(userId) {
 }
 
 function postingToWatchlist(ticker, name, userId) {
-  debugger;
   return dispatch => {
     fetch(`${URL}/users/${userId}/watchlist_items`, {
       method: "POST",
