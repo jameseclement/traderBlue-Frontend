@@ -13,7 +13,7 @@ class StockNewsContainer extends Component {
     return !this.props.stock ? (
       <div>Loading</div>
     ) : (
-      <List floated="left">
+      <List size={"large"} animated bulleted>
         <List.Header className="ui header blue" as={"h2"}>{`${
           this.props.stock.quote.companyName
         } News`}</List.Header>
