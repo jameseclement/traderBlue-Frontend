@@ -6,37 +6,118 @@ import { Table } from "semantic-ui-react";
 import { postingPosition } from "../redux/actions";
 import { adjustingCash } from "../redux/actions";
 import { fetchingUser } from "../redux/actions";
+import { sortBy, map } from "lodash";
 
 class PositionsTable extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      column: null,
+      data: null,
+      direction: null
+    };
+  }
+
+  handleSort = targetColumn => () => {
+    const { column, data, direction } = this.state;
+
+    if (column !== targetColumn) {
+      this.setState({
+        column: targetColumn,
+        data: sortBy(this.props.portfolio.positions, [targetColumn]),
+        direction: "ascending"
+      });
+
+      return;
+    }
+
+    this.setState({
+      data: data.reverse(),
+      direction: direction === "ascending" ? "descending" : "ascending"
+    });
+  };
+
   render() {
+    const { column, data, direction } = this.state;
     return !this.props.portfolio.positions ? (
       <div className="ui active text centered inline loader">
         Loading Positions
       </div>
     ) : (
-      <div>
-        <table className="ui selectable table">
-          <thead>
-            <tr>
-              <th>Ticker</th>
-              <th>Shares</th>
-              <th>Current Price</th>
-              <th>Cost Basis</th>
-              <th>Total Value</th>
-              <th>Total Cost</th>
-              <th>$ G/L Day</th>
-              <th>% G/L Day</th>
-              <th>$ G/L Total</th>
-              <th>% G/L Total</th>
-            </tr>
-          </thead>
-          <tbody>
+      <Table selectable sortable celled striped>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell
+              sorted={column === "ticker" ? direction : null}
+              onClick={this.handleSort("ticker")}
+            >
+              Ticker
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "quantity" ? direction : null}
+              onClick={this.handleSort("quantity")}
+            >
+              Shares
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "info.quote.latestPrice" ? direction : null}
+              onClick={this.handleSort("info.quote.latestPrice")}
+            >
+              Current Price
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "cost_basis" ? direction : null}
+              onClick={this.handleSort("cost_basis")}
+            >
+              Cost Basis
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "value" ? direction : null}
+              onClick={this.handleSort("value")}
+            >
+              Total Value
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "cost" ? direction : null}
+              onClick={this.handleSort("cost")}
+            >
+              Total Cost
+            </Table.HeaderCell>
+            <Table.HeaderCell>$ G/L Day</Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "info.quote.changePercent" ? direction : null}
+              onClick={this.handleSort("info.quote.changePercent")}
+            >
+              % G/L Day
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "cost" ? direction : null}
+              onClick={this.handleSort("cost")}
+            >
+              $ G/L Total
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "cost" ? direction : null}
+              onClick={this.handleSort("cost")}
+            >
+              % G/L Total
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        {!this.state.data ? (
+          <Table.Body>
             {this.props.portfolio.positions.map(position => {
               return <Position key={position.id} position={position} />;
             })}
-          </tbody>
-        </table>
-      </div>
+          </Table.Body>
+        ) : (
+          <Table.Body>
+            {this.state.data.map(position => {
+              return <Position key={position.id} position={position} />;
+            })}
+          </Table.Body>
+        )}
+      </Table>
     );
   }
 }
