@@ -12,19 +12,20 @@ class LandingPage extends Component {
     return (
       <Fragment>
         <h1 className="ui blue header">Select Portfolio</h1>
-        <Grid centered columns={5}>
+        <Grid centered columns={3}>
           <Grid.Column>
-            {this.props.user.portfolios.map(portfolio => {
-              return (
-                <PortfolioCard
-                  key={portfolio.id}
-                  portfolio={portfolio}
-                  user={this.props.user}
-                />
-              );
-            })}
+            <Card.Group>
+              {this.props.user.portfolios.map(portfolio => {
+                return (
+                  <PortfolioCard
+                    key={portfolio.id}
+                    portfolio={portfolio}
+                    user={this.props.user}
+                  />
+                );
+              })}
+            </Card.Group>
           </Grid.Column>
-          <Card.Group />
         </Grid>
       </Fragment>
     );
