@@ -30,20 +30,19 @@ class PortfolioPage extends Component {
 
   render() {
     return (
-      <Grid>
-        <Grid.Column width="1" />
-
-        <Grid.Column width="4">
-          <h1 className="ui blue header">{this.props.portfolio.name}</h1>
-          <PortfolioSummary />
-        </Grid.Column>
-        <Grid.Column width="8">
+      <Grid centered columns={2}>
+        <Grid.Row centered columns={4}>
+          <Grid.Column>
+            <h1 className="ui blue header">{this.props.portfolio.name}</h1>
+            <PortfolioSummary />
+          </Grid.Column>
+          <Grid.Column width="2">
+            <Watchlist />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Column>
           <PositionsTable />
         </Grid.Column>
-        <Grid.Column width="2">
-          <Watchlist />
-        </Grid.Column>
-        <Grid.Column width="1" />
       </Grid>
     );
   }

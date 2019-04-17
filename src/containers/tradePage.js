@@ -77,11 +77,9 @@ class TradePage extends Component {
         </Card.Group>
       </div>
     ) : (
-      <Grid columns={5}>
-        <Grid.Row stretched>
-          <Grid.Column width={1} />
-
-          <Grid.Column width={7}>
+      <Grid centered columns={2}>
+        <Grid.Column>
+          <Grid.Row className="chart">
             <h1 className="ui blue header align center">
               {!this.props.stock ? "" : this.props.stock.quote.companyName}
             </h1>
@@ -89,18 +87,19 @@ class TradePage extends Component {
               symbol={`${this.props.match.params.id}`}
               autosize
             />
-          </Grid.Column>
-          <Grid.Column width={3}>
+          </Grid.Row>
+        </Grid.Column>
+        <Grid.Row centered columns={4} className="chart2">
+          <Grid.Column>
             <MyTradeInfo />
             <TradeControls />
             <TradingData />
           </Grid.Column>
-          <Grid.Column width={4}>
+          <Grid.Column>
             <Watchlist />
-            <Divider />
+            <Divider horizontal />
             <StockNewsContainer />
           </Grid.Column>
-          <Grid.Column width={1} />
         </Grid.Row>
       </Grid>
     );

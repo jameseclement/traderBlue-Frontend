@@ -33,4 +33,38 @@
 }
 #watchlist {
   margin-top: 10px;
+  text-align: center;
+}
+
+.chart {
+  height: 500px;
+  margin-bottom: 30px;
+}
+
+.chart2 {
+  height: 500px;
+}
+
+.piechart {
+  margin-top: 20px;
+}
+
+button.ui.blue.inverted.button.posbut {
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+button.ui.green.inverted.button {
+  margin: 10px;
+}
+
+canvas {
+  margin-top: 10px;
+}
+table.ui.celled.selectable.single.line.sortable.striped.table {
+  width: 500px;
+  margin-left: 125px;
+}
+h1.ui.blue.header.align.left {
+  margin-left: 125px;
 }

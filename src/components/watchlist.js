@@ -7,15 +7,16 @@ import { Card, Header } from "semantic-ui-react";
 class Watchlist extends Component {
   render() {
     return (
-      <Card.Group centered stackable>
+      <Fragment>
         <h1 id="watchlist" className="ui blue header">
           My Watchlist
         </h1>
-
-        {uniqBy(this.props.watchlist, "ticker").map(stock => {
-          return <WatchlistItem key={stock.ticker} stock={stock} />;
-        })}
-      </Card.Group>
+        <Card.Group centered stackable>
+          {uniqBy(this.props.watchlist, "ticker").map(stock => {
+            return <WatchlistItem key={stock.ticker} stock={stock} />;
+          })}
+        </Card.Group>
+      </Fragment>
     );
   }
 }
