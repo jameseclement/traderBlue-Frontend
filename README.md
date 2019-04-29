@@ -27,6 +27,10 @@ I designed TraderBlue with three different types of users in mind:
 - View current investments sorted alplabetically, by quantity, value, and gain/loss
 - Filter by name the stocks I own and have on watchlist by name
 
+## User Interface
+
+![Login Page](https://ibb.co/9sgKV0K)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
