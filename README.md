@@ -29,7 +29,22 @@ I designed TraderBlue with three different types of users in mind:
 
 ## User Interface
 
-![Login Page](https://ibb.co/9sgKV0K][img]https://i.ibb.co/Wg58PX8/Screen-Shot-2019-04-29-at-5-26-01-PM.png)
+- Login Form
+  ![Imgur](https://i.imgur.com/IY15Rb1.png)
+- Select a Portfolio
+  ![Imgur](https://i.imgur.com/EYSerhl.png)
+- Portfolio Homepage
+  ![Imgur](https://i.imgur.com/2xz7YIi.png)
+- Modal for Manually adding investment
+  ![Imgur](https://i.imgur.com/co6Byje.png)
+- Modal for Manully Editing Cash
+  ![Imgur](https://i.imgur.com/cFXJYJV.png)
+- Trade Page for specific stocks
+  ![Imgur](https://i.imgur.com/vdHyYCk.png)
+- Modal for buying/selling Stock
+  ![Imgur](https://i.imgur.com/hgAAmTJ.png)
+- Reasearch Page with up-to-date news stories for "My Stocks"
+  ![Imgur](https://i.imgur.com/Rdg9JId.png)
 
 ## License
 
