@@ -29,7 +29,7 @@ I designed TraderBlue with three different types of users in mind:
 
 ## User Interface
 
-![Login Page](https://ibb.co/9sgKV0K)
+![Login Page](https://ibb.co/9sgKV0K][img]https://i.ibb.co/Wg58PX8/Screen-Shot-2019-04-29-at-5-26-01-PM.png)
 
 ## License
 
