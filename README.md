@@ -8,8 +8,6 @@ I designed TraderBlue with three different types of users in mind:
 - Educators who want to provided finance, business, or economics students with a chance to learn what it means to buy, sell, and research investments
 - Seasoned investors who want to try out a risky new strategy without betting the farm
 
-## User stories:
-
 # As a user, I can:
 
 - Securely login to my account, knowing that my password is not stored in plaintext
