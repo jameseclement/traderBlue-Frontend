@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=nobAFS1saBQ
 - Securely login to my account, knowing that my password is not stored in plaintext
 - View index of my portfolio
 - Select a portfolio to view and trade in
-- View a portfolio's cash, investments, and total Value
+- View a portfolio's cash, investments, and total value
 - Manually add or reduce cash, and add investment position to portfolio without changing cash
 - Search for any publicly traded stock by ticker symbol
 - View a stock's performance over time with detailed, interactive charting
